@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public abstract class MeleeUnitBehavior : MonoBehaviour, UnitAttack, UnitMove
+public class MeleeUnitBehavior : MonoBehaviour, UnitAttack, UnitMove
 {
     public int attackRange;
     public int moveSpeed;
