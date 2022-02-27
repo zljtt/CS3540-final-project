@@ -12,96 +12,65 @@ public class MeleeEnemyBehavior : UnitEnemyBehavior
     public int attackDamage = 2;
     
     public float moveSpeed = 2f;
-    private int currentHealth;
     GameObject currentTarget;
-    List<GameObject> allTarget = new List<GameObject>{};
     List<GameObject> touchedWayPoint = new List<GameObject>{};
     string attackStatus = "unit";
 
-    
     private void Awake() {
         healthSlider1.maxValue = startHealth;
         healthSlider2.maxValue = startHealth;
+        currentHealth = startHealth;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        currentHealth = startHealth;
-        if(allTarget.Count == 0 ) {
-            List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit", "Waypoint" };
-            initTargets(tags);
-        }
-        currentTarget = FindCloestTarget();
-        //Debug.Log("the cloest target for " + this.name + "is :" + currentTarget.name);
-        healthSlider1.value = currentHealth;
-        healthSlider2.value = currentHealth;
     }
 
-    public void initTargets(List<string> tags){
-        allTarget = new List<GameObject>{};
-        for(int i = 0; i < tags.Count; i++) {
-            List<GameObject> targets = new List<GameObject> (
-                GameObject. FindGameObjectsWithTag (tags[i]));
-            allTarget.AddRange(targets);
-        }
-        foreach(GameObject item in touchedWayPoint) allTarget.Remove(item);
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if(currentTarget != null) {
+        healthSlider1.value = currentHealth;
+        healthSlider2.value = currentHealth;
+        List<GameObject> targets = initTargets();
+        if(targets.Count > 0) {
+            currentTarget = FindDesiredTarget(targets);
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
             if(distance > attackRange) { 
                 MoveTowardTarget(currentTarget);
             }
             else {
                 if(currentTarget.tag != "Waypoint") {  
-                    Attack();
+                    Attack(currentTarget);
                 }
                 else {
-                    touchWayPoint();
+                    touchedWayPoint.Add(currentTarget);
                 }
             }
         }
-        else {
-            changeTarget();
-        }
-    }
-    
-    void Attack() {
-        if(attackStatus != "unit") {
-            var behavior = currentTarget.GetComponent<EndPointBehavior>();
-            behavior.TakeDamage(attackDamage);
-        }
-        else {
-            var behavior = currentTarget.GetComponent<MeleeUnitBehavior>();
-            if(behavior.checkDeath(attackDamage)) {
-                changeTarget();
-            }
-            behavior.TakeDamage(attackDamage);
-        }
     }
 
-    public void changeTarget() {
+    public override List<GameObject> initTargets() {
         List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit", "Waypoint"};
-        initTargets(tags);
-        if(allTarget.Count == 0) {
-            attackStatus = "endpoint";
-            currentTarget = GameObject.FindGameObjectWithTag("EndPoint");
+        List<GameObject> tempTarget = FindAllTarget(tags, touchedWayPoint);
+        return tempTarget;
+    }
+
+    public override void Attack(GameObject target) {
+        if(attackStatus != "unit") {
+            var behavior = target.GetComponent<EndPointBehavior>();
+            behavior.TakeDamage(attackDamage);
         }
         else {
-            currentTarget = FindCloestTarget();
+            var behavior = target.GetComponent<UnitEnemyBehavior>();
+            behavior.TakeDamage(attackDamage);
         }
     }
 
-    public GameObject FindCloestTarget() {
+    public override GameObject FindDesiredTarget(List<GameObject> targets) {
         GameObject closest = null;
         float distance = Mathf.Infinity;
 
-        for(int i = 0; i < allTarget.Count; i++) {
-            GameObject target = allTarget[i];
+        for(int i = 0; i < targets.Count; i++) {
+            GameObject target = targets[i];
             Vector3 diff = target.transform.position - transform.position;
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance)
@@ -112,17 +81,7 @@ public class MeleeEnemyBehavior : UnitEnemyBehavior
         }
         return closest;
     }
-    public void TakeDamage(int damageAmount)
-    {
-        if(currentHealth > 0) {
-            currentHealth -= damageAmount;
-            healthSlider1.value = currentHealth;
-            healthSlider2.value = currentHealth;
-        }
-        if(currentHealth <= 0) {
-            EnemyDies();
-        }
-    }
+
 
     public void MoveTowardTarget(GameObject target)
     {
@@ -132,16 +91,7 @@ public class MeleeEnemyBehavior : UnitEnemyBehavior
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
     }
 
-    void touchWayPoint() {
-        touchedWayPoint.Add(currentTarget);
-        changeTarget();
-    }
-
-    public void EnemyDies() {
-        //may need to add sound effect and game lose or win condition 
-        Destroy(gameObject);
-    }
-    public bool checkDeath(int damageAmount) {
-        return currentHealth - damageAmount <= 0;
+    public Slider GetSlider() {
+        return healthSlider1;
     }
 }
