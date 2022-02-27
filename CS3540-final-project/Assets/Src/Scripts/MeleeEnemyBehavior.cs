@@ -24,6 +24,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
     }
 
     public void initTargets(List<string> tags){
+        allTarget = new List<GameObject>{};
         for(int i = 0; i < tags.Count; i++) {
             List<GameObject> targets = new List<GameObject> (
                 GameObject. FindGameObjectsWithTag (tags[i]));
@@ -34,51 +35,44 @@ public class MeleeEnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-        if(distance > 1f) { 
-            MoveTowardTarget(currentTarget);
+        if(currentTarget != null) {
+            float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
+            if(distance > 2f) { 
+                MoveTowardTarget(currentTarget);
+            }
+            else {
+                Attack();
+            }
         }
-    }
-
-    private void OnCollisionEnter(Collision other) {
-        if(other.collider.CompareTag(currentTarget.tag)) {
-            
-            Debug.Log("touched");
+        else {
+            changeTarget();
         }
     }
     
     void Attack() {
-        /*
         if(attackStatus != "unit") {
             var behavior = currentTarget.GetComponent<EndPointBehavior>();
             behavior.TakeDamage(attackDamage);
-            if(behavior.checkDeath()) {
-                Debug.Log("Game end");
-            }
         }
         else {
             var behavior = currentTarget.GetComponent<MeleeUnitBehavior>();
-            behavior.TakeDamage(attackDamage);
-            if(behavior.checkDeath()) {
+            if(behavior.checkDeath(attackDamage)) {
                 changeTarget();
-                Debug.Log(currentTarget.name + " dies");
             }
+            behavior.TakeDamage(attackDamage);
         }
-        */
     }
 
     public void changeTarget() {
-        /*
-        allTarget = GameObject.FindGameObjectsWithTag("Unit");
-        if(allTarget == null) {
+        List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit" };
+        initTargets(tags);
+        if(allTarget.Count == 0) {
             attackStatus = "endpoint";
             currentTarget = GameObject.FindGameObjectWithTag("EndPoint");
         }
         else {
-            attackStatus = "endpoint";
-            currentTarget = GameObject.FindGameObjectWithTag("EndPoint");
+            currentTarget = FindCloestTarget();
         }
-        */
     }
 
     public GameObject FindCloestTarget() {

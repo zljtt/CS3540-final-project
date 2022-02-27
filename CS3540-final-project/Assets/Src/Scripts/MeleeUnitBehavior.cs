@@ -27,8 +27,8 @@ public class MeleeUnitBehavior : MonoBehaviour {
         }
     }
 
-    public bool checkDeath() {
-        return currentHealth <= 0;
+    public bool checkDeath(int damageAmount) {
+        return currentHealth - damageAmount <= 0;
     }
 
     void UnitDies() {

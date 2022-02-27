@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FarAttackUnitBehavior : MonoBehaviour
 {
-    
     public int startHealth = 100;
     private int currentHealth;
     // Start is called before the first frame update
@@ -16,7 +15,7 @@ public class FarAttackUnitBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(this.name + " current health: " + currentHealth);
+        //Debug.Log(this.name + " current health: " + currentHealth);
     }
 
     public void TakeDamage(int damageAmount) {
@@ -28,8 +27,8 @@ public class FarAttackUnitBehavior : MonoBehaviour
         }
     }
 
-    public bool checkDeath() {
-        return currentHealth <= 0;
+    public bool checkDeath(int damageAmount) {
+        return currentHealth - damageAmount <= 0;
     }
 
     void UnitDies() {
