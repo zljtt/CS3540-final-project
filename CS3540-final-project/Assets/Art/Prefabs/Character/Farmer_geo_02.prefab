@@ -424,8 +424,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider1: {fileID: 256655502181723318}
   healthSlider2: {fileID: 4875519306629261239}
-  startHealth: 100
-  attackRange: 20
+  startHealth: 70
+  attackRange: 2
+  attackDamage: 2
 --- !u!65 &8981105083789661224
 BoxCollider:
   m_ObjectHideFlags: 0

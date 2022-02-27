@@ -138,5 +138,9 @@ public class MeleeEnemyBehavior : MonoBehaviour
 
     public void EnemyDies() {
         //may need to add sound effect and game lose or win condition 
+        Destroy(gameObject);
+    }
+    public bool checkDeath(int damageAmount) {
+        return currentHealth - damageAmount <= 0;
     }
 }

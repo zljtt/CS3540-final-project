@@ -9,10 +9,11 @@ public class MeleeUnitBehavior : MonoBehaviour {
     public Slider healthSlider2;
     public int startHealth = 100;
     private int currentHealth;
-    public float attackRange;
+    public float attackRange = 1f;
+    public int attackDamage = 10;
+    GameObject currentTarget;
     // Start is called before the first frame update
     private void Awake() {
-
         healthSlider1.maxValue = startHealth;
         healthSlider2.maxValue = startHealth;
     }
@@ -27,9 +28,17 @@ public class MeleeUnitBehavior : MonoBehaviour {
     void Update()
     {
         //Debug.Log(this.name + " current health: " + currentHealth);
-        
+        List<GameObject> targets = FindCloestTarget();
+        if(targets.Count > 0) {
+            currentTarget = targets[0];
+            Attack(currentTarget);
+        }
     }
 
+    void Attack(GameObject target) {
+        var behavior = target.GetComponent<MeleeEnemyBehavior>();
+        behavior.TakeDamage(attackDamage);
+    }
 
     public void TakeDamage(int damageAmount) {
         if(currentHealth > 0) {
@@ -40,6 +49,33 @@ public class MeleeUnitBehavior : MonoBehaviour {
         if(currentHealth <= 0) {
             UnitDies();
         }
+    }
+    public List<GameObject> FindCloestTarget() {
+        List<string> tags = new List<string> { "MeleeEnemy", "FarAttackEnemy"};
+        List<GameObject> exclude = new List<GameObject> {};
+        List<GameObject> allTarget = findAllTarget(tags, exclude);
+        List<GameObject> closeTarget = new List<GameObject> {};
+
+        for(int i = 0; i < allTarget.Count; i++) {
+            GameObject target = allTarget[i];
+            float diff = Vector3.Distance(target.transform.position, transform.position);
+            if (diff < attackRange)
+            {
+                closeTarget.Add(target);
+            }
+        }
+        return closeTarget;
+    }
+
+    public List<GameObject> findAllTarget(List<string> tags, List<GameObject> exclude){
+        List<GameObject> allTarget = new List<GameObject>{};
+        for(int i = 0; i < tags.Count; i++) {
+            List<GameObject> targets = new List<GameObject> (
+                GameObject. FindGameObjectsWithTag (tags[i]));
+            allTarget.AddRange(targets);
+        }
+        foreach(GameObject item in exclude) allTarget.Remove(item);
+        return allTarget;
     }
 
     public bool checkDeath(int damageAmount) {
