@@ -9,6 +9,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
     private int currentHealth;
     GameObject currentTarget;
     List<GameObject> allTarget = new List<GameObject>{};
+    List<GameObject> touchedWayPoint = new List<GameObject>{};
     string attackStatus = "unit";
 
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
     {
         currentHealth = startHealth;
         if(allTarget.Count == 0 ) {
-            List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit" };
+            List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit", "Waypoint" };
             initTargets(tags);
         }
         currentTarget = FindCloestTarget();
@@ -30,6 +31,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
                 GameObject. FindGameObjectsWithTag (tags[i]));
             allTarget.AddRange(targets);
         }
+        foreach(GameObject item in touchedWayPoint) allTarget.Remove(item);
     }
 
     // Update is called once per frame
@@ -41,7 +43,12 @@ public class MeleeEnemyBehavior : MonoBehaviour
                 MoveTowardTarget(currentTarget);
             }
             else {
-                Attack();
+                if(currentTarget.tag != "Waypoint") {  
+                    Attack();
+                }
+                else {
+                    touchWayPoint();
+                }
             }
         }
         else {
@@ -64,7 +71,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
     }
 
     public void changeTarget() {
-        List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit" };
+        List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit", "Waypoint"};
         initTargets(tags);
         if(allTarget.Count == 0) {
             attackStatus = "endpoint";
@@ -107,6 +114,12 @@ public class MeleeEnemyBehavior : MonoBehaviour
         float distance = Vector3.Distance(transform.position, target.transform.position);
         transform.LookAt(target.transform);
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+    }
+
+    void touchWayPoint() {
+        Debug.Log("touched");
+        touchedWayPoint.Add(currentTarget);
+        changeTarget();
     }
 
     public void EnemyDies() {
