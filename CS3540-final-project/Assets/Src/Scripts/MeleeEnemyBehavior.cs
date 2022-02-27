@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class MeleeEnemyBehavior : MonoBehaviour
 {
     public Slider healthSlider1;
@@ -16,6 +17,11 @@ public class MeleeEnemyBehavior : MonoBehaviour
     string attackStatus = "unit";
 
     
+    private void Awake() {
+
+        healthSlider1.maxValue = startHealth;
+        healthSlider2.maxValue = startHealth;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -109,7 +115,8 @@ public class MeleeEnemyBehavior : MonoBehaviour
     {
         if(currentHealth > 0) {
             currentHealth -= damageAmount;
-            healthSlider.value = currentHealth;
+            healthSlider1.value = currentHealth;
+            healthSlider2.value = currentHealth;
         }
         if(currentHealth <= 0) {
             EnemyDies();
