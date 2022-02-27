@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class DogBehavior : MonoBehaviour
+
+public class FarAttackEnemyBehavior : MonoBehaviour
 {
     public int startHealth = 80;
     private float moveSpeed = 2f;
-    private float attackRange = 5f;
+    private float attackRange = 1f;
     private int attackDamage = 10;
     private int currentHealth;
     GameObject currentTarget;
     GameObject[] allTarget;
+    string attackStatus = "unit";
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +21,49 @@ public class DogBehavior : MonoBehaviour
             allTarget = GameObject.FindGameObjectsWithTag("Unit");
         }
         currentTarget = FindCloestTarget();
-        Debug.Log("the cloest target for " + this.name + "is :" + currentTarget.name);
+        //Debug.Log("the cloest target for " + this.name + "is :" + currentTarget.name);
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveTowardTarget(currentTarget);
+        float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
+        if(distance > attackRange) { 
+            MoveTowardTarget(currentTarget);
+        }
+        else {
+            Attack();
+        }
+    }
+    
+    void Attack() {
+        if(attackStatus != "unit") {
+            var behavior = currentTarget.GetComponent<EndPointBehavior>();
+            behavior.TakeDamage(attackDamage);
+            if(behavior.checkDeath()) {
+                Debug.Log("Game end");
+            }
+        }
+        else {
+            var behavior = currentTarget.GetComponent<MeleeUnitBehavior>();
+            behavior.TakeDamage(attackDamage);
+            if(behavior.checkDeath()) {
+                changeTarget();
+                Debug.Log(currentTarget.name + " dies");
+            }
+        }
+    }
+
+    public void changeTarget() {
+        allTarget = GameObject.FindGameObjectsWithTag("Unit");
+        if(allTarget == null) {
+            attackStatus = "endpoint";
+            currentTarget = GameObject.FindGameObjectWithTag("EndPoint");
+        }
+        else {
+            attackStatus = "endpoint";
+            currentTarget = GameObject.FindGameObjectWithTag("EndPoint");
+        }
     }
 
     public GameObject FindCloestTarget() {

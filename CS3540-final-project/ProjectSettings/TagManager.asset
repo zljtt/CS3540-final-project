@@ -5,8 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Waypoint
-  - Unit
   - Enemy
+  - EndPoint
+  - MeleeUnit
+  - FarAttackUnit
+  - MeleeEnemy
+  - FarAttackEnemy
   layers:
   - Default
   - TransparentFX
