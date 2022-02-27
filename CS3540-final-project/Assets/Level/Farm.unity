@@ -2742,6 +2742,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit(Farmer) 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4302908999637852914, guid: 94c4df2693233ac49a0e965c29e2e762, type: 3}
+      propertyPath: m_TagString
+      value: FarAttackUnit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94c4df2693233ac49a0e965c29e2e762, type: 3}
 --- !u!1001 &1966532758

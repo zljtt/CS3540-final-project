@@ -34,12 +34,19 @@ public class MeleeEnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveTowardTarget(currentTarget);
+        float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
+        if(distance > 1f) { 
+            MoveTowardTarget(currentTarget);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.collider.CompareTag(currentTarget.tag)) {
+            
+            Debug.Log("touched");
+        }
     }
     
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("touched" + other.name);
-    }
     void Attack() {
         /*
         if(attackStatus != "unit") {
