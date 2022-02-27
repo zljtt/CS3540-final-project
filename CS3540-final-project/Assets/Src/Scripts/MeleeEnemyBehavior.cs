@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MeleeEnemyBehavior : MonoBehaviour
+public class MeleeEnemyBehavior : UnitEnemyBehavior
 {
     public Slider healthSlider1;
     public Slider healthSlider2;
-    public int startHealth = 80;
+    public int startHealth = 70;
+    public float attackRange = 2f;
+    public int attackDamage = 2;
+    
     public float moveSpeed = 2f;
-    public int attackDamage = 10;
     private int currentHealth;
     GameObject currentTarget;
     List<GameObject> allTarget = new List<GameObject>{};
@@ -18,7 +20,6 @@ public class MeleeEnemyBehavior : MonoBehaviour
 
     
     private void Awake() {
-
         healthSlider1.maxValue = startHealth;
         healthSlider2.maxValue = startHealth;
     }
@@ -52,7 +53,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
     {
         if(currentTarget != null) {
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-            if(distance > 2f) { 
+            if(distance > attackRange) { 
                 MoveTowardTarget(currentTarget);
             }
             else {

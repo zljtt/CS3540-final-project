@@ -422,11 +422,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d520de62db744a1b083e4c701669c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSlider1: {fileID: 256655502181723318}
-  healthSlider2: {fileID: 4875519306629261239}
   startHealth: 70
   attackRange: 2
-  attackDamage: 2
+  attackDamage: 1
+  healthSlider1: {fileID: 256655502181723318}
+  healthSlider2: {fileID: 4875519306629261239}
 --- !u!65 &8981105083789661224
 BoxCollider:
   m_ObjectHideFlags: 0

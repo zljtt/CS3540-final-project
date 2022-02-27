@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MeleeUnitBehavior : MonoBehaviour {
+public class MeleeUnitBehavior : UnitEnemyBehavior {
     
     public Slider healthSlider1;
     public Slider healthSlider2;
-    public int startHealth = 100;
+    public int startHealth = 80;
+    public float attackRange = 2f;
+    public int attackDamage = 3;
     private int currentHealth;
-    public float attackRange = 1f;
-    public int attackDamage = 10;
     GameObject currentTarget;
-    // Start is called before the first frame update
     private void Awake() {
         healthSlider1.maxValue = startHealth;
         healthSlider2.maxValue = startHealth;
