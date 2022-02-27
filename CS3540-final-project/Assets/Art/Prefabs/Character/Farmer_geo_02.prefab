@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6002241002595067257}
   - component: {fileID: 4531876897782274145}
   - component: {fileID: 7744150962221445458}
-  - component: {fileID: 1203669207104865793}
+  - component: {fileID: 4502517068983130206}
   m_Layer: 0
   m_Name: Farmer_geo_02
   m_TagString: Unit
@@ -97,7 +97,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1291056209748096502, guid: fe6ac37a55e1d2946812bb9d5b2f442f, type: 3}
---- !u!114 &1203669207104865793
+--- !u!114 &4502517068983130206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4302908999637852914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f118b5e16f71443cdabc18f66313bfe3, type: 3}
+  m_Script: {fileID: 11500000, guid: 82d520de62db744a1b083e4c701669c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startHealth: 100
