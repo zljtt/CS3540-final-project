@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class MeleeEnemyBehavior : MonoBehaviour
 {
+    public Slider healthSlider1;
+    public Slider healthSlider2;
     public int startHealth = 80;
     public float moveSpeed = 2f;
     public int attackDamage = 10;
@@ -11,6 +14,8 @@ public class MeleeEnemyBehavior : MonoBehaviour
     List<GameObject> allTarget = new List<GameObject>{};
     List<GameObject> touchedWayPoint = new List<GameObject>{};
     string attackStatus = "unit";
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,8 @@ public class MeleeEnemyBehavior : MonoBehaviour
         }
         currentTarget = FindCloestTarget();
         Debug.Log("the cloest target for " + this.name + "is :" + currentTarget.name);
+        healthSlider1.value = currentHealth;
+        healthSlider2.value = currentHealth;
     }
 
     public void initTargets(List<string> tags){
@@ -102,6 +109,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
     {
         if(currentHealth > 0) {
             currentHealth -= damageAmount;
+            healthSlider.value = currentHealth;
         }
         if(currentHealth <= 0) {
             EnemyDies();
