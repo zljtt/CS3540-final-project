@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface UnitAttack
+public interface UnitInterface
 {
-    public void attack(GameObject target);
+    public void TakeDamage(int damageAmount);
 }
