@@ -32,7 +32,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
             initTargets(tags);
         }
         currentTarget = FindCloestTarget();
-        Debug.Log("the cloest target for " + this.name + "is :" + currentTarget.name);
+        //Debug.Log("the cloest target for " + this.name + "is :" + currentTarget.name);
         healthSlider1.value = currentHealth;
         healthSlider2.value = currentHealth;
     }
@@ -132,7 +132,6 @@ public class MeleeEnemyBehavior : MonoBehaviour
     }
 
     void touchWayPoint() {
-        Debug.Log("touched");
         touchedWayPoint.Add(currentTarget);
         changeTarget();
     }

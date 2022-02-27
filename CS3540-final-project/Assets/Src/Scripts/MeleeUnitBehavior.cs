@@ -9,6 +9,7 @@ public class MeleeUnitBehavior : MonoBehaviour {
     public Slider healthSlider2;
     public int startHealth = 100;
     private int currentHealth;
+    public float attackRange;
     // Start is called before the first frame update
     private void Awake() {
 
@@ -26,7 +27,9 @@ public class MeleeUnitBehavior : MonoBehaviour {
     void Update()
     {
         //Debug.Log(this.name + " current health: " + currentHealth);
+        
     }
+
 
     public void TakeDamage(int damageAmount) {
         if(currentHealth > 0) {
