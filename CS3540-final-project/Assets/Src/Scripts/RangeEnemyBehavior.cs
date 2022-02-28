@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class FarAttackEnemyBehavior : MonoBehaviour
+public class RangeEnemyBehavior : MonoBehaviour
 {
-  public int startHealth = 80;
+    public int startHealth = 80;
     public float moveSpeed = 2f;
     public int attackDamage = 10;
     private int currentHealth;
     GameObject currentTarget;
-    List<GameObject> allTarget = new List<GameObject>{};
+    List<GameObject> allTarget = new List<GameObject> { };
     string attackStatus = "unit";
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = startHealth;
-        if(allTarget.Count == 0 ) {
+        if (allTarget.Count == 0)
+        {
             List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit" };
             initTargets(tags);
         }
@@ -24,11 +24,13 @@ public class FarAttackEnemyBehavior : MonoBehaviour
         Debug.Log("the cloest target for " + this.name + "is :" + currentTarget.name);
     }
 
-    public void initTargets(List<string> tags){
-        allTarget = new List<GameObject>{};
-        for(int i = 0; i < tags.Count; i++) {
-            List<GameObject> targets = new List<GameObject> (
-                GameObject. FindGameObjectsWithTag (tags[i]));
+    public void initTargets(List<string> tags)
+    {
+        allTarget = new List<GameObject> { };
+        for (int i = 0; i < tags.Count; i++)
+        {
+            List<GameObject> targets = new List<GameObject>(
+                GameObject.FindGameObjectsWithTag(tags[i]));
             allTarget.AddRange(targets);
         }
     }
@@ -36,52 +38,56 @@ public class FarAttackEnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentTarget != null) {
+        if (currentTarget != null)
+        {
             float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
-            if(distance > 2f) { 
+            if (distance > 2f)
+            {
                 MoveTowardTarget(currentTarget);
             }
-            else {
+            else
+            {
                 Attack();
             }
         }
-        else {
+        else
+        {
             changeTarget();
         }
         Debug.Log(allTarget.Count);
     }
-    
-    void Attack() {
-        if(attackStatus != "unit") {
+
+    void Attack()
+    {
+        if (attackStatus != "unit")
+        {
             var behavior = currentTarget.GetComponent<EndPointBehavior>();
-            behavior.TakeDamage(attackDamage);
-        }
-        else {
-            var behavior = currentTarget.GetComponent<MeleeUnitBehavior>();
-            if(behavior.checkDeath(attackDamage)) {
-                changeTarget();
-            }
             behavior.TakeDamage(attackDamage);
         }
     }
 
-    public void changeTarget() {
+    public void changeTarget()
+    {
         List<string> tags = new List<string> { "MeleeUnit", "FarAttackUnit" };
         initTargets(tags);
-        if(allTarget == null) {
+        if (allTarget == null)
+        {
             attackStatus = "endpoint";
             currentTarget = GameObject.FindGameObjectWithTag("EndPoint");
         }
-        else {
+        else
+        {
             currentTarget = FindCloestTarget();
         }
     }
 
-    public GameObject FindCloestTarget() {
+    public GameObject FindCloestTarget()
+    {
         GameObject closest = null;
         float distance = Mathf.Infinity;
 
-        for(int i = 0; i < allTarget.Count; i++) {
+        for (int i = 0; i < allTarget.Count; i++)
+        {
             GameObject target = allTarget[i];
             Vector3 diff = target.transform.position - transform.position;
             float curDistance = diff.sqrMagnitude;
@@ -95,10 +101,12 @@ public class FarAttackEnemyBehavior : MonoBehaviour
     }
     public void TakeDamage(int damageAmount)
     {
-        if(currentHealth > 0) {
+        if (currentHealth > 0)
+        {
             currentHealth -= damageAmount;
         }
-        if(currentHealth <= 0) {
+        if (currentHealth <= 0)
+        {
             EnemyDies();
         }
     }
@@ -111,7 +119,8 @@ public class FarAttackEnemyBehavior : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
     }
 
-    public void EnemyDies() {
+    public void EnemyDies()
+    {
         //may need to add sound effect and game lose or win condition 
     }
 }
