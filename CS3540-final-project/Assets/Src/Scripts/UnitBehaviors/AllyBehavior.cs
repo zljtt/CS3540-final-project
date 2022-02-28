@@ -4,25 +4,40 @@ using UnityEngine;
 
 public abstract class AllyBehavior : UnitBehavior
 {
+    protected Transform startingPoint;
+    private void Awake()
+    {
+        // record the starting point
+        //startingPoint = transform;
+    }
     protected override void Update()
     {
         base.Update();
-
-        GameObject target = FindPossibleTarget();
-        if (target != null)
+        // try to find a target to attack if there is no previous or the previous is dead
+        if (currentTarget == null)
         {
-            if (CanReach(target))
+            currentTarget = FindPossibleAttackTarget();
+        }
+        // if there is a target to attack, try to attack
+        if (currentTarget != null)
+        {
+            if (CanReach(currentTarget))
             {
-                Attack(target);
+                if (lastAttackDeltaTime > attackSpeed)
+                {
+                    Attack(currentTarget);
+                    lastAttackDeltaTime = 0;
+                }
             }
             else
             {
-                MoveTowardTarget(target);
+                MoveTowardTarget(currentTarget.transform);
             }
         }
+        // if there is no target to attack, go back to the starting point
         else
         {
-            // idle
+            //MoveTowardTarget(startingPoint);
         }
     }
 }

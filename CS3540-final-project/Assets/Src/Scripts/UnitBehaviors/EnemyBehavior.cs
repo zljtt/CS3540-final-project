@@ -8,30 +8,42 @@ public abstract class EnemyBehavior : UnitBehavior
 
     private void Awake()
     {
+        // init a list of waypoints at first, and remove the ones it reaches later
         wayPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
     }
 
     protected override void Update()
     {
         base.Update();
-        GameObject target = FindPossibleTarget();
-        if (target != null)
+
+        // try to find a target to attack if there is no previous or the previous is dead
+        if (currentTarget == null)
         {
-            if (CanReach(target))
+            currentTarget = FindPossibleAttackTarget();
+        }
+        // if there is a target to attack, try to attack
+        if (currentTarget != null)
+        {
+            if (CanReach(currentTarget))
             {
-                Attack(target);
+                if (lastAttackDeltaTime > attackSpeed)
+                {
+                    Attack(currentTarget);
+                    lastAttackDeltaTime = 0;
+                }
             }
             else
             {
-                MoveTowardTarget(target);
+                MoveTowardTarget(currentTarget.transform);
             }
         }
+        // if there is no target to attack, go to the closest waypoint
         else
         {
             GameObject wayPoint = FindClosest(wayPoints);
             if (wayPoint != null)
             {
-                MoveTowardTarget(wayPoint);
+                MoveTowardTarget(wayPoint.transform);
                 if (Vector3.Distance(transform.position, wayPoint.transform.position) < 1)
                 {
                     wayPoints.Remove(wayPoint);

@@ -12,10 +12,12 @@ public abstract class UnitBehavior : MonoBehaviour
     public float alertRange = 4f;
     public int attackDamage = 2;
     public float moveSpeed = 2f;
+    public float attackSpeed = 1f;
 
     protected GameObject currentTarget;
     protected float currentHealth;
-    private float invincibilityFrameCountDown = 1f;
+    protected float lastDamagedDeltaTime = 0f; // use for invincibility frame
+    protected float lastAttackDeltaTime = 0f; // use for attack speed
 
     void Start()
     {
@@ -26,17 +28,15 @@ public abstract class UnitBehavior : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (invincibilityFrameCountDown > 0)
-        {
-            invincibilityFrameCountDown -= Time.deltaTime;
-        }
+        lastDamagedDeltaTime += Time.deltaTime;
+        lastAttackDeltaTime += Time.deltaTime;
         healthSlider1.value = currentHealth;
         healthSlider2.value = currentHealth;
     }
 
     public abstract void Attack(GameObject target);
 
-    public abstract GameObject FindPossibleTarget();
+    public abstract GameObject FindPossibleAttackTarget();
 
     protected List<GameObject> FindTargetsInRange(List<string> tags)
     {
@@ -71,12 +71,12 @@ public abstract class UnitBehavior : MonoBehaviour
         return closest;
     }
 
-    public void MoveTowardTarget(GameObject target)
+    public void MoveTowardTarget(Transform target)
     {
         float step = moveSpeed * Time.deltaTime;
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-        transform.LookAt(target.transform);
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
+        float distance = Vector3.Distance(transform.position, target.position);
+        transform.LookAt(target);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
     }
 
     public bool CanReach(GameObject target)
@@ -84,16 +84,16 @@ public abstract class UnitBehavior : MonoBehaviour
         return Vector3.Distance(transform.position, target.transform.position) <= attackRange;
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, GameObject source)
     {
         if (damageAmount > currentHealth)
         {
             UnitDies();
         }
-        else if (invincibilityFrameCountDown <= 0)
+        else if (lastDamagedDeltaTime > 0.1f)
         {
             currentHealth -= damageAmount;
-            invincibilityFrameCountDown = 0.1f;
+            lastDamagedDeltaTime = 0;
         }
     }
 
