@@ -18,12 +18,13 @@ public abstract class UnitBehavior : MonoBehaviour
     protected float currentHealth;
     protected float lastDamagedDeltaTime = 0f; // use for invincibility frame
     protected float lastAttackDeltaTime = 0f; // use for attack speed
-
-    void Start()
+    protected bool active;
+    protected virtual void Awake()
     {
         healthSlider1.maxValue = maxHealth;
         healthSlider2.maxValue = maxHealth;
         currentHealth = maxHealth;
+        active = false;
     }
 
     protected virtual void Update()
@@ -107,4 +108,10 @@ public abstract class UnitBehavior : MonoBehaviour
     {
         return healthSlider1;
     }
+
+    public void SetActive(bool a)
+    {
+        active = a;
+    }
+
 }

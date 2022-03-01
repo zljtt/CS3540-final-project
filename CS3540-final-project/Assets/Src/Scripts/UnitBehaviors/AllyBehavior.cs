@@ -5,14 +5,16 @@ using UnityEngine;
 public abstract class AllyBehavior : UnitBehavior
 {
     protected Transform startingPoint;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         // record the starting point
         //startingPoint = transform;
     }
     protected override void Update()
     {
         base.Update();
+        if (!active) return;
         // try to find a target to attack if there is no previous or the previous is dead
         if (currentTarget == null)
         {

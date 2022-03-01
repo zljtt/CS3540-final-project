@@ -456,7 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider1: {fileID: 3034326770009893295}
   healthSlider2: {fileID: 7901280050976262482}
-  maxHealth: 100
+  maxHealth: 20
   attackRange: 1.5
   alertRange: 3
   attackDamage: 4

@@ -6,8 +6,9 @@ public abstract class EnemyBehavior : UnitBehavior
 {
     protected List<GameObject> wayPoints;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         // init a list of waypoints at first, and remove the ones it reaches later
         wayPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
     }
@@ -15,7 +16,7 @@ public abstract class EnemyBehavior : UnitBehavior
     protected override void Update()
     {
         base.Update();
-
+        if (!active) return;
         // try to find a target to attack if there is no previous or the previous is dead
         if (currentTarget == null)
         {
@@ -51,8 +52,8 @@ public abstract class EnemyBehavior : UnitBehavior
             }
             else
             {
+                FindObjectOfType<LevelManager>().LoseHealth(1);
                 Destroy(gameObject);
-                // reduce player health in level manager
             }
         }
     }
