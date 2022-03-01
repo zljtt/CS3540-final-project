@@ -9,7 +9,7 @@ public class PlayerSpawnUnitBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -31,7 +31,10 @@ public class PlayerSpawnUnitBehavior : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 10f))
         {
-            GameObject unit = Instantiate(unitToSpawn, hit.point,  transform.parent.transform.rotation);
+            if (Vector3.Distance(transform.position, hit.point) > 1)
+            {
+                GameObject unit = Instantiate(unitToSpawn, hit.point, transform.parent.transform.rotation);
+            }
         }
     }
 }
