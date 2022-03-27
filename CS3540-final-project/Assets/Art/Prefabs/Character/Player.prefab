@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d221f314008b748a286a5e222a9151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitiviy: 100
+  mouseSensitiviy: 800
 --- !u!114 &717916823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,10 +254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba8976749a59524eaa00612dec62d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 8
   gravity: 9.81
   jumpHeight: 0.5
-  airControl: 10
+  airControl: 1
 --- !u!143 &6867125411781899852
 CharacterController:
   m_ObjectHideFlags: 0

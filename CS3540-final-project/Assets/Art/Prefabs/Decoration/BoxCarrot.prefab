@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6469129627189948676}
   - component: {fileID: 5500745956950820507}
   - component: {fileID: 8366496444578264277}
+  - component: {fileID: 3971860380626361825}
+  - component: {fileID: 3647394426202315073}
   m_Layer: 0
   m_Name: BoxCarrot
   m_TagString: Untagged
@@ -81,3 +83,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3971860380626361825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855640464536259237}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01314492, y: 0.009832413, z: 0.01900009}
+  m_Center: {x: -0.0045724832, y: 0.0049162065, z: -0.009499965}
+--- !u!65 &3647394426202315073
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855640464536259237}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0068409774, y: 0.0038451606, z: 0.011736929}
+  m_Center: {x: -0.014579507, y: 0.0019225803, z: -0.005868386}

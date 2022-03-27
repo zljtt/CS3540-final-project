@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 3645559934036143776}
   - component: {fileID: 4506803007307419082}
   - component: {fileID: 4557675955785759411}
-  - component: {fileID: 5825146350013670119}
   m_Layer: 0
-  m_Name: PineHuge
+  m_Name: PineHugeDecorationOnly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,17 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5825146350013670119
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4412267611770901714}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8750006851710777388, guid: fe6ac37a55e1d2946812bb9d5b2f442f, type: 3}

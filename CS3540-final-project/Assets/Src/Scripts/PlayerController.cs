@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            //moveDirection.y = 0.0f;
             input.y = moveDirection.y;
 
             moveDirection = Vector3.Lerp(moveDirection, input, Time.deltaTime * airControl);

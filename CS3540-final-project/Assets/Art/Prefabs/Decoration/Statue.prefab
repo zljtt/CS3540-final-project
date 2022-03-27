@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7309557431890514144}
   - component: {fileID: 4113577643791668620}
   - component: {fileID: 7678532980028771859}
+  - component: {fileID: 8345877609913635394}
   m_Layer: 0
   m_Name: Statue
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8345877609913635394
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117176590173411875}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01464226, y: 0.049999993, z: 0.016205434}
+  m_Center: {x: -0.00006125212, y: 0.024999997, z: -0.0003683698}

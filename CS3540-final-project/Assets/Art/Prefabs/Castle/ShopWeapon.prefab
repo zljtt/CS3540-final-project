@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6021266456810811214}
   - component: {fileID: 6563678507505666843}
   - component: {fileID: 749865871839410920}
+  - component: {fileID: 885686394031524867}
   m_Layer: 0
   m_Name: ShopWeapon
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &885686394031524867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2372814922561152151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.024412414, y: 0.018833596, z: 0.012056001}
+  m_Center: {x: 0.0046382365, y: 0.009416798, z: -0.0060217855}

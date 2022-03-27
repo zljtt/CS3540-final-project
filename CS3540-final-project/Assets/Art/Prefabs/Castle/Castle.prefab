@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 8230463438061517082}
   - component: {fileID: 4222769432666989597}
   - component: {fileID: 3501986424512709320}
+  - component: {fileID: 4040879185011654396}
   m_Layer: 0
   m_Name: Castle_geo_25 1
   m_TagString: Untagged
@@ -197,6 +198,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4040879185011654396
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977360998525176727}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5850403189151682400, guid: fe6ac37a55e1d2946812bb9d5b2f442f, type: 3}
 --- !u!1 &6326963929342551733
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +223,7 @@ GameObject:
   - component: {fileID: 8619674037828947600}
   - component: {fileID: 8952895374974748539}
   - component: {fileID: 4807978947629310920}
+  - component: {fileID: 2848580652185840129}
   m_Layer: 0
   m_Name: Castle_geo_26 1
   m_TagString: Untagged
@@ -223,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6326963929342551733}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.242, y: 0, z: 0.205}
+  m_LocalPosition: {x: -0.242, y: -0.0133, z: 0.205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3248735037571445768}
@@ -278,6 +294,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2848580652185840129
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326963929342551733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -402999456049904859, guid: fe6ac37a55e1d2946812bb9d5b2f442f, type: 3}
 --- !u!1 &6803519468371303769
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +400,8 @@ GameObject:
   - component: {fileID: 16985588204671002}
   - component: {fileID: 4397723828828801567}
   - component: {fileID: 792302086510090684}
+  - component: {fileID: 1600488087522855872}
+  - component: {fileID: 5308459615499156561}
   m_Layer: 0
   m_Name: Castle_geo_23 1
   m_TagString: Untagged
@@ -440,3 +472,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1600488087522855872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810555294285197588}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.14599998, y: 0.002, z: 0.15}
+  m_Center: {x: 0.315, y: 0.001, z: -0.13}
+--- !u!64 &5308459615499156561
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810555294285197588}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1926469636417581809, guid: fe6ac37a55e1d2946812bb9d5b2f442f, type: 3}
