@@ -10,9 +10,9 @@ public class SpawnerItem : Item
         this.unit = unit;
     }
 
-    override public bool OnUse(GameObject target, Transform position)
+    override public bool OnUse(Transform user, Transform target)
     {
-        Instan
+        GameObject.Instantiate(unit, target.position, new Quaternion());
         return true;
     }
 }

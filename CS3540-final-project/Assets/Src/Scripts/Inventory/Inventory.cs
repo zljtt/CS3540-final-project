@@ -31,13 +31,13 @@ public class Inventory
         {
             if (count > exist.GetAmount())
             {
-                exist.SetAmount(0);
+                // exist.SetAmount(0);
                 return false;
             }
             else
             {
                 exist.SetAmount(exist.GetAmount() - count);
-                return false;
+                return true;
             }
         }
         return false;

@@ -5,16 +5,16 @@ using UnityEngine;
 public class Item
 {
     private string registryName;
-    private string name;
+    private string displayName;
     private string description;
-    public Item(string registryName, string name, string description)
+    public Item(string registryName, string displayName, string description)
     {
         this.registryName = registryName;
-        this.name = name;
+        this.displayName = displayName;
         this.description = description;
     }
 
-    virtual public bool OnUse(GameObject target, Transform position)
+    virtual public bool OnUse(Transform user, Transform target)
     {
         return false;
     }
@@ -26,11 +26,16 @@ public class Item
 
     public string GetName()
     {
-        return name;
+        return displayName;
     }
 
     public string GetDescription()
     {
         return description;
+    }
+
+    public Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>("Sprites/Items/" + registryName);
     }
 }

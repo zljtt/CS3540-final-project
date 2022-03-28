@@ -26,4 +26,14 @@ public class ItemStack
     {
         return this.amount;
     }
+
+    public bool UseItem(Transform user, Transform target)
+    {
+        if (item.OnUse(user, target))
+        {
+            this.amount--;
+            return true;
+        }
+        return false;
+    }
 }
