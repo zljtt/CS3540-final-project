@@ -7,7 +7,7 @@ public class InventoryGUI : MonoBehaviour
 {
     private Inventory inventory;
     private Transform itemSlotContainer;
-    private List<Transform> itemSlots;
+    private List<Transform> itemSlots; //sprites
 
     async void Awake()
     {
@@ -21,30 +21,41 @@ public class InventoryGUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Render();
     }
 
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
-        RefreshInventoryItems();
     }
 
-    private void RefreshInventoryItems()
+    private void Render()
     {
         int x = 0;
         int y = 0;
         float itemSlotSizeOffset = 55f;
-        foreach (Item item in inventory.GetItemList())
+        for (int i = 0; i < itemSlots.Count; i++)
+        {
+            Image image = itemSlots[x].Find("ItemImage").GetComponent<Image>();
+            Texture texture = Resources.Load("Art/Textures/Items/" + itemStack.GetItem().GetRegistryName() + ".png") as Texture2D;
+            image.material.mainTexture = texture;
+        }
+    }
+
+    private void RefreshInventoryItems()
+    {
+
+        foreach (ItemStack itemStack in inventory.GetItemList())
         {
             /*
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotSizeOffset, y * itemSlotSizeOffset);
             */
-            Image image = itemSlots[x].Find("ItemImage").GetComponent<Image>();
-            image.sprite = item.sprite;
+
             x++;
         }
     }
+
+
 }

@@ -9,16 +9,14 @@ public class PlayerInventory : MonoBehaviour
 {
     public InventoryGUI gui;
     private Inventory inventory;
-    
     void Start()
     {
         inventory = new Inventory();
         gui.SetInventory(inventory);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
