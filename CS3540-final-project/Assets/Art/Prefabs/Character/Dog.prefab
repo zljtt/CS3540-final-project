@@ -93,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.013749084, y: 0.0139999995, z: 0.010874245}
-  m_Center: {x: 0.0031203888, y: 0.0069999998, z: 0.0028050814}
+  m_Size: {x: 0.010557673, y: 0.013411133, z: 0.010874245}
+  m_Center: {x: 0.0036072442, y: 0.007294433, z: 0.0028050814}
 --- !u!1 &1562068142063032015
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5810784877776767855}
   - component: {fileID: 224450945845058057}
+  - component: {fileID: -8514772118688788546}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Enemy
@@ -458,10 +459,31 @@ MonoBehaviour:
   healthSlider2: {fileID: 7901280050976262482}
   maxHealth: 20
   attackRange: 1.5
-  alertRange: 3
+  alertRange: 10
   attackDamage: 4
-  moveSpeed: 1
   attackSpeed: 1
+--- !u!195 &-8514772118688788546
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4841328441199726240}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 100
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: -0.1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5450664194397635368
 GameObject:
   m_ObjectHideFlags: 0

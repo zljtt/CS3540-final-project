@@ -297,6 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2217923988182240519}
   - component: {fileID: 8817506551146957172}
+  - component: {fileID: -2601881204018012773}
   m_Layer: 0
   m_Name: Farmer
   m_TagString: Ally
@@ -338,8 +339,29 @@ MonoBehaviour:
   attackRange: 1.5
   alertRange: 5
   attackDamage: 4
-  moveSpeed: 1.25
   attackSpeed: 1
+--- !u!195 &-2601881204018012773
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302908999637852914}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1.25
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 100
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: -0.1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4548823863338499738
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,8 +605,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.008999998, y: 0.018999998, z: 0.010000003}
-  m_Center: {x: 0.0015000061, y: 0.009499999, z: 0.0029999928}
+  m_Size: {x: 0.008999998, y: 0.018516304, z: 0.010000003}
+  m_Center: {x: 0.0015000061, y: 0.009741851, z: 0.0029999933}
 --- !u!1 &6351441858050486868
 GameObject:
   m_ObjectHideFlags: 0

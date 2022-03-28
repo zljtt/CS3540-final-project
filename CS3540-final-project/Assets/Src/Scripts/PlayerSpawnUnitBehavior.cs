@@ -20,7 +20,7 @@ public class PlayerSpawnUnitBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && FindObjectOfType<LevelManager>().GetStatus() == LevelManager.STATUS.PREPARE)
         {
             SpawnUnit(unitPrefab);
         }
@@ -31,7 +31,7 @@ public class PlayerSpawnUnitBehavior : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 10f))
         {
-            if (Vector3.Distance(transform.position, hit.point) > 1)
+            if (Vector3.Distance(transform.position, hit.point) > 0.5f)
             {
                 GameObject unit = Instantiate(unitToSpawn, hit.point, transform.parent.transform.rotation);
             }

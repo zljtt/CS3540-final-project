@@ -4,13 +4,13 @@ using UnityEngine;
 
 public abstract class EnemyBehavior : UnitBehavior
 {
-    protected List<GameObject> wayPoints;
-
+    GameObject wayPoint;
     protected override void Awake()
     {
         base.Awake();
         // init a list of waypoints at first, and remove the ones it reaches later
-        wayPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
+        List<GameObject> wayPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
+        wayPoint = FindClosest(wayPoints);
     }
 
     protected override void Update()
@@ -41,16 +41,9 @@ public abstract class EnemyBehavior : UnitBehavior
         // if there is no target to attack, go to the closest waypoint
         else
         {
-            GameObject wayPoint = FindClosest(wayPoints);
-            if (wayPoint != null)
-            {
-                MoveTowardTarget(wayPoint.transform);
-                if (Vector3.Distance(transform.position, wayPoint.transform.position) < 1)
-                {
-                    wayPoints.Remove(wayPoint);
-                }
-            }
-            else
+            MoveTowardTarget(wayPoint.transform);
+
+            if (Vector3.Distance(transform.position, wayPoint.transform.position) < 2)
             {
                 FindObjectOfType<LevelManager>().LoseHealth(1);
                 Destroy(gameObject);

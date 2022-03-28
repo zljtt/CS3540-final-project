@@ -75,6 +75,11 @@ public abstract class LevelManager : MonoBehaviour
         }
     }
 
+    public STATUS GetStatus()
+    {
+        return status;
+    }
+
     public class SpawnInfo
     {
         int time;

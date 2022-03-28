@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.AI;
 public abstract class UnitBehavior : MonoBehaviour
 {
     public Slider healthSlider1;
@@ -11,9 +11,8 @@ public abstract class UnitBehavior : MonoBehaviour
     public float attackRange = 2f;
     public float alertRange = 4f;
     public int attackDamage = 2;
-    public float moveSpeed = 2f;
     public float attackSpeed = 1f;
-
+    protected NavMeshAgent agent;
     protected GameObject currentTarget;
     protected float currentHealth;
     protected float lastDamagedDeltaTime = 0f; // use for invincibility frame
@@ -21,6 +20,7 @@ public abstract class UnitBehavior : MonoBehaviour
     protected bool active;
     protected virtual void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         healthSlider1.maxValue = maxHealth;
         healthSlider2.maxValue = maxHealth;
         currentHealth = maxHealth;
@@ -37,6 +37,7 @@ public abstract class UnitBehavior : MonoBehaviour
 
     public abstract void Attack(GameObject target);
 
+    // find a possible target within the alert range.
     public abstract GameObject FindPossibleAttackTarget();
 
     protected List<GameObject> FindTargetsInRange(List<string> tags)
@@ -74,10 +75,7 @@ public abstract class UnitBehavior : MonoBehaviour
 
     public void MoveTowardTarget(Transform target)
     {
-        float step = moveSpeed * Time.deltaTime;
-        float distance = Vector3.Distance(transform.position, target.position);
-        transform.LookAt(target);
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        agent.SetDestination(target.position);
     }
 
     public bool CanReach(GameObject target)
