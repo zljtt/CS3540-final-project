@@ -924,6 +924,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 8790604896612924125, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
 --- !u!1 &7050847128633553724 stripped
