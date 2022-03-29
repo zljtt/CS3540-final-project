@@ -13,62 +13,106 @@ public class PlayerInventory : MonoBehaviour
     {
         inventory = new Inventory();
         gui.SetInventory(inventory);
-        inventory.AddItem(ItemDatabase.HEALTH_POTION, 1);
+        inventory.AddItem(ItemDatabase.FARMER_SPAWNER, 100);
     }
 
     void Update()
     {
-
+        DetectKeyPress();
+        DetectKeyRelease();
     }
 
     private void DetectKeyPress()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        for (int keyToCheck = 1; keyToCheck <= 9; keyToCheck++)
         {
+            if (Input.GetKeyDown(keyToCheck.ToString()))
+            {
+                gui.KeyPressing(keyToCheck - 1);
+            }
+        }
+        if (Input.GetKeyDown("0"))
+        {
+            gui.KeyPressing(9);
+        }
+        /*
+        if (Input.GetKeyDown("1"))
+        {
+            print("1 is pressed!");
             gui.KeyPressing(0);
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            gui.KeyPressing(0);
+            print("2 is pressed!");
+            gui.KeyPressing(1);
         }
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
-            gui.KeyPressing(0);
+            print("3 is pressed!");
+            gui.KeyPressing(2);
         }
         if (Input.GetKeyDown(KeyCode.Keypad4))
         {
-            gui.KeyPressing(0);
+            print("4 is pressed!");
+            gui.KeyPressing(3);
         }
         if (Input.GetKeyDown(KeyCode.Keypad5))
         {
-            gui.KeyPressing(0);
+            print("5 is pressed!");
+            gui.KeyPressing(4);
         }
         if (Input.GetKeyDown(KeyCode.Keypad6))
         {
-            gui.KeyPressing(0);
+            print("6 is pressed!");
+            gui.KeyPressing(5);
         }
         if (Input.GetKeyDown(KeyCode.Keypad7))
         {
-            gui.KeyPressing(0);
+            print("7 is pressed!");
+            gui.KeyPressing(6);
         }
         if (Input.GetKeyDown(KeyCode.Keypad8))
         {
-            gui.KeyPressing(0);
+            print("8 is pressed!");
+            gui.KeyPressing(7);
         }
         if (Input.GetKeyDown(KeyCode.Keypad9))
         {
-            gui.KeyPressing(0);
+            print("9 is pressed!");
+            gui.KeyPressing(8);
         }
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
-            gui.KeyPressing(0);
+            print("0 is pressed!");
+            gui.KeyPressing(9);
         }
+        */
     }
 
     // detect key release and use item
     private void DetectKeyRelease()
     {
         RaycastHit hit;
+        for (int keyToCheck = 1; keyToCheck <= 9; keyToCheck++)
+        {
+            if (Input.GetKeyUp(keyToCheck.ToString()) && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+            {
+                /*if (inventory.GetItemList().Count >= keyToCheck)
+                {
+                    doesUse = inventory.GetItemList()[keyToCheck - 1].UseItem(transform, hit.transform);
+                }
+                else
+                {
+                    doesUse = false;
+                }*/
+                gui.KeyReleased(keyToCheck - 1, inventory.UseItemAtIndex(keyToCheck - 1, transform, hit));
+            }
+        }
+        if (Input.GetKeyUp("0") && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        {
+            gui.KeyReleased(9, inventory.UseItemAtIndex(9, transform, hit));
+        }
+        /*
         if (Input.GetKeyUp(KeyCode.Keypad1) && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
             gui.KeyReleased(0, inventory.GetItemList()[0].UseItem(transform, hit.transform));
@@ -108,6 +152,6 @@ public class PlayerInventory : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Keypad0) && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
             gui.KeyReleased(9, inventory.GetItemList()[9].UseItem(transform, hit.transform));
-        }
+        }*/
     }
 }
