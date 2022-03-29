@@ -106,7 +106,13 @@ public class InventoryGUI : MonoBehaviour
                 keyStates[keyIndex] = 3;
             }
             // TODO: RESET KEY STATE AFTER A SHORT PAUSE maybe use coroutine?
-            
+            StartCoroutine("ResetKeyState", keyIndex);
         }
+    }
+
+    private IEnumerator ResetKeyState(int keyIndex)
+    {
+        yield return new WaitForSeconds(0.5f);
+        keyStates[keyIndex] = 0;
     }
 }
