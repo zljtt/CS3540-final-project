@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 5810784877776767855}
   - component: {fileID: 224450945845058057}
   - component: {fileID: -8514772118688788546}
+  - component: {fileID: -7056776255540937276}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Enemy
@@ -484,6 +485,25 @@ NavMeshAgent:
   m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &-7056776255540937276
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4841328441199726240}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35c03002b654d41c6a937314014a15dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5450664194397635368
 GameObject:
   m_ObjectHideFlags: 0

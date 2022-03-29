@@ -18,6 +18,7 @@ public abstract class UnitBehavior : MonoBehaviour
     protected float lastDamagedDeltaTime = 0f; // use for invincibility frame
     protected float lastAttackDeltaTime = 0f; // use for attack speed
     protected bool active;
+    Animator anim;
     protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -25,6 +26,7 @@ public abstract class UnitBehavior : MonoBehaviour
         healthSlider2.maxValue = maxHealth;
         currentHealth = maxHealth;
         active = false;
+        anim = GetComponent<Animator>();
     }
 
     protected virtual void Update()
@@ -99,7 +101,8 @@ public abstract class UnitBehavior : MonoBehaviour
     public void UnitDies()
     {
         //may need to add sound effect and game lose or win condition 
-        Destroy(gameObject);
+        anim.SetInteger("status", 1);
+        Destroy(gameObject, 1);
     }
 
     public Slider GetSlider()
