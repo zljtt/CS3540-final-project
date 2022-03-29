@@ -106,6 +106,7 @@ public class InventoryGUI : MonoBehaviour
                 keyStates[keyIndex] = 3;
             }
             // TODO: RESET KEY STATE AFTER A SHORT PAUSE maybe use coroutine?
+            
         }
     }
 }

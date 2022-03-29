@@ -12,8 +12,12 @@ public class SpawnerItem : Item
 
     override public bool OnUse(Transform user, RaycastHit targetHit, ItemStack stack, Inventory inventory)
     {
-        GameObject.Instantiate(Resources.Load(unitPath), targetHit.point, user.rotation);
-        inventory.RemoveItem(stack, 1);
-        return true;
+        if (GameObject.FindObjectOfType<LevelManager>().GetStatus() == LevelManager.STATUS.PREPARE)
+        {
+            GameObject.Instantiate(Resources.Load(unitPath), targetHit.point, user.rotation);
+            inventory.RemoveItem(stack, 1);
+            return true;
+        }
+        return false;
     }
 }
