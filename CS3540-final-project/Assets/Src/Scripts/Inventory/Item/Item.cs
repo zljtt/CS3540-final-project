@@ -14,7 +14,7 @@ public class Item
         this.description = description;
     }
 
-    virtual public bool OnUse(Transform user, Transform target)
+    virtual public bool OnUse(Transform user, RaycastHit targetHit, ItemStack stack, Inventory inventory)
     {
         return false;
     }

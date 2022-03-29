@@ -43,9 +43,36 @@ public class Inventory
         return false;
     }
 
+    public bool RemoveItem(ItemStack stack, int count)
+    {
+        if (count > stack.GetAmount())
+        {
+            // exist.SetAmount(0);
+            return false;
+        }
+        else
+        {
+            stack.SetAmount(stack.GetAmount() - count);
+            if (stack.GetAmount() <= 0)
+            {
+                itemList.Remove(stack);
+            }
+            return true;
+        }
+    }
+
     public List<ItemStack> GetItemList()
     {
         return itemList;
+    }
+
+    public bool UseItemAtIndex(int index, Transform user, RaycastHit targetHit)
+    {
+        if (itemList.Count > index)
+        {
+            return itemList[index].GetItem().OnUse(user, targetHit, itemList[index], this);
+        }
+        return false;
     }
 
     private ItemStack GetItemStack(Item item)

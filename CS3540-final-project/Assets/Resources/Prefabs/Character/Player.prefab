@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1292448798}
   - component: {fileID: 1292448797}
   - component: {fileID: 717916823}
+  - component: {fileID: 513379896306831243}
   - component: {fileID: 2801272628439288630}
   m_Layer: 0
   m_Name: FirstPersonCamera
@@ -113,6 +114,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 4302908999637852914, guid: 94c4df2693233ac49a0e965c29e2e762, type: 3}
   spawnDistance: 10
+--- !u!114 &513379896306831243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292448795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a90a8923a8c0964690ffe6bfbdb001e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gui: {fileID: 0}
 --- !u!82 &2801272628439288630
 AudioSource:
   m_ObjectHideFlags: 0
