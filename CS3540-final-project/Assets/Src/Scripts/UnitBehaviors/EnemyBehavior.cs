@@ -43,7 +43,7 @@ public abstract class EnemyBehavior : UnitBehavior
         {
             MoveTowardTarget(wayPoint.transform);
 
-            if (Vector3.Distance(transform.position, wayPoint.transform.position) < 2)
+            if (Vector3.Distance(transform.position, wayPoint.transform.position) < 2.5)
             {
                 FindObjectOfType<LevelManager>().LoseHealth(1);
                 Destroy(gameObject);
