@@ -98,6 +98,14 @@ public abstract class UnitBehavior : MonoBehaviour
         }
     }
 
+    public void TakeHealth(float healAmount)
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += healAmount;
+        }
+    }
+
     public void UnitDies()
     {
         //may need to add sound effect and game lose or win condition 
