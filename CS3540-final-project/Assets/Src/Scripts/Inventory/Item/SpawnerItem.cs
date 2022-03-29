@@ -14,7 +14,7 @@ public class SpawnerItem : Item
     {
         if (GameObject.FindObjectOfType<LevelManager>().GetStatus() == LevelManager.STATUS.PREPARE)
         {
-            GameObject.Instantiate(Resources.Load(unitPath), targetHit.point, user.rotation);
+            GameObject.Instantiate(Resources.Load(unitPath), targetHit.point, user.parent.transform.rotation);
             inventory.RemoveItem(stack, 1);
             return true;
         }
