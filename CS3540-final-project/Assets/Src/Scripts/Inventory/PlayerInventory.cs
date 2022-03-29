@@ -13,7 +13,7 @@ public class PlayerInventory : MonoBehaviour
     {
         inventory = new Inventory();
         gui.SetInventory(inventory);
-        inventory.AddItem(ItemDatabase.FARMER_SPAWNER, 100);
+        inventory.AddItem(ItemDatabase.FARMER_SPAWNER, 5);
         inventory.AddItem(ItemDatabase.HEALTH_POTION, 100);
     }
 

@@ -298,7 +298,6 @@ GameObject:
   - component: {fileID: 2217923988182240519}
   - component: {fileID: 8817506551146957172}
   - component: {fileID: -2601881204018012773}
-  - component: {fileID: 6879267143863578310}
   - component: {fileID: 6783565245227236524}
   m_Layer: 0
   m_Name: Farmer
@@ -320,7 +319,6 @@ Transform:
   m_Children:
   - {fileID: 8133185129313929514}
   - {fileID: 8168351806923278611}
-  - {fileID: 9142446523506750086}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -366,19 +364,6 @@ NavMeshAgent:
   m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6879267143863578310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302908999637852914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 320b0b66fdd134fee964c55f8e61d062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healVFX: {fileID: 7050847128633553724}
 --- !u!95 &6783565245227236524
 Animator:
   serializedVersion: 3
@@ -857,82 +842,3 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1001 &1740399979423664609
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2217923988182240519}
-    m_Modifications:
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8790604896612924125, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-      propertyPath: m_Name
-      value: HealEffect
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
---- !u!1 &7050847128633553724 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8790604896612924125, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-  m_PrefabInstance: {fileID: 1740399979423664609}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &9142446523506750086 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7405987222081174375, guid: 61c525acdf30944b38d8bf86666fe536, type: 3}
-  m_PrefabInstance: {fileID: 1740399979423664609}
-  m_PrefabAsset: {fileID: 0}
