@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 8817506551146957172}
   - component: {fileID: -2601881204018012773}
   - component: {fileID: 6879267143863578310}
+  - component: {fileID: 6783565245227236524}
   m_Layer: 0
   m_Name: Farmer
   m_TagString: Ally
@@ -342,6 +343,7 @@ MonoBehaviour:
   alertRange: 5
   attackDamage: 4
   attackSpeed: 1
+  attackSFX: {fileID: 8300000, guid: 03e9f874800c3824e9894fa1efebc1b6, type: 3}
 --- !u!195 &-2601881204018012773
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -377,6 +379,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healVFX: {fileID: 7050847128633553724}
+--- !u!95 &6783565245227236524
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302908999637852914}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c58e90a6c23454aff8ce7c69294c0318, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4548823863338499738
 GameObject:
   m_ObjectHideFlags: 0

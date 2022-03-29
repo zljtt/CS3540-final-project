@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MeleeAllyBehavior : AllyBehavior
-{
+{   
     public override void Attack(GameObject target)
     {
-
         target.GetComponent<MeleeEnemyBehavior>().TakeDamage(attackDamage, gameObject);
 
     }

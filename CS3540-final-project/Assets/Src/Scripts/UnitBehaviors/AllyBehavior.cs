@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class AllyBehavior : UnitBehavior
 {
     protected Transform startingPoint;
+    public AudioClip attackSFX;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -28,6 +30,7 @@ public abstract class AllyBehavior : UnitBehavior
                 if (lastAttackDeltaTime > attackSpeed)
                 {
                     Attack(currentTarget);
+                    AudioSource.PlayClipAtPoint(attackSFX, transform.position);
                     lastAttackDeltaTime = 0;
                 }
             }
