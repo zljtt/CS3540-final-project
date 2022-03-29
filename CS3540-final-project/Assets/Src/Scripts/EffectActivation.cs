@@ -6,9 +6,11 @@ public class EffectActivation : MonoBehaviour
 {
     public GameObject healVFX;
     // Start is called before the first frame update
+    private void Awake() {
+        healVFX.SetActive(false);
+    }
     void Start()
     {
-        healVFX.SetActive(true);
     }
 
     // Update is called once per frame
