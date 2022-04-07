@@ -13,10 +13,17 @@ public class WarpDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
-        if ((FindObjectOfType<LevelManager>() == null || FindObjectOfType<LevelManager>().GetStatus() == LevelManager.STATUS.LOOT) && other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(teleportScene);
+            if (FindObjectOfType<LevelManager>() == null)
+            {
+                SceneManager.LoadScene(teleportScene);
+            }
+            else if (FindObjectOfType<LevelManager>().GetStatus() == LevelManager.STATUS.LOOT)
+            {
+                SceneManager.LoadScene(teleportScene);
+            }
         }
+
     }
 }

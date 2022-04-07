@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnerItem : Item
 {
     string unitPath;
-    public SpawnerItem(string registryName, string name, string description, string unitPath) : base(registryName, name, description)
+    public SpawnerItem(string registryName, ItemProperty property, string unitPath) : base(registryName, property)
     {
         this.unitPath = unitPath;
     }

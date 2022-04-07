@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealingItem : Item
 {
     int healAmount;
-    public HealingItem(string registryName, string name, string description, int healAmount) : base(registryName, name, description)
+    public HealingItem(string registryName, ItemProperty property, int healAmount) : base(registryName, property)
     {
         this.healAmount = healAmount;
     }

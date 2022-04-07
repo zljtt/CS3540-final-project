@@ -5,13 +5,12 @@ using UnityEngine;
 public class Item
 {
     private string registryName;
-    private string displayName;
-    private string description;
-    public Item(string registryName, string displayName, string description)
+    private ItemProperty property;
+
+    public Item(string registryName, ItemProperty property)
     {
         this.registryName = registryName;
-        this.displayName = displayName;
-        this.description = description;
+        this.property = property;
     }
 
     virtual public bool OnUse(Transform user, RaycastHit targetHit, ItemStack stack, Inventory inventory)
@@ -24,18 +23,60 @@ public class Item
         return registryName;
     }
 
-    public string GetName()
+    public ItemProperty GetProperties()
     {
-        return displayName;
-    }
-
-    public string GetDescription()
-    {
-        return description;
+        return property;
     }
 
     public Sprite GetSprite()
     {
         return Resources.Load<Sprite>("Sprites/Items/" + registryName);
+    }
+
+
+    public class ItemProperty
+    {
+        private string displayName;
+
+        private string description;
+        private float useCoolDown;
+
+        public ItemProperty()
+        {
+            displayName = "NAME";
+            description = "DESCRIPTION";
+            useCoolDown = 0;
+        }
+        public ItemProperty withDisplayName(string value)
+        {
+            displayName = value;
+            return this;
+        }
+
+        public ItemProperty withDescription(string value)
+        {
+            description = value;
+            return this;
+        }
+
+        public ItemProperty withUseCoolDown(float value)
+        {
+            useCoolDown = value;
+            return this;
+        }
+
+        public string GetName()
+        {
+            return displayName;
+        }
+
+        public string GetDescription()
+        {
+            return description;
+        }
+        public float getUseCoolDown()
+        {
+            return useCoolDown;
+        }
     }
 }
