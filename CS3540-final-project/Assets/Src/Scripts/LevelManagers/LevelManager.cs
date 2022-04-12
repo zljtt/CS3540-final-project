@@ -99,7 +99,6 @@ public abstract class LevelManager : MonoBehaviour
             if (currentTime > time)
             {
                 GameObject obj = Instantiate(unit, position, rotation);
-                obj.GetComponent<UnitBehavior>().SetActive(true);
                 return true;
             }
             return false;

@@ -10,7 +10,7 @@ public class MeleeEnemyBehavior : EnemyBehavior
         target.GetComponent<MeleeAllyBehavior>().TakeDamage(attackDamage, gameObject);
     }
 
-    public override GameObject FindPossibleAttackTarget()
+    public override GameObject FindPossibleAttackTargetInRange()
     {
         List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Ally" });
         GameObject closest = FindClosest(possibleTargets);

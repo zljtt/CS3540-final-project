@@ -6,43 +6,44 @@ public abstract class AllyBehavior : UnitBehavior
 {
     protected Transform startingPoint;
     public AudioClip attackSFX;
-    
+
     protected override void Awake()
     {
         base.Awake();
         // record the starting point
         //startingPoint = transform;
     }
-    protected override void Update()
+
+    protected override void PerformAlert()
     {
-        base.Update();
-        if (!active) return;
-        // try to find a target to attack if there is no previous or the previous is dead
-        if (currentTarget == null)
+        agent.isStopped = true;
+        // try to find a target to attack
+        currentAttackTarget = FindPossibleAttackTargetInRange();
+        // if there is target, leave idle state
+        if (currentAttackTarget != null)
         {
-            currentTarget = FindPossibleAttackTarget();
+            currentState = State.CHASE;
         }
-        // if there is a target to attack, try to attack
-        if (currentTarget != null)
+    }
+
+    // when an unit is within attack range, it attack until the target dies
+    protected override void PerformAttack()
+    {
+        // to implement in child
+        agent.isStopped = true;
+        if (currentAttackTarget == null)
         {
-            if (CanReach(currentTarget))
-            {
-                if (lastAttackDeltaTime > attackSpeed)
-                {
-                    Attack(currentTarget);
-                    AudioSource.PlayClipAtPoint(attackSFX, transform.position);
-                    lastAttackDeltaTime = 0;
-                }
-            }
-            else
-            {
-                MoveTowardTarget(currentTarget.transform);
-            }
+            currentState = State.ALERT;
         }
-        // if there is no target to attack, go back to the starting point
-        else
+        else if (!CanReach(currentAttackTarget))
         {
-            //MoveTowardTarget(startingPoint);
+            currentState = State.CHASE;
+        }
+        else if (lastAttackDeltaTime > attackSpeed) // attack
+        {
+            Attack(currentAttackTarget);
+            AudioSource.PlayClipAtPoint(attackSFX, transform.position);
+            lastAttackDeltaTime = 0;
         }
     }
 }

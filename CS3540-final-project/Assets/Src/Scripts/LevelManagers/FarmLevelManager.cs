@@ -21,7 +21,7 @@ public class FarmLevelManager : LevelManager
         {
             if (obj.GetComponent<UnitBehavior>() != null)
             {
-                obj.GetComponent<UnitBehavior>().SetActive(true);
+                obj.GetComponent<UnitBehavior>().ChangeState(UnitBehavior.State.ALERT);
             }
         }
     }

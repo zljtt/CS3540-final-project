@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 public abstract class UnitBehavior : MonoBehaviour
 {
+    public enum State { INIT, IDLE, ALERT, CHASE, ATTACK, DIE };
     public Slider healthSlider1;
     public Slider healthSlider2;
     public int maxHealth = 100;
@@ -12,21 +13,24 @@ public abstract class UnitBehavior : MonoBehaviour
     public float alertRange = 4f;
     public int attackDamage = 2;
     public float attackSpeed = 1f;
+
+
     protected NavMeshAgent agent;
-    protected GameObject currentTarget;
+    protected GameObject currentAttackTarget;
+    protected Animator anim;
     protected float currentHealth;
     protected float lastDamagedDeltaTime = 0f; // use for invincibility frame
     protected float lastAttackDeltaTime = 0f; // use for attack speed
-    protected bool active;
-    Animator anim;
+    protected State currentState;
+
     protected virtual void Awake()
     {
+        currentState = State.INIT;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         healthSlider1.maxValue = maxHealth;
         healthSlider2.maxValue = maxHealth;
         currentHealth = maxHealth;
-        active = false;
-        anim = GetComponent<Animator>();
     }
 
     protected virtual void Update()
@@ -35,12 +39,69 @@ public abstract class UnitBehavior : MonoBehaviour
         lastAttackDeltaTime += Time.deltaTime;
         healthSlider1.value = currentHealth;
         healthSlider2.value = currentHealth;
+        switch (currentState)
+        {
+            case State.IDLE:
+                break;
+            case State.ALERT:
+                PerformAlert();
+                break;
+            case State.CHASE:
+                PerformChase();
+                break;
+            case State.ATTACK:
+                PerformAttack();
+                break;
+            case State.DIE:
+                PerformDie();
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    // when an unit does not have a target, it enters alert state and wait for target
+    protected virtual void PerformAlert()
+    {
+        // to implement in child
+    }
+
+    // when an unit has a target, it will chase the target until entering attack range
+    protected virtual void PerformChase()
+    {
+        agent.isStopped = false;
+        if (currentAttackTarget == null)
+        {
+            currentState = State.ALERT;
+        }
+        else if (CanReach(currentAttackTarget))
+        {
+            currentState = State.ATTACK;
+        }
+        else // chase
+        {
+            agent.SetDestination(currentAttackTarget.transform.position);
+        }
+    }
+
+    // when an unit is within attack range, it attack until the target dies
+    protected virtual void PerformAttack()
+    {
+        // to implement in child
+    }
+
+    // when an unit die
+    protected virtual void PerformDie()
+    {
+        anim.SetInteger("status", 1);
+        Destroy(gameObject, 1);
     }
 
     public abstract void Attack(GameObject target);
 
     // find a possible target within the alert range.
-    public abstract GameObject FindPossibleAttackTarget();
+    public abstract GameObject FindPossibleAttackTargetInRange();
 
     protected List<GameObject> FindTargetsInRange(List<string> tags)
     {
@@ -75,11 +136,6 @@ public abstract class UnitBehavior : MonoBehaviour
         return closest;
     }
 
-    public void MoveTowardTarget(Transform target)
-    {
-        agent.SetDestination(target.position);
-    }
-
     public bool CanReach(GameObject target)
     {
         return Vector3.Distance(transform.position, target.transform.position) <= attackRange;
@@ -89,7 +145,7 @@ public abstract class UnitBehavior : MonoBehaviour
     {
         if (damageAmount > currentHealth)
         {
-            UnitDies();
+            currentState = State.DIE;
         }
         else if (lastDamagedDeltaTime > 0.1f)
         {
@@ -98,19 +154,9 @@ public abstract class UnitBehavior : MonoBehaviour
         }
     }
 
-    public void TakeHealth(float healAmount)
+    public void Heal(float healAmount)
     {
-        if (currentHealth < maxHealth)
-        {
-            currentHealth += healAmount;
-        }
-    }
-
-    public void UnitDies()
-    {
-        //may need to add sound effect and game lose or win condition 
-        anim.SetInteger("status", 1);
-        Destroy(gameObject, 1);
+        currentHealth = Mathf.Clamp(currentHealth + healAmount, 0, maxHealth);
     }
 
     public Slider GetSlider()
@@ -118,9 +164,9 @@ public abstract class UnitBehavior : MonoBehaviour
         return healthSlider1;
     }
 
-    public void SetActive(bool a)
+    public void ChangeState(State state)
     {
-        active = a;
+        currentState = state;
     }
 
 }

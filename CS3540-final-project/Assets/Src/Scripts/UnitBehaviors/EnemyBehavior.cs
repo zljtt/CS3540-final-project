@@ -13,41 +13,44 @@ public abstract class EnemyBehavior : UnitBehavior
         wayPoint = FindClosest(wayPoints);
     }
 
-    protected override void Update()
+    protected override void PerformAlert()
     {
-        base.Update();
-        if (!active) return;
-        // try to find a target to attack if there is no previous or the previous is dead
-        if (currentTarget == null)
+        currentAttackTarget = FindPossibleAttackTargetInRange();
+        if (currentAttackTarget == null)
         {
-            currentTarget = FindPossibleAttackTarget();
-        }
-        // if there is a target to attack, try to attack
-        if (currentTarget != null)
-        {
-            if (CanReach(currentTarget))
-            {
-                if (lastAttackDeltaTime > attackSpeed)
-                {
-                    Attack(currentTarget);
-                    lastAttackDeltaTime = 0;
-                }
-            }
-            else
-            {
-                MoveTowardTarget(currentTarget.transform);
-            }
-        }
-        // if there is no target to attack, go to the closest waypoint
-        else
-        {
-            MoveTowardTarget(wayPoint.transform);
-
+            // if there is no target to attack, go to the closest waypoint
+            agent.SetDestination(wayPoint.transform.position);
             if (Vector3.Distance(transform.position, wayPoint.transform.position) < 2.5)
             {
+                // player lose health
                 FindObjectOfType<LevelManager>().LoseHealth(1);
                 Destroy(gameObject);
             }
         }
+        else
+        {
+            currentState = State.CHASE;
+        }
+
     }
+
+    // when an unit is within attack range, it attack until the target dies
+    protected override void PerformAttack()
+    {
+        agent.isStopped = true;
+        if (currentAttackTarget == null)
+        {
+            currentState = State.ALERT;
+        }
+        else if (!CanReach(currentAttackTarget))
+        {
+            currentState = State.CHASE;
+        }
+        else if (lastAttackDeltaTime > attackSpeed) // attack
+        {
+            Attack(currentAttackTarget);
+            lastAttackDeltaTime = 0;
+        }
+    }
+
 }
