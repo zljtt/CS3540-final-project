@@ -15,6 +15,7 @@ public abstract class EnemyBehavior : UnitBehavior
 
     protected override void PerformAlert()
     {
+
         currentAttackTarget = FindPossibleAttackTargetInRange();
         if (currentAttackTarget == null)
         {

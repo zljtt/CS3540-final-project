@@ -35,6 +35,7 @@ public abstract class UnitBehavior : MonoBehaviour
 
     protected virtual void Update()
     {
+        anim.SetInteger("animState", 0);
         lastDamagedDeltaTime += Time.deltaTime;
         lastAttackDeltaTime += Time.deltaTime;
         healthSlider1.value = currentHealth;
@@ -94,7 +95,7 @@ public abstract class UnitBehavior : MonoBehaviour
     // when an unit die
     protected virtual void PerformDie()
     {
-        anim.SetInteger("status", 1);
+        anim.SetInteger("animState", 5);
         Destroy(gameObject, 1);
     }
 

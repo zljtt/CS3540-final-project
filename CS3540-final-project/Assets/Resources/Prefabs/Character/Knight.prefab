@@ -568,7 +568,6 @@ GameObject:
   - component: {fileID: 7181614438389969628}
   - component: {fileID: 7181614438399346608}
   - component: {fileID: 2110420354909216513}
-  - component: {fileID: 2110420354909216512}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Enemy
@@ -606,7 +605,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 65cf32e556d68554f889b97a275c53d4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -648,25 +647,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2110420354909216512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7181614438399443288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c339c1b842c204d43936bbf18ee1135a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider1: {fileID: 4868287364879783708}
-  healthSlider2: {fileID: 303225351307884513}
-  maxHealth: 100
-  attackRange: 2
-  alertRange: 4
-  attackDamage: 2
-  attackSpeed: 1
 --- !u!1 &7181614438399443290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,25 +1571,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7392487241819213541, guid: bc561221dee0f452ab805b71798554cf, type: 3}
   m_PrefabInstance: {fileID: 8891968695018775338}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &303225351307884513 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9174918428465927371, guid: bc561221dee0f452ab805b71798554cf, type: 3}
-  m_PrefabInstance: {fileID: 8891968695018775338}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4868287364879783708 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4100879279549740086, guid: bc561221dee0f452ab805b71798554cf, type: 3}
-  m_PrefabInstance: {fileID: 8891968695018775338}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
