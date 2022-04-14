@@ -39,6 +39,14 @@ public abstract class EnemyBehavior : UnitBehavior
     protected override void PerformAttack()
     {
         agent.isStopped = true;
+        int picker = Random.Range(0, 1);
+        if(picker == 0) {
+            anim.SetInteger("animState", 3);               
+        }
+        else {
+            anim.SetInteger("animState", 4);
+        }
+        
         if (currentAttackTarget == null)
         {
             currentState = State.ALERT;

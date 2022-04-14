@@ -30,16 +30,23 @@ public abstract class AllyBehavior : UnitBehavior
     // when an unit is within attack range, it attack until the target dies
     protected override void PerformAttack()
     {
-        // to implement in child
         agent.isStopped = true;
+        int picker = Random.Range(0, 1);
+        if(picker == 0) {
+            anim.SetInteger("animState", 3);               
+        }
+        else {
+            anim.SetInteger("animState", 4);
+        }
+
         if (currentAttackTarget == null)
         {
             currentState = State.ALERT;
         }
         else if (!CanReach(currentAttackTarget))
         {
-            currentState = State.CHASE;
             FaceTarget(currentAttackTarget.transform.position);
+            currentState = State.CHASE;
         }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {
