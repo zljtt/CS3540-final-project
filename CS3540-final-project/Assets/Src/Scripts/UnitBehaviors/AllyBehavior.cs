@@ -23,6 +23,7 @@ public abstract class AllyBehavior : UnitBehavior
         if (currentAttackTarget != null)
         {
             currentState = State.CHASE;
+            FaceTarget(currentAttackTarget.transform.position);
         }
     }
 
@@ -38,10 +39,12 @@ public abstract class AllyBehavior : UnitBehavior
         else if (!CanReach(currentAttackTarget))
         {
             currentState = State.CHASE;
+            FaceTarget(currentAttackTarget.transform.position);
         }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {
             Attack(currentAttackTarget);
+            FaceTarget(currentAttackTarget.transform.position);
             AudioSource.PlayClipAtPoint(attackSFX, transform.position);
             lastAttackDeltaTime = 0;
         }

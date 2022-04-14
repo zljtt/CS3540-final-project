@@ -46,6 +46,13 @@ public abstract class UnitBehavior : MonoBehaviour
         UpdateState();
     }
 
+    protected void FaceTarget(Vector3 target) {
+        Vector3 directionToTarget = (target - transform.position).normalized;
+        directionToTarget.y = 0;
+        Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
+    }
+
     protected virtual void UpdateState()
     {
         switch (currentState)
@@ -85,10 +92,12 @@ public abstract class UnitBehavior : MonoBehaviour
         else if (CanReach(currentAttackTarget))
         {
             currentState = State.ATTACK;
+            FaceTarget(currentAttackTarget.transform.position);
         }
         else // chase
         {
             agent.SetDestination(currentAttackTarget.transform.position);
+            FaceTarget(currentAttackTarget.transform.position);
         }
     }
 
@@ -101,7 +110,6 @@ public abstract class UnitBehavior : MonoBehaviour
     // when an unit die
     protected virtual void PerformDie()
     {
-        anim.SetInteger("animState", 5);
         Destroy(gameObject, 2);
     }
 

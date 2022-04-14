@@ -34,7 +34,7 @@ public class MeleeEnemyBehavior : EnemyBehavior
     }
     public override void Attack(GameObject target)
     {
-        anim.SetInteger("animState", 3);
+        anim.SetInteger("animState", 3);   
         target.GetComponent<MeleeAllyBehavior>().TakeDamage(attackDamage, gameObject);
     }
 

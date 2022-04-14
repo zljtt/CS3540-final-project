@@ -30,9 +30,9 @@ public abstract class EnemyBehavior : UnitBehavior
         }
         else
         {
+            FaceTarget(currentAttackTarget.transform.position);
             currentState = State.CHASE;
         }
-
     }
 
     // when an unit is within attack range, it attack until the target dies
@@ -45,13 +45,16 @@ public abstract class EnemyBehavior : UnitBehavior
         }
         else if (!CanReach(currentAttackTarget))
         {
+            FaceTarget(currentAttackTarget.transform.position);
             currentState = State.CHASE;
         }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {
+            FaceTarget(currentAttackTarget.transform.position);
             Attack(currentAttackTarget);
             lastAttackDeltaTime = 0;
         }
+        
     }
 
 }
