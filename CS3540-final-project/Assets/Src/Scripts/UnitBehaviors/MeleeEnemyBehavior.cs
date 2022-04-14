@@ -34,7 +34,14 @@ public class MeleeEnemyBehavior : EnemyBehavior
     }
     public override void Attack(GameObject target)
     {
-        anim.SetInteger("animState", 3);   
+        int picker = Random.Range(0, 1);
+        if(picker == 0) {
+            anim.SetInteger("animState", 3);               
+        }
+        else {
+            anim.SetInteger("animState", 4);
+        }
+
         target.GetComponent<MeleeAllyBehavior>().TakeDamage(attackDamage, gameObject);
     }
 

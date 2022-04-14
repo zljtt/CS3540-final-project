@@ -12,6 +12,7 @@ public abstract class UnitBehavior : MonoBehaviour
     public float alertRange = 4f;
     public int attackDamage = 2;
     public float attackSpeed = 1f;
+    protected float startSpeed;
 
     private Slider[] healthSliders;
     protected NavMeshAgent agent;
@@ -33,6 +34,7 @@ public abstract class UnitBehavior : MonoBehaviour
             healthSlider.maxValue = maxHealth;
         }
         currentHealth = maxHealth;
+        startSpeed = agent.speed;
     }
 
     private void Update()
@@ -55,6 +57,12 @@ public abstract class UnitBehavior : MonoBehaviour
 
     protected virtual void UpdateState()
     {
+        if(currentState == State.CHASE) {
+            agent.speed = startSpeed * 2;
+        }
+        else {
+            agent.speed = startSpeed;
+        }
         switch (currentState)
         {
             case State.IDLE:
