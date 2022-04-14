@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 9135468582351967469}
   - component: {fileID: 2005950912709372390}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: AllyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
