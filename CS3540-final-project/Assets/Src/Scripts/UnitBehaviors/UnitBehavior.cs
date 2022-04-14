@@ -6,15 +6,14 @@ using UnityEngine.AI;
 public abstract class UnitBehavior : MonoBehaviour
 {
     public enum State { INIT, IDLE, ALERT, CHASE, ATTACK, DIE };
-    public Slider healthSlider1;
-    public Slider healthSlider2;
+
     public int maxHealth = 100;
     public float attackRange = 2f;
     public float alertRange = 4f;
     public int attackDamage = 2;
     public float attackSpeed = 1f;
 
-
+    private Slider[] healthSliders;
     protected NavMeshAgent agent;
     protected GameObject currentAttackTarget;
     protected Animator anim;
@@ -28,18 +27,27 @@ public abstract class UnitBehavior : MonoBehaviour
         currentState = State.INIT;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        healthSlider1.maxValue = maxHealth;
-        healthSlider2.maxValue = maxHealth;
+        healthSliders = gameObject.GetComponentsInChildren<Slider>();
+        foreach (var healthSlider in healthSliders)
+        {
+            healthSlider.maxValue = maxHealth;
+        }
         currentHealth = maxHealth;
     }
 
-    protected virtual void Update()
+    private void Update()
     {
-        anim.SetInteger("animState", 0);
         lastDamagedDeltaTime += Time.deltaTime;
         lastAttackDeltaTime += Time.deltaTime;
-        healthSlider1.value = currentHealth;
-        healthSlider2.value = currentHealth;
+        foreach (var healthSlider in healthSliders)
+        {
+            healthSlider.value = currentHealth;
+        }
+        UpdateState();
+    }
+
+    protected virtual void UpdateState()
+    {
         switch (currentState)
         {
             case State.IDLE:
@@ -59,9 +67,7 @@ public abstract class UnitBehavior : MonoBehaviour
             default:
                 break;
         }
-
     }
-
     // when an unit does not have a target, it enters alert state and wait for target
     protected virtual void PerformAlert()
     {
@@ -96,7 +102,7 @@ public abstract class UnitBehavior : MonoBehaviour
     protected virtual void PerformDie()
     {
         anim.SetInteger("animState", 5);
-        Destroy(gameObject, 1);
+        Destroy(gameObject, 2);
     }
 
     public abstract void Attack(GameObject target);
@@ -160,14 +166,11 @@ public abstract class UnitBehavior : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + healAmount, 0, maxHealth);
     }
 
-    public Slider GetSlider()
-    {
-        return healthSlider1;
-    }
-
     public void ChangeState(State state)
     {
         currentState = state;
     }
+
+
 
 }

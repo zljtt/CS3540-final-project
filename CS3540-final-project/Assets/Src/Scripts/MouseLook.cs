@@ -6,7 +6,7 @@ public class MouseLook : MonoBehaviour
 {
     public float mouseSensitiviy = 100f;
     float pitch = 0;
-    float yaw = 0;
+    //float yaw = 0;
     Transform playerBody;
 
     void Awake()
