@@ -11,15 +11,19 @@ public class DragonAI : UnitBehavior
     public static readonly int DRA_CHASE_ANIME = 3;
     public static readonly int DRA_ATTACK_ANIM = 4;
     public static readonly int DRA_DIE_ANIM = 5;
+    public Transform shootPoint;
 
     public enum DragonState { IDLE, RISE, ALERT, CHASE, ATTACK, DIE}
     DragonState currentDragonState;
     float currentHeight = -0.5f;
     public float destinyHeight = 3;
     Vector3 currentPosition;
+    public AudioClip attackSFX;
+    public GameObject firePrefab;
 
     protected override void Start()
     {
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
         healthSliders = gameObject.GetComponentsInChildren<Slider>();
         foreach (var healthSlider in healthSliders)
         {
@@ -33,13 +37,13 @@ public class DragonAI : UnitBehavior
         currentDragonState = DragonState.RISE;
     }
 
-    public override void Attack(GameObject target) {
-
-    }
 
     private void FixedUpdate() {
         currentPosition = this.gameObject.transform.position;
         currentHeight = currentPosition.y;
+        if(currentAttackTarget != null) {
+            FaceTarget(currentAttackTarget.transform.position);
+        }
     }
 
     protected override void UpdateState()
@@ -119,11 +123,38 @@ public class DragonAI : UnitBehavior
     // when an unit is within attack range, it attack until the target dies
     protected override void PerformAttack() {
         anim.SetInteger("animState", DRA_ATTACK_ANIM);
+        if (currentAttackTarget == null || !CanReach(currentAttackTarget)) {
+            currentDragonState = DragonState.ALERT;
+        }
+        else if (lastAttackDeltaTime > attackSpeed) // attack
+        {
+            Attack(currentAttackTarget);
+            lastAttackDeltaTime = 0;
+        }
+        else {
+            anim.SetInteger("attackState", 0);
+        }
     }
+
+    public override void Attack(GameObject target) { 
+        anim.SetInteger("attackState", 1);
+        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
+        RotateToDestination(gameObject, currentAttackTarget.transform.position);
+        Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
+    }
+
+    void RotateToDestination(GameObject obj, Vector3 destination)
+    {
+        Vector3 direction = destination - obj.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, rotation, 1);
+    }
+
 
     // when an unit die
     protected override void PerformDie() {
-
+        anim.SetInteger("animState", DRA_DIE_ANIM);
+        Destroy(gameObject, 2);
     }
 
     public void ChangeState(DragonState state) {
