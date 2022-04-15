@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public abstract class LevelManager : MonoBehaviour
 {
@@ -13,7 +17,7 @@ public abstract class LevelManager : MonoBehaviour
     public Text healthText;
     public List<Transform> spawnPoints;
     public Slider timeSlider;
-    public int playerHealth = 10;
+    public PlayerData playerData;
 
     protected float currentTime;
     protected float pathIndicaterTime;
@@ -22,6 +26,28 @@ public abstract class LevelManager : MonoBehaviour
     protected List<SpawnInfo> spawnList;
     protected List<GameObject> spawnedEnemyList;
     //protected int maxEnemyCount;
+    private string filePath;
+    void Awake()
+    {
+        filePath = Application.persistentDataPath + "/player.data";
+        ReadData();
+        if (playerData.currentLevel != SceneManager.GetActiveScene().name)
+        {
+            if (playerData.currentLevel == null || playerData.currentLevel == "")
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+            else
+            {
+                SceneManager.LoadScene(playerData.currentLevel);
+            }
+        }
+    }
+
+    void OnDestroy()
+    {
+        WriteData();
+    }
 
     void Start()
     {
@@ -39,7 +65,7 @@ public abstract class LevelManager : MonoBehaviour
         currentTime += Time.deltaTime;
         pathIndicaterTime += Time.deltaTime;
         statusText.text = status.ToString();
-        healthText.text = ("HP LEFT : " + playerHealth.ToString());
+        healthText.text = ("HP LEFT : " + playerData.health.ToString());
         switch (status)
         {
             case STATUS.PREPARE:
@@ -96,17 +122,33 @@ public abstract class LevelManager : MonoBehaviour
     protected abstract void OnCombatEnd();
 
     protected abstract List<SpawnInfo> GetSpawns();
-    public void LoseHealth(int amount)
-    {
-        if (playerHealth > 0)
-        {
-            playerHealth -= amount;
-        }
-    }
 
     public STATUS GetStatus()
     {
         return status;
+    }
+
+    public void ReadData()
+    {
+        if (File.Exists(filePath))
+        {
+            FileStream dataStream = new FileStream(filePath, FileMode.Open);
+            BinaryFormatter converter = new BinaryFormatter();
+            playerData = converter.Deserialize(dataStream) as PlayerData;
+            dataStream.Close();
+        }
+        else
+        {
+            playerData = new PlayerData();
+        }
+    }
+    public void WriteData()
+    {
+
+        FileStream dataStream = new FileStream(filePath, FileMode.Create);
+        BinaryFormatter converter = new BinaryFormatter();
+        converter.Serialize(dataStream, playerData);
+        dataStream.Close();
     }
 
     public class SpawnInfo

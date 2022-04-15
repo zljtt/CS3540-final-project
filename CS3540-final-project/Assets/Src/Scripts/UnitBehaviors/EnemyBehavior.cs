@@ -36,7 +36,7 @@ public abstract class EnemyBehavior : UnitBehavior
             if (Vector3.Distance(transform.position, wayPoint.transform.position) < 2)
             {
                 // player lose health
-                //FindObjectOfType<LevelManager>().LoseHealth(1);
+                FindObjectOfType<LevelManager>().playerData.LoseHealth(1);
                 Destroy(gameObject);
             }
         }

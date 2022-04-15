@@ -7,7 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class Inventory
 {
-    [SerializeField]
     private List<ItemStack> itemList;
     private string filePath = Application.persistentDataPath + "/inventory.data";
 
@@ -32,7 +31,6 @@ public class Inventory
     }
     public void WriteData()
     {
-
         FileStream dataStream = new FileStream(filePath, FileMode.Create);
         BinaryFormatter converter = new BinaryFormatter();
         converter.Serialize(dataStream, itemList);
