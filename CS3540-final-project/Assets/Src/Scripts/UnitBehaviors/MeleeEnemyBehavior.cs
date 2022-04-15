@@ -6,16 +6,18 @@ using UnityEngine.UI;
 public class MeleeEnemyBehavior : EnemyBehavior
 {
 
+    int currentAttackAnim = 0;
     public override void Attack(GameObject target)
     {
-        int picker = Random.Range(0, 2);
-        if (picker == 0)
+        if (currentAttackAnim == 0)
         {
             anim.SetInteger("animState", ATTACK1_ANIM);
+            currentAttackAnim = 1;
         }
         else
         {
             anim.SetInteger("animState", ATTACK2_ANIM);
+            currentAttackAnim = 0;
         }
         target.GetComponent<MeleeAllyBehavior>().TakeDamage(attackDamage, gameObject);
     }
