@@ -20,7 +20,8 @@ public abstract class LevelManager : MonoBehaviour
 
     protected STATUS status;
     protected List<SpawnInfo> spawnList;
-
+    protected List<GameObject> spawnedEnemyList;
+    //protected int maxEnemyCount;
 
     void Start()
     {
@@ -28,6 +29,8 @@ public abstract class LevelManager : MonoBehaviour
         currentTime = 0;
         pathIndicaterTime = 0;
         spawnList = GetSpawns();
+        spawnedEnemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        //maxEnemyCount = spawnList.Count + spawnedEnemyList.Count;
         OnPrepareStart();
     }
 
@@ -65,12 +68,16 @@ public abstract class LevelManager : MonoBehaviour
                 }
                 break;
             case STATUS.COMBAT:
-                timeSlider.maxValue = combatTime;
-                timeSlider.value = currentTime - prepareTime;
+                timeSlider.maxValue = spawnList.Count + spawnedEnemyList.Count;
+                int killedEnemyCount = 0;
+                spawnedEnemyList.ForEach(enemy => { if (enemy == null) killedEnemyCount++; });
+                timeSlider.value = killedEnemyCount;
                 // spawn in game
-                spawnList.RemoveAll(spawn => spawn.CheckSpawn(currentTime - prepareTime));
+                spawnList.RemoveAll(spawn => spawn.CheckSpawn(currentTime - prepareTime, spawnedEnemyList));
+                // spawnedEnemyList.RemoveAll(enemy => enemy == null);
                 // move to next stage
-                if (currentTime >= prepareTime + combatTime)
+                //if (spawnList >= prepareTime + combatTime)
+                if (timeSlider.value == timeSlider.maxValue)
                 {
                     status = STATUS.LOOT;
                     OnCombatEnd();
@@ -116,7 +123,7 @@ public abstract class LevelManager : MonoBehaviour
             unit = u;
         }
 
-        public bool CheckSpawn(float currentTime)
+        public bool CheckSpawn(float currentTime, List<GameObject> spawned)
         {
             if (currentTime > time)
             {
@@ -126,6 +133,7 @@ public abstract class LevelManager : MonoBehaviour
                 {
                     behavior.ChangeState(UnitBehavior.State.ALERT);
                 }
+                spawned.Add(spawnedUnit);
                 return true;
             }
             return false;
