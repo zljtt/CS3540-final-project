@@ -16,10 +16,11 @@ public abstract class EnemyBehavior : UnitBehavior
     protected override void Update()
     {
         agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
-        agent.isStopped = currentState == State.IDLE || currentState == State.DIE;
-        // if steering target is incorrect during combat
         Vector3 steer = agent.steeringTarget - transform.position;
-        agent.isStopped = currentState == State.ATTACK && Vector2.Angle(new Vector2(steer.x, steer.z), new Vector2(transform.forward.x, transform.forward.z)) < 10f;
+
+        agent.isStopped = currentState == State.IDLE || currentState == State.DIE
+            || currentState == State.ATTACK  // if steering target is incorrect during combat
+                && Vector2.Angle(new Vector2(steer.x, steer.z), new Vector2(transform.forward.x, transform.forward.z)) < 10f;
 
         base.Update();
     }

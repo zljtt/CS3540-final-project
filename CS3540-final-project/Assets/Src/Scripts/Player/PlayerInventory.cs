@@ -8,13 +8,15 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public InventoryGUI gui;
-    private Inventory inventory;
-    void Start()
+    public static Inventory inventory;
+    void Awake()
     {
         inventory = new Inventory();
-        gui.SetInventory(inventory);
-        inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 4);
-        inventory.AddItem(ItemDatabase.HEALTH_POTION, 5);
+        inventory.ReadData();
+    }
+    void OnDestroy()
+    {
+        inventory.WriteData();
     }
 
     void Update()
@@ -22,6 +24,7 @@ public class PlayerInventory : MonoBehaviour
         DetectKeyPress();
         DetectKeyRelease();
     }
+
 
     private void DetectKeyPress()
     {

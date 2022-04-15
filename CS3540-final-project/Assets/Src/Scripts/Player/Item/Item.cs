@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item
 {
     private string registryName;
+    private int id;
     private ItemProperty property;
 
     public Item(string registryName, ItemProperty property)
@@ -32,6 +33,17 @@ public class Item
     {
         return Resources.Load<Sprite>("Sprites/Items/" + registryName);
     }
+
+    public int GetID()
+    {
+        return id;
+    }
+
+    public void SetID(int i)
+    {
+        id = i;
+    }
+
 
 
     public class ItemProperty

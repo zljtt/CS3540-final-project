@@ -20361,6 +20361,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3645559934036143776, guid: 1119864bfad84bc47824db4df81f850f, type: 3}
   m_PrefabInstance: {fileID: 1100902618}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1104254363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 8badfec16364f4febbe68d577d3d776d, type: 3}
+  m_PrefabInstance: {fileID: 1934810946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104254364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104254363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcc6661f0c073148925d07e4521615b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportScene: Castle
 --- !u!1001 &1105230105
 PrefabInstance:
   m_ObjectHideFlags: 0

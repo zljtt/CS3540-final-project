@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class InventoryGUI : MonoBehaviour
 {
     public int slotCount = 10;
-    private Inventory inventory;
     private Transform itemSlotContainer;
     private List<Transform> itemSlots = new List<Transform>();
     // States of keys. 0 = not pressed, 1 = being pressed, 2 = released, succeed to use, 3 = released, fail to use
@@ -36,12 +35,6 @@ public class InventoryGUI : MonoBehaviour
     {
         Render();
     }
-
-    public void SetInventory(Inventory inventory)
-    {
-        this.inventory = inventory;
-    }
-
     private void Render()
     {
         int x = 0;
@@ -52,15 +45,15 @@ public class InventoryGUI : MonoBehaviour
             Image image = itemSlots[x].Find("ItemImage").GetComponent<Image>();
             Text amountText = itemSlots[x].Find("AmountText").GetComponent<Text>();
             Image borderHighlight = itemSlotContainer.Find("BorderHighlight" + (x + 1)).GetComponent<Image>();
-            if (x >= inventory.GetItemList().Count || inventory.GetItemList()[x].GetAmount() == 0)
+            if (x >= PlayerInventory.inventory.GetItemList().Count || PlayerInventory.inventory.GetItemList()[x].GetAmount() == 0)
             {
                 image.gameObject.SetActive(false);
                 amountText.gameObject.SetActive(false);
             }
             else
             {
-                image.sprite = inventory.GetItemList()[x].GetItem().GetSprite();
-                amountText.text = inventory.GetItemList()[x].GetAmount().ToString();
+                image.sprite = PlayerInventory.inventory.GetItemList()[x].GetItem().GetSprite();
+                amountText.text = PlayerInventory.inventory.GetItemList()[x].GetAmount().ToString();
                 image.gameObject.SetActive(true);
                 amountText.gameObject.SetActive(true);
             }
