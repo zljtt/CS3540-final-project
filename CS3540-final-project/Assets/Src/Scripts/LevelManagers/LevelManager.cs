@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public abstract class LevelManager : MonoBehaviour
 {
@@ -10,17 +11,22 @@ public abstract class LevelManager : MonoBehaviour
     public float combatTime = 60;
     public Text statusText;
     public Text healthText;
-
+    public List<Transform> spawnPoints;
     public Slider timeSlider;
     public int playerHealth = 10;
 
     protected float currentTime;
+    protected float pathIndicaterTime;
+
     protected STATUS status;
     protected List<SpawnInfo> spawnList;
+
+
     void Start()
     {
         status = STATUS.PREPARE;
         currentTime = 0;
+        pathIndicaterTime = 0;
         spawnList = GetSpawns();
         OnPrepareStart();
     }
@@ -28,14 +34,30 @@ public abstract class LevelManager : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
+        pathIndicaterTime += Time.deltaTime;
         statusText.text = status.ToString();
         healthText.text = ("HP LEFT : " + playerHealth.ToString());
         switch (status)
         {
             case STATUS.PREPARE:
+                // spawn enemy path indicater
+                if (pathIndicaterTime > 3)
+                {
+                    foreach (var spawn in spawnPoints)
+                    {
+                        GameObject pathIndicater = GameObject.Instantiate(Resources.Load("Prefabs/Others/PathIndicater"), spawn.position, spawn.rotation) as GameObject;
+                    }
+                    pathIndicaterTime = 0;
+                }
                 timeSlider.maxValue = prepareTime;
                 timeSlider.value = currentTime;
                 // move to next stage
+                if (Input.GetKey(KeyCode.P))
+                {
+                    currentTime = prepareTime;
+                    status = STATUS.COMBAT;
+                    OnCombatStart();
+                }
                 if (currentTime >= prepareTime)
                 {
                     status = STATUS.COMBAT;

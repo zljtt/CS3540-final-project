@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1378,7 +1378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80016169}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 7.49, y: 0, z: 8.79}
+  m_LocalPosition: {x: 7.49, y: 0.4, z: 8.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12351,7 +12351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7559692321935498030, guid: 3e16f859590178e45870bfbdc9741659, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7559692321935498030, guid: 3e16f859590178e45870bfbdc9741659, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18848,7 +18848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7181614438399221114, guid: b7c55a6fbd22b4d209684a1962933eb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.254307
+      value: 4.54
       objectReference: {fileID: 0}
     - target: {fileID: 7181614438399221114, guid: b7c55a6fbd22b4d209684a1962933eb3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20022,7 +20022,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1926498138343261732, guid: 48942e0a266fd27428e5ce7c72a5e930, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1926498138343261732, guid: 48942e0a266fd27428e5ce7c72a5e930, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24883,7 +24883,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5507469645214686240, guid: 57e4083738abf9f4bb7bd0d01d9d5a48, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5507469645214686240, guid: 57e4083738abf9f4bb7bd0d01d9d5a48, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35316,7 +35316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8badfec16364f4febbe68d577d3d776d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.5
+      value: -29.83
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8badfec16364f4febbe68d577d3d776d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -35661,9 +35661,10 @@ MonoBehaviour:
   combatTime: 60
   statusText: {fileID: 173423758}
   healthText: {fileID: 136920016}
+  spawnPoints:
+  - {fileID: 80016170}
   timeSlider: {fileID: 1371816734}
   playerHealth: 10
-  spawnPoint: {fileID: 80016170}
 --- !u!4 &1942159755
 Transform:
   m_ObjectHideFlags: 0
@@ -38075,9 +38076,9 @@ Transform:
   - {fileID: 1560173224}
   - {fileID: 1433476095}
   - {fileID: 141666320}
+  - {fileID: 635971855}
   - {fileID: 1329358964}
   - {fileID: 1080703877}
-  - {fileID: 635971855}
   - {fileID: 1966532759}
   - {fileID: 335047991}
   - {fileID: 504652565}
@@ -39558,6 +39559,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 6121294805347054283}
   settingMenu: {fileID: 5378351544637453246}
   tutorialMenu: {fileID: 3806772632362716706}
+  playerPosition: {fileID: 0}
 --- !u!1 &2958863557474693814
 GameObject:
   m_ObjectHideFlags: 0

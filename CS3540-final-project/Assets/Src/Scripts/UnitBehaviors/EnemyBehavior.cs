@@ -10,7 +10,7 @@ public abstract class EnemyBehavior : UnitBehavior
         base.Start();
         // init a list of waypoints at first, and remove the ones it reaches later
         List<GameObject> wayPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
-        wayPoint = FindClosest(wayPoints);
+        wayPoint = FindClosest(transform, wayPoints);
     }
 
     protected override void Update()

@@ -111,7 +111,7 @@ public abstract class UnitBehavior : MonoBehaviour
         return allTarget;
     }
 
-    protected GameObject FindClosest(List<GameObject> targets)
+    public static GameObject FindClosest(Transform transform, List<GameObject> targets)
     {
         GameObject closest = null;
         float smallestDistance = Mathf.Infinity;

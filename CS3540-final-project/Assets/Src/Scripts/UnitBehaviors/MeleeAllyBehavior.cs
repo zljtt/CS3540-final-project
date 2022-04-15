@@ -15,7 +15,7 @@ public class MeleeAllyBehavior : AllyBehavior
     public override GameObject FindPossibleAttackTargetInRange()
     {
         List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Enemy" });
-        GameObject closest = FindClosest(possibleTargets);
+        GameObject closest = FindClosest(transform, possibleTargets);
         return closest;
     }
 }

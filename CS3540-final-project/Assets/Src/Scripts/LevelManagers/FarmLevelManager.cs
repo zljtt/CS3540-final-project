@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FarmLevelManager : LevelManager
 {
-    public Transform spawnPoint;
     protected override void OnPrepareStart()
     {
         Debug.Log("Prepare stage starts!");
@@ -38,10 +37,10 @@ public class FarmLevelManager : LevelManager
     {
         return new List<SpawnInfo>
         {
-            new SpawnInfo(5, "Prefabs/Character/HumanKnight", spawnPoint.position, spawnPoint.rotation),
-            new SpawnInfo(10, "Prefabs/Character/HumanKnight", spawnPoint.position, spawnPoint.rotation),
-            new SpawnInfo(15, "Prefabs/Character/HumanKnight", spawnPoint.position, spawnPoint.rotation),
-            new SpawnInfo(20, "Prefabs/Character/HumanKnight", spawnPoint.position, spawnPoint.rotation),
+            new SpawnInfo(5, "Prefabs/Character/HumanKnight", spawnPoints[0].position, spawnPoints[0].rotation),
+            new SpawnInfo(10, "Prefabs/Character/HumanKnight", spawnPoints[0].position, spawnPoints[0].rotation),
+            new SpawnInfo(15, "Prefabs/Character/HumanKnight", spawnPoints[0].position, spawnPoints[0].rotation),
+            new SpawnInfo(20, "Prefabs/Character/HumanKnight", spawnPoints[0].position, spawnPoints[0].rotation),
         };
     }
 
