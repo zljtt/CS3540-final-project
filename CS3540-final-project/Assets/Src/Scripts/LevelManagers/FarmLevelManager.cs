@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FarmLevelManager : LevelManager
 {
-    public GameObject dog;
     public Transform spawnPoint;
     protected override void OnPrepareStart()
     {
@@ -34,10 +33,10 @@ public class FarmLevelManager : LevelManager
     {
         return new List<SpawnInfo>
         {
-            new SpawnInfo(5, dog, spawnPoint.position, spawnPoint.rotation),
-            new SpawnInfo(10, dog, spawnPoint.position, spawnPoint.rotation),
-            new SpawnInfo(15, dog, spawnPoint.position, spawnPoint.rotation),
-            new SpawnInfo(20, dog, spawnPoint.position, spawnPoint.rotation),
+            new SpawnInfo(5, "Prefabs/Character/HumanKnight", spawnPoint.position, spawnPoint.rotation),
+            new SpawnInfo(10, "Prefabs/Character/HumanKnight", spawnPoint.position, spawnPoint.rotation),
+            new SpawnInfo(15, "Prefabs/Character/HumanKnight", spawnPoint.position, spawnPoint.rotation),
+            new SpawnInfo(20, "Prefabs/Character/HumanKnight", spawnPoint.position, spawnPoint.rotation),
         };
     }
 

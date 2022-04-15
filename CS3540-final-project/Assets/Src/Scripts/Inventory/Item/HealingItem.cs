@@ -12,8 +12,8 @@ public class HealingItem : Item
 
     override public bool OnUse(Transform user, RaycastHit targetHit, ItemStack stack, Inventory inventory)
     {
-        var target = targetHit.transform.parent.GetComponent<AllyBehavior>();
-        if (target)
+        var target = targetHit.collider.GetComponent<AllyBehavior>();
+        if (target != null)
         {
             target.Heal(healAmount);
             GameObject effect = GameObject.Instantiate(Resources.Load("Prefabs/Effects/HealEffect"), target.transform.position, Quaternion.Euler(-90, 0, 90)) as GameObject;

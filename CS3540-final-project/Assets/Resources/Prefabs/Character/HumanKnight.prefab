@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 2110420354909216513}
   - component: {fileID: 3202894793815739284}
   m_Layer: 0
-  m_Name: Knight
+  m_Name: HumanKnight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -606,7 +606,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 65cf32e556d68554f889b97a275c53d4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -638,7 +638,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 2
   m_Acceleration: 100
-  avoidancePriority: 50
+  avoidancePriority: 99
   m_AngularSpeed: 100
   m_StoppingDistance: 1.2
   m_AutoTraverseOffMeshLink: 1
@@ -646,7 +646,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: -0.1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3202894793815739284
 MonoBehaviour:
@@ -661,10 +661,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attackRange: 2
+  attackRange: 2.5
   alertRange: 10
   attackDamage: 2
   attackSpeed: 1
+  moveSpeed: 2
 --- !u!1 &7181614438399443290
 GameObject:
   m_ObjectHideFlags: 0

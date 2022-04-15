@@ -7,53 +7,72 @@ public abstract class AllyBehavior : UnitBehavior
     protected Transform startingPoint;
     public AudioClip attackSFX;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         // record the starting point
         //startingPoint = transform;
     }
 
+    protected override void Update()
+    {
+        agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
+        agent.isStopped = currentState == State.ALERT || currentState == State.DIE || currentState == State.IDLE;
+        // if steering target is incorrect during combat
+        Vector3 steer = agent.steeringTarget - transform.position;
+        agent.isStopped = currentState == State.ATTACK && Vector2.Angle(new Vector2(steer.x, steer.z), new Vector2(transform.forward.x, transform.forward.z)) < 10f;
+        base.Update();
+    }
+
     protected override void PerformAlert()
     {
-        agent.isStopped = true;
+        anim.SetInteger("animState", IDLE_ANIM);
         // try to find a target to attack
         currentAttackTarget = FindPossibleAttackTargetInRange();
         // if there is target, leave idle state
         if (currentAttackTarget != null)
         {
             currentState = State.CHASE;
-            FaceTarget(currentAttackTarget.transform.position);
+            //FaceTarget(currentAttackTarget.transform.position);
+        }
+    }
+
+    protected override void PerformChase()
+    {
+        anim.SetInteger("animState", WALK_ANIM);
+        if (currentAttackTarget == null)
+        {
+            currentState = State.ALERT;
+        }
+        else if (CanReach(currentAttackTarget))
+        {
+            currentState = State.ATTACK;
+        }
+        else // chase
+        {
+            agent.SetDestination(currentAttackTarget.transform.position);
         }
     }
 
     // when an unit is within attack range, it attack until the target dies
     protected override void PerformAttack()
     {
-        agent.isStopped = true;
-        int picker = Random.Range(0, 1);
-        if(picker == 0) {
-            anim.SetInteger("animState", 3);               
-        }
-        else {
-            anim.SetInteger("animState", 4);
-        }
-
-        if (currentAttackTarget == null)
+        if (currentAttackTarget == null || !CanReach(currentAttackTarget))
         {
             currentState = State.ALERT;
         }
-        else if (!CanReach(currentAttackTarget))
-        {
-            FaceTarget(currentAttackTarget.transform.position);
-            currentState = State.CHASE;
-        }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {
+            agent.SetDestination(currentAttackTarget.transform.position); // keep rotation
             Attack(currentAttackTarget);
-            FaceTarget(currentAttackTarget.transform.position);
             AudioSource.PlayClipAtPoint(attackSFX, transform.position);
             lastAttackDeltaTime = 0;
         }
+    }
+
+    protected override void PerformDie()
+    {
+        anim.SetInteger("animState", DIE_ANIM);
+        Destroy(gameObject, 2);
     }
 }

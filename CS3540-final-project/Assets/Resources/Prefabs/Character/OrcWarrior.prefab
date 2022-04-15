@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 8081398373357432842}
   - component: {fileID: 8153007313344022902}
   m_Layer: 0
-  m_Name: AllyWarrior
+  m_Name: OrcWarrior
   m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,7 +345,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 2
   m_Acceleration: 50
-  avoidancePriority: 50
+  avoidancePriority: 99
   m_AngularSpeed: 100
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
@@ -353,7 +353,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: -0.1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!114 &8153007313344022902
 MonoBehaviour:
@@ -368,10 +368,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attackRange: 2
+  attackRange: 2.5
   alertRange: 10
   attackDamage: 4
   attackSpeed: 1
+  moveSpeed: 2
   attackSFX: {fileID: 8300000, guid: 03e9f874800c3824e9894fa1efebc1b6, type: 3}
 --- !u!1 &5211158535205678230
 GameObject:

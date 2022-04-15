@@ -13,7 +13,7 @@ public class PlayerInventory : MonoBehaviour
     {
         inventory = new Inventory();
         gui.SetInventory(inventory);
-        inventory.AddItem(ItemDatabase.FARMER_SPAWNER, 4);
+        inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 4);
         inventory.AddItem(ItemDatabase.HEALTH_POTION, 5);
     }
 

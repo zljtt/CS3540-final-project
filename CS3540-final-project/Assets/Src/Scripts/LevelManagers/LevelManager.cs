@@ -85,8 +85,8 @@ public abstract class LevelManager : MonoBehaviour
         int time;
         Vector3 position;
         Quaternion rotation;
-        GameObject unit;
-        public SpawnInfo(int t, GameObject u, Vector3 p, Quaternion r)
+        string unit;
+        public SpawnInfo(int t, string u, Vector3 p, Quaternion r)
         {
             time = t;
             position = p;
@@ -98,7 +98,12 @@ public abstract class LevelManager : MonoBehaviour
         {
             if (currentTime > time)
             {
-                GameObject obj = Instantiate(unit, position, rotation);
+                GameObject spawnedUnit = GameObject.Instantiate(Resources.Load(unit), position, rotation) as GameObject;
+                UnitBehavior behavior = spawnedUnit.GetComponent<UnitBehavior>();
+                if (behavior != null)
+                {
+                    behavior.ChangeState(UnitBehavior.State.ALERT);
+                }
                 return true;
             }
             return false;

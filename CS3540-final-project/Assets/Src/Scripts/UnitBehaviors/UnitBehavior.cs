@@ -5,14 +5,20 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 public abstract class UnitBehavior : MonoBehaviour
 {
-    public enum State { INIT, IDLE, ALERT, CHASE, ATTACK, DIE };
+    public static readonly int IDLE_ANIM = 0;
+    public static readonly int WALK_ANIM = 1;
+    public static readonly int RUN_ANIM = 2;
+    public static readonly int ATTACK1_ANIM = 3;
+    public static readonly int ATTACK2_ANIM = 4;
+    public static readonly int DIE_ANIM = -1;
+    public enum State { IDLE, ALERT, CHASE, ATTACK, DIE };
 
     public int maxHealth = 100;
     public float attackRange = 2f;
     public float alertRange = 4f;
     public int attackDamage = 2;
     public float attackSpeed = 1f;
-    protected float startSpeed;
+    public float moveSpeed = 2;
 
     private Slider[] healthSliders;
     protected NavMeshAgent agent;
@@ -23,9 +29,8 @@ public abstract class UnitBehavior : MonoBehaviour
     protected float lastAttackDeltaTime = 0f; // use for attack speed
     protected State currentState;
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
-        currentState = State.INIT;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         healthSliders = gameObject.GetComponentsInChildren<Slider>();
@@ -34,10 +39,9 @@ public abstract class UnitBehavior : MonoBehaviour
             healthSlider.maxValue = maxHealth;
         }
         currentHealth = maxHealth;
-        startSpeed = agent.speed;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         lastDamagedDeltaTime += Time.deltaTime;
         lastAttackDeltaTime += Time.deltaTime;
@@ -47,22 +51,8 @@ public abstract class UnitBehavior : MonoBehaviour
         }
         UpdateState();
     }
-
-    protected void FaceTarget(Vector3 target) {
-        Vector3 directionToTarget = (target - transform.position).normalized;
-        directionToTarget.y = 0;
-        Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
-    }
-
     protected virtual void UpdateState()
     {
-        if(currentState == State.CHASE) {
-            agent.speed = startSpeed * 2;
-        }
-        else {
-            agent.speed = startSpeed;
-        }
         switch (currentState)
         {
             case State.IDLE:
@@ -83,43 +73,18 @@ public abstract class UnitBehavior : MonoBehaviour
                 break;
         }
     }
+
     // when an unit does not have a target, it enters alert state and wait for target
-    protected virtual void PerformAlert()
-    {
-        // to implement in child
-    }
+    protected abstract void PerformAlert();
 
     // when an unit has a target, it will chase the target until entering attack range
-    protected virtual void PerformChase()
-    {
-        agent.isStopped = false;
-        if (currentAttackTarget == null)
-        {
-            currentState = State.ALERT;
-        }
-        else if (CanReach(currentAttackTarget))
-        {
-            currentState = State.ATTACK;
-            FaceTarget(currentAttackTarget.transform.position);
-        }
-        else // chase
-        {
-            agent.SetDestination(currentAttackTarget.transform.position);
-            FaceTarget(currentAttackTarget.transform.position);
-        }
-    }
+    protected abstract void PerformChase();
 
     // when an unit is within attack range, it attack until the target dies
-    protected virtual void PerformAttack()
-    {
-        // to implement in child
-    }
+    protected abstract void PerformAttack();
 
     // when an unit die
-    protected virtual void PerformDie()
-    {
-        Destroy(gameObject, 2);
-    }
+    protected abstract void PerformDie();
 
     public abstract void Attack(GameObject target);
 
