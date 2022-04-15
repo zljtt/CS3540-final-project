@@ -36,6 +36,8 @@ public abstract class LevelManager : MonoBehaviour
             if (playerData.currentLevel == null || playerData.currentLevel == "")
             {
                 SceneManager.LoadScene("MainMenu");
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
             else
             {
