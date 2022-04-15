@@ -5,6 +5,8 @@ using UnityEngine;
 public class FarAttackAllyBehavior : AllyBehavior
 {
     public AudioClip attackSFX;
+    public GameObject firePrefab;
+    public Transform shootPoint;
 
     protected override void PerformAttack() {
         anim.SetInteger("animState", ATTACK2_ANIM);
@@ -27,9 +29,10 @@ public class FarAttackAllyBehavior : AllyBehavior
     {
         anim.SetInteger("attackState", 1);
         AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-        target.GetComponent<MeleeEnemyBehavior>().TakeDamage(attackDamage, gameObject);
+        shootPoint.LookAt(currentAttackTarget.transform);
+        Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
     }
-
+    
     public override GameObject FindPossibleAttackTargetInRange()
     {
         List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Enemy" });

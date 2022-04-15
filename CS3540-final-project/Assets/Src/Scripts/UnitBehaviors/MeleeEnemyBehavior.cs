@@ -20,7 +20,7 @@ public class MeleeEnemyBehavior : EnemyBehavior
             currentAttackAnim = 0;
         }
         AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-        target.GetComponent<MeleeAllyBehavior>().TakeDamage(attackDamage, gameObject);
+        target.GetComponent<UnitBehavior>().TakeDamage(attackDamage, gameObject);
     }
 
     public override GameObject FindPossibleAttackTargetInRange()
