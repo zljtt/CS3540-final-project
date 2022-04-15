@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d221f314008b748a286a5e222a9151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitiviy: 500
 --- !u!114 &513379896306831243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,9 +123,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fa12cfe749020c74aab8f5e147582c30, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.41
-  m_Pitch: 1.5
-  Loop: 0
+  m_Volume: 0.6
+  m_Pitch: 1
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

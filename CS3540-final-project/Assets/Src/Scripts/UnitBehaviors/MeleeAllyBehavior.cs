@@ -7,7 +7,7 @@ public class MeleeAllyBehavior : AllyBehavior
 {
     public override void Attack(GameObject target)
     {
-        anim.SetInteger("animState", ATTACK1_ANIM);
+        anim.SetInteger("animState", ATTACK2_ANIM);
         target.GetComponent<MeleeEnemyBehavior>().TakeDamage(attackDamage, gameObject);
     }
     public override GameObject FindPossibleAttackTargetInRange()

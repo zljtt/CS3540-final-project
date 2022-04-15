@@ -400,6 +400,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSlider: {fileID: 183042416}
   mouseText: {fileID: 1565241767}
+  pauseMenu: {fileID: 0}
+  settingMenu: {fileID: 0}
+  tutorialMenu: {fileID: 0}
 --- !u!82 &213143824
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1605,7 +1608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124687905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 1137, y: 109, z: -175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2500,7 +2503,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

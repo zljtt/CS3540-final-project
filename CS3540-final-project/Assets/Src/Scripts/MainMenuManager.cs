@@ -12,7 +12,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject settingMenu;
     public GameObject tutorialMenu;
-    public static bool isGamePaused = true;
+    public static bool isGamePaused = false;
 
     private void Awake() {
         mouseSlider.maxValue = 500;
@@ -45,6 +45,8 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void StartGame() {
+        isGamePaused = false;
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
