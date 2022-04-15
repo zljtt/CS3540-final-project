@@ -12,6 +12,7 @@ public abstract class UnitBehavior : MonoBehaviour
     public static readonly int ATTACK2_ANIM = 4;
     public static readonly int DIE_ANIM = -1;
     public enum State { IDLE, ALERT, CHASE, ATTACK, DIE };
+    public AudioClip healSFX;
 
     public int maxHealth = 100;
     public float attackRange = 2f;
@@ -146,6 +147,7 @@ public abstract class UnitBehavior : MonoBehaviour
 
     public void Heal(float healAmount)
     {
+        AudioSource.PlayClipAtPoint(healSFX, playerPosition.position);
         currentHealth = Mathf.Clamp(currentHealth + healAmount, 0, maxHealth);
     }
 

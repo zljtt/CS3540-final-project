@@ -19,14 +19,14 @@ public class InventoryGUI : MonoBehaviour
         itemSlotContainer = transform.Find("ItemSlotContainer");
         if (itemSlotContainer)
         {
-            print("found slot containter");
+            //print("found slot containter");
         }
         for (int i = 1; i <= slotCount; i++)
         {
             itemSlots.Add(itemSlotContainer.Find("ItemSlot" + i));
-            print("found slot" + i);
+            //print("found slot" + i);
             keyStates.Add(0);
-            print("key state added, number of keys: " + keyStates.Count);
+            //print("key state added, number of keys: " + keyStates.Count);
         }
         originalColor = itemSlots[0].Find("Border").GetComponent<Image>().color;
     }
