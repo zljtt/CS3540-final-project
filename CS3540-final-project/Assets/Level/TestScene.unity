@@ -44470,30 +44470,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &7592419148668885672 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1291122356193539270, guid: 6235d9d81c75f4c7184fbc1d24c19e62, type: 3}
-  m_PrefabInstance: {fileID: 8698504821796466286}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7592419148668885673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7592419148668885672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 372fa0e4adcb446afa5066ff46e1a610, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healSFX: {fileID: 0}
-  maxHealth: 100
-  attackRange: 2
-  alertRange: 4
-  attackDamage: 2
-  attackSpeed: 1
-  moveSpeed: 2
 --- !u!1001 &8698504821796466286
 PrefabInstance:
   m_ObjectHideFlags: 0

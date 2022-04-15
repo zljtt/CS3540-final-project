@@ -21,7 +21,7 @@ public abstract class UnitBehavior : MonoBehaviour
     public float attackSpeed = 1f;
     public float moveSpeed = 2;
 
-    private Slider[] healthSliders;
+    protected Slider[] healthSliders;
     protected NavMeshAgent agent;
     protected GameObject currentAttackTarget;
     protected Animator anim;

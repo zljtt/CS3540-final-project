@@ -23,6 +23,11 @@ public class FarmLevelManager : LevelManager
                 obj.GetComponent<UnitBehavior>().ChangeState(UnitBehavior.State.ALERT);
             }
         }
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Dragon")) {
+            if(obj.GetComponent<DragonAI>() != null) {
+                obj.GetComponent<DragonAI>().ChangeState(DragonAI.DragonState.ALERT);
+            }
+        }
     }
     protected override void OnCombatEnd()
     {
