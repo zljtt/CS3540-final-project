@@ -13,6 +13,9 @@ TagManager:
   - FarAttackEnemy
   - Ally
   - Dragon
+  - FireProjectile
+  - PoisonProjectile
+  - MagicProjectile
   layers:
   - Default
   - TransparentFX

@@ -764,7 +764,7 @@ MonoBehaviour:
   maxHealth: 150
   attackRange: 15
   alertRange: 25
-  attackDamage: 5
+  attackDamage: 10
   attackSpeed: 3
   moveSpeed: 2
   shootPoint: {fileID: 6058057560924993256}
