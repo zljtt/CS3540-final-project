@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public float mouseSensitiviy = 100f;
+    public static float mouseSensitiviy = 100f;
     float pitch = 0;
     //float yaw = 0;
     Transform playerBody;
@@ -25,6 +25,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(mouseSensitiviy);
         float moveX = Input.GetAxis("Mouse X") * mouseSensitiviy * Time.deltaTime;
         float moveY = Input.GetAxis("Mouse Y") * mouseSensitiviy * Time.deltaTime * 0.8f;
         // Debug.Log(moveY);
