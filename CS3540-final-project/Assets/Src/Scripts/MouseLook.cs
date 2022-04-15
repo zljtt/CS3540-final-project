@@ -16,6 +16,17 @@ public class MouseLook : MonoBehaviour
         playerBody = transform.parent.transform;
     }
 
+    private void FixedUpdate() {
+        if (!MainMenuManager.isGamePaused) {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +36,6 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(mouseSensitiviy);
         float moveX = Input.GetAxis("Mouse X") * mouseSensitiviy * Time.deltaTime;
         float moveY = Input.GetAxis("Mouse Y") * mouseSensitiviy * Time.deltaTime * 0.8f;
         // Debug.Log(moveY);

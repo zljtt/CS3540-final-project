@@ -9,6 +9,11 @@ public class MainMenuManager : MonoBehaviour
     public Slider mouseSlider;
     public Text mouseText;
     float currentMouseValue;
+    public GameObject pauseMenu;
+    public GameObject settingMenu;
+    public GameObject tutorialMenu;
+    public static bool isGamePaused = true;
+
     private void Awake() {
         mouseSlider.maxValue = 500;
         mouseSlider.minValue = 10;
@@ -20,6 +25,14 @@ public class MainMenuManager : MonoBehaviour
     private void Update() {
         currentMouseValue = mouseSlider.value;
         mouseText.text = "" + currentMouseValue;
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            if(isGamePaused) {
+                ResumeGame();
+            }
+            else {
+                PauseGame();
+            }
+        }
     }
 
     public void updateSetting() {
@@ -35,7 +48,28 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void LoadMainMenu() {
+        print("load scene");
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void ExitGame() {
         Application.Quit();
+    }
+
+    void PauseGame() {
+        isGamePaused = true;
+        Time.timeScale = 0.0f;
+        pauseMenu.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ResumeGame() {
+        isGamePaused = false;
+        Time.timeScale = 1.0f;
+        pauseMenu.SetActive(false);
+        tutorialMenu.SetActive(false);
+        settingMenu.SetActive(false);
     }
 }
