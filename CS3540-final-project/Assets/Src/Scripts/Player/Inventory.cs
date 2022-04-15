@@ -1,13 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
 public class Inventory
 {
+    [SerializeField]
     private List<ItemStack> itemList;
+    private string filePath = Application.persistentDataPath + "/inventory.data";
 
     public Inventory()
     {
-        itemList = new List<ItemStack>();
+        //itemList = new List<ItemStack>();
+    }
+
+    public void ReadData()
+    {
+        if (File.Exists(filePath))
+        {
+            FileStream dataStream = new FileStream(filePath, FileMode.Open);
+            BinaryFormatter converter = new BinaryFormatter();
+            itemList = converter.Deserialize(dataStream) as List<ItemStack>;
+            dataStream.Close();
+        }
+        else
+        {
+            itemList = new List<ItemStack>();
+        }
+    }
+    public void WriteData()
+    {
+
+        FileStream dataStream = new FileStream(filePath, FileMode.Create);
+        BinaryFormatter converter = new BinaryFormatter();
+        converter.Serialize(dataStream, itemList);
+        dataStream.Close();
     }
 
     public bool AddItem(Item item, int count)
