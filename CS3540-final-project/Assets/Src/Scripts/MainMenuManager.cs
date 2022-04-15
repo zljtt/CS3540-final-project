@@ -14,7 +14,6 @@ public class MainMenuManager : MonoBehaviour
     public GameObject tutorialMenu;
     public static bool isGamePaused = false;
     public Transform playerPosition;
-
     private void Awake()
     {
         mouseSlider.maxValue = 500;
@@ -56,12 +55,24 @@ public class MainMenuManager : MonoBehaviour
     {
         isGamePaused = false;
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerData playerData = FindObjectOfType<LevelManager>().GetPlayerData();
+        if (playerData.currentLevel == null || playerData.currentLevel == "")
+        {
+            SceneManager.LoadScene("Castle");
+        }
+        else
+        {
+            SceneManager.LoadScene(playerData.currentLevel);
+        }
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void LoadMainMenu()
     {
         print("load scene");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
     }
 

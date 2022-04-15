@@ -15,11 +15,11 @@ public class WarpDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (FindObjectOfType<LevelManager>() == null)
+            if (FindObjectOfType<CombatManager>() == null)
             {
                 SceneManager.LoadScene(teleportScene);
             }
-            else if (FindObjectOfType<LevelManager>().GetStatus() == LevelManager.STATUS.LOOT)
+            else if (FindObjectOfType<CombatManager>().GetStatus() == CombatManager.STATUS.LOOT)
             {
                 SceneManager.LoadScene(teleportScene);
             }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4676,6 +4676,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 9078354747252063794}
   settingMenu: {fileID: 7182186430550966087}
   tutorialMenu: {fileID: 2151490477289865947}
+  playerPosition: {fileID: 0}
 --- !u!82 &184008277
 AudioSource:
   m_ObjectHideFlags: 0
@@ -34225,6 +34226,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1463931823144853111, guid: 759eed4d9a04c4a4cb4825aa6ae38ad9, type: 3}
   m_PrefabInstance: {fileID: 1604305817}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1607446291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1607446293}
+  - component: {fileID: 1607446292}
+  m_Layer: 0
+  m_Name: MANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1607446292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607446291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62df092171537af44952a76778bcbe56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    health: 0
+    currentLevel: 
+    playerLevel: 0
+--- !u!4 &1607446293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607446291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.617851, y: -6.434535, z: 59.37436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1612029896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40496,6 +40544,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4492597}
     m_Modifications:
+    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1463931823144853111, guid: 759eed4d9a04c4a4cb4825aa6ae38ad9, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -40543,18 +40603,6 @@ PrefabInstance:
     - target: {fileID: 8956204112403638478, guid: 759eed4d9a04c4a4cb4825aa6ae38ad9, type: 3}
       propertyPath: m_Name
       value: Grass_geo_03 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -29.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}

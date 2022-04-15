@@ -20,7 +20,7 @@ public class PlayerSpawnUnitBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Fire1") && FindObjectOfType<LevelManager>().GetStatus() == LevelManager.STATUS.PREPARE)
+        if (Input.GetButtonDown("Fire1") && FindObjectOfType<CombatManager>().GetStatus() == CombatManager.STATUS.PREPARE)
         {
             SpawnUnit(unitPrefab);
         }

@@ -35656,6 +35656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1942159755}
   - component: {fileID: 1942159754}
+  - component: {fileID: 1942159756}
   m_Layer: 0
   m_Name: MANAGER
   m_TagString: Untagged
@@ -35682,7 +35683,10 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 80016170}
   timeSlider: {fileID: 1371816734}
-  playerHealth: 10
+  playerData:
+    health: 0
+    currentLevel: 
+    playerLevel: 0
 --- !u!4 &1942159755
 Transform:
   m_ObjectHideFlags: 0
@@ -35697,6 +35701,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1942159756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942159753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62df092171537af44952a76778bcbe56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    health: 0
+    currentLevel: 
+    playerLevel: 0
 --- !u!1001 &1953030269
 PrefabInstance:
   m_ObjectHideFlags: 0

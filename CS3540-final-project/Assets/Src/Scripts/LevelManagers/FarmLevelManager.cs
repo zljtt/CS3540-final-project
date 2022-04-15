@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FarmLevelManager : LevelManager
+public class FarmLevelManager : CombatManager
 {
     protected override void OnPrepareStart()
     {
@@ -22,8 +22,10 @@ public class FarmLevelManager : LevelManager
                 obj.GetComponent<UnitBehavior>().ChangeState(UnitBehavior.State.ALERT);
             }
         }
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Dragon")) {
-            if(obj.GetComponent<DragonAI>() != null) {
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Dragon"))
+        {
+            if (obj.GetComponent<DragonAI>() != null)
+            {
                 obj.GetComponent<DragonAI>().ChangeState(DragonAI.DragonState.ALERT);
             }
         }
