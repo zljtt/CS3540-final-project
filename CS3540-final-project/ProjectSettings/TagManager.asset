@@ -12,6 +12,7 @@ TagManager:
   - MeleeEnemy
   - FarAttackEnemy
   - Ally
+  - Dragon
   layers:
   - Default
   - TransparentFX
