@@ -28,9 +28,11 @@ public abstract class UnitBehavior : MonoBehaviour
     protected float lastDamagedDeltaTime = 0f; // use for invincibility frame
     protected float lastAttackDeltaTime = 0f; // use for attack speed
     protected State currentState;
+    protected Transform playerPosition;
 
     protected virtual void Start()
     {
+        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         healthSliders = gameObject.GetComponentsInChildren<Slider>();

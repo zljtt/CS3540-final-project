@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class AllyBehavior : UnitBehavior
 {
     protected Transform startingPoint;
-    public AudioClip attackSFX;
+
 
     protected override void Start()
     {
@@ -65,7 +65,6 @@ public abstract class AllyBehavior : UnitBehavior
         {
             agent.SetDestination(currentAttackTarget.transform.position); // keep rotation
             Attack(currentAttackTarget);
-            AudioSource.PlayClipAtPoint(attackSFX, transform.position);
             lastAttackDeltaTime = 0;
         }
     }

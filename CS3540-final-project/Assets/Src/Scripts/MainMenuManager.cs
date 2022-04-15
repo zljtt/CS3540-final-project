@@ -13,6 +13,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject settingMenu;
     public GameObject tutorialMenu;
     public static bool isGamePaused = false;
+    public Transform playerPosition;
 
     private void Awake() {
         mouseSlider.maxValue = 500;

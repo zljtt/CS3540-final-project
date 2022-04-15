@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MeleeEnemyBehavior : EnemyBehavior
 {
-
+    public AudioClip attackSFX;
     int currentAttackAnim = 0;
     public override void Attack(GameObject target)
     {
@@ -19,6 +19,7 @@ public class MeleeEnemyBehavior : EnemyBehavior
             anim.SetInteger("animState", ATTACK2_ANIM);
             currentAttackAnim = 0;
         }
+        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
         target.GetComponent<MeleeAllyBehavior>().TakeDamage(attackDamage, gameObject);
     }
 
