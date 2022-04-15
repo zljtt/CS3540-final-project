@@ -13,17 +13,14 @@ public class WarpDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("enter1");
         if (other.CompareTag("Player"))
         {
-            Debug.Log("teleport1");
             if (FindObjectOfType<CombatManager>() == null)
             {
                 SceneManager.LoadScene(teleportScene);
             }
             else if (FindObjectOfType<CombatManager>().GetStatus() == CombatManager.STATUS.LOOT)
             {
-                Debug.Log("teleport");
                 SceneManager.LoadScene(teleportScene);
             }
         }
