@@ -761,11 +761,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
   maxHealth: 150
-  attackRange: 10
-  alertRange: 10
+  attackRange: 15
+  alertRange: 25
   attackDamage: 5
   attackSpeed: 0.5
   moveSpeed: 2
+  destinyHeight: 3
 --- !u!143 &7370552533239716545
 CharacterController:
   m_ObjectHideFlags: 0

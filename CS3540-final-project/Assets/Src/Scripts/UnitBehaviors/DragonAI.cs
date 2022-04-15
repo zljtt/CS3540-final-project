@@ -5,9 +5,18 @@ using UnityEngine.UI;
 
 public class DragonAI : UnitBehavior
 {
+    public static readonly int DRA_IDLE_ANIM = 0;
+    public static readonly int DRA_RISE_ANIM = 1;
+    public static readonly int DRA_WALK_ANIM = 2;
+    public static readonly int DRA_CHASE_ANIME = 3;
+    public static readonly int DRA_ATTACK_ANIM = 4;
+    public static readonly int DRA_DIE_ANIM = 5;
+
     public enum DragonState { IDLE, RISE, ALERT, CHASE, ATTACK, DIE}
     DragonState currentDragonState;
-    float currentHeight = 0;
+    float currentHeight = -0.5f;
+    public float destinyHeight = 3;
+    Vector3 currentPosition;
 
     protected override void Start()
     {
@@ -16,7 +25,12 @@ public class DragonAI : UnitBehavior
         {
             healthSlider.maxValue = maxHealth;
         }
-        //currentDragonState = DragonState.IDLE;
+        currentHealth = maxHealth;
+        anim = GetComponent<Animator>();
+        currentPosition = this.gameObject.transform.position;
+        currentPosition.y = currentHeight;
+        this.gameObject.transform.position = currentPosition;
+        currentDragonState = DragonState.RISE;
     }
 
     public override void Attack(GameObject target) {
@@ -24,11 +38,8 @@ public class DragonAI : UnitBehavior
     }
 
     private void FixedUpdate() {
-        print(currentDragonState);
-    }
-
-    public override GameObject FindPossibleAttackTargetInRange() {
-        return this.gameObject;
+        currentPosition = this.gameObject.transform.position;
+        currentHeight = currentPosition.y;
     }
 
     protected override void UpdateState()
@@ -57,22 +68,57 @@ public class DragonAI : UnitBehavior
         }
     }
     void PerformRise() {
-
+        if(currentHeight <= 0) {
+            anim.SetInteger("animState", DRA_RISE_ANIM);
+        }
+        else {
+            anim.SetInteger("animState", DRA_IDLE_ANIM);
+        }
+        if(currentHeight < destinyHeight) {
+            Vector3 newPos = new Vector3(currentPosition.x, currentPosition.y + 0.05f, currentPosition.z);
+            this.gameObject.transform.position = newPos;
+        }
+        else {
+            currentDragonState = DragonState.IDLE;
+        }
     }
 
         // when an unit does not have a target, it enters alert state and wait for target
     protected override void PerformAlert() {
-
+        anim.SetInteger("animState", DRA_IDLE_ANIM);
+        currentAttackTarget = FindPossibleAttackTargetInRange();
+        if (currentAttackTarget != null) {
+            currentDragonState = DragonState.CHASE;
+        }
     }
 
     // when an unit has a target, it will chase the target until entering attack range
     protected override void PerformChase() {
+        anim.SetInteger("animState", DRA_CHASE_ANIME);
+        if(currentAttackTarget == null) {
+            currentDragonState = DragonState.ALERT;
+        }
+        else if (CanReach(currentAttackTarget)) {
+            currentDragonState = DragonState.ATTACK;
+        }
+        else {
+            Vector3 targetPosition = currentAttackTarget.transform.position;
+            targetPosition.y = currentHeight;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed *  Time.deltaTime);
+        }
 
+    }
+
+    void FaceTarget(Vector3 target) {
+        Vector3 directionToTarget = (target - transform.position).normalized;
+        directionToTarget.y = 0;
+        Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
     }
 
     // when an unit is within attack range, it attack until the target dies
     protected override void PerformAttack() {
-
+        anim.SetInteger("animState", DRA_ATTACK_ANIM);
     }
 
     // when an unit die
@@ -82,6 +128,12 @@ public class DragonAI : UnitBehavior
 
     public void ChangeState(DragonState state) {
         currentDragonState = state;
+    }
+
+    public override GameObject FindPossibleAttackTargetInRange() {
+        List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Enemy" });
+        GameObject closest = FindClosest(transform, possibleTargets);
+        return closest;
     }
 
 }
