@@ -23,5 +23,10 @@ public class EnemyHit : MonoBehaviour
             methodClass.TakeDamage(10, other.gameObject);
             Destroy(other.gameObject);
         }
+        else if(other.CompareTag("MagicProjectile")) {
+            var  methodClass = gameObject.GetComponent<UnitBehavior>();
+            methodClass.TakeDamage(5, other.gameObject);
+            Destroy(other.gameObject);
+        }
     }
 }
