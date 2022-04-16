@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WarpDoor : MonoBehaviour
 {
-    public string teleportScene;
+    public List<string> teleportScene;
     void Start()
     {
 
@@ -15,13 +15,14 @@ public class WarpDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            int index = Random.Range(0, teleportScene.Count);
             if (FindObjectOfType<CombatManager>() == null)
             {
-                SceneManager.LoadScene(teleportScene);
+                SceneManager.LoadScene(teleportScene[index]);
             }
             else if (FindObjectOfType<CombatManager>().GetStatus() == CombatManager.STATUS.LOOT)
             {
-                SceneManager.LoadScene(teleportScene);
+                SceneManager.LoadScene(teleportScene[index]);
             }
         }
 

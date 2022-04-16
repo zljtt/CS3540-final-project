@@ -37971,6 +37971,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3736483957740599859, guid: cbd3c3b71dc9c6d4792824fb91b73bb4, type: 3}
+      propertyPath: teleportScene.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736483957740599859, guid: cbd3c3b71dc9c6d4792824fb91b73bb4, type: 3}
+      propertyPath: teleportScene.Array.data[0]
+      value: Farm
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736483957740599859, guid: cbd3c3b71dc9c6d4792824fb91b73bb4, type: 3}
+      propertyPath: teleportScene.Array.data[1]
+      value: FarmAdvanced
+      objectReference: {fileID: 0}
     - target: {fileID: 3769531724834311852, guid: cbd3c3b71dc9c6d4792824fb91b73bb4, type: 3}
       propertyPath: m_RootOrder
       value: 1

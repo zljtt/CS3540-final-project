@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         filePath = Application.persistentDataPath + "/player.data";
+        Debug.Log("Save file at: " + Application.persistentDataPath);
         ReadData();
     }
 
@@ -49,6 +50,8 @@ public class LevelManager : MonoBehaviour
         else
         {
             playerData = new PlayerData();
+            playerData.health = 10;
+            playerData.playerLevel = 0;
         }
     }
     public void WriteData()

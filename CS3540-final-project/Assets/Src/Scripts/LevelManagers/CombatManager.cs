@@ -15,6 +15,8 @@ public abstract class CombatManager : MonoBehaviour
     public float combatTime = 60;
     public Text statusText;
     public Text healthText;
+    public Text levelText;
+
     public List<Transform> spawnPoints;
     public Slider timeSlider;
     protected float currentTime;
@@ -40,6 +42,8 @@ public abstract class CombatManager : MonoBehaviour
         pathIndicaterTime += Time.deltaTime;
         statusText.text = status.ToString();
         healthText.text = ("HP LEFT : " + FindObjectOfType<LevelManager>().GetPlayerData().health.ToString());
+        levelText.text = ("LEVEL : " + FindObjectOfType<LevelManager>().GetPlayerData().playerLevel.ToString());
+
         switch (status)
         {
             case STATUS.PREPARE:
