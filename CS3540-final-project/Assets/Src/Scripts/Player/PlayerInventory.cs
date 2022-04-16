@@ -23,6 +23,11 @@ public class PlayerInventory : MonoBehaviour
     {
         DetectKeyPress();
         DetectKeyRelease();
+        // update cooldown
+        foreach (ItemStack itemStack in inventory.GetItemList())
+        {
+            itemStack.UpdateCooldown(Time.deltaTime);
+        }
     }
 
 

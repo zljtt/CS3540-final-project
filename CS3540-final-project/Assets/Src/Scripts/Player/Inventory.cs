@@ -97,7 +97,7 @@ public class Inventory
     {
         if (itemList.Count > index)
         {
-            return itemList[index].GetItem().OnUse(user, targetHit, itemList[index], this);
+            return itemList[index].Use(user, targetHit, this);
         }
         return false;
     }

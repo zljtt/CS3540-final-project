@@ -57,7 +57,7 @@ public class Item
         {
             displayName = "NAME";
             description = "DESCRIPTION";
-            useCoolDown = 0;
+            useCoolDown = 0.1f;
         }
         public ItemProperty withDisplayName(string value)
         {

@@ -16,7 +16,6 @@ public class SpawnerItem : Item
         {
             GameObject spawnedUnit = GameObject.Instantiate(Resources.Load(unitPath), targetHit.point, user.parent.transform.rotation) as GameObject;
             GameObject.Instantiate(Resources.Load("Prefabs/Effects/SpawnEffect"), targetHit.point, spawnedUnit.transform.rotation);
-            inventory.RemoveItem(stack, 1);
             return true;
         }
         return false;

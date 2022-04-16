@@ -5,7 +5,8 @@ public class ItemDatabase
     public static List<Item> ITEMS = new List<Item>();
     public static readonly Item HEALTH_POTION = Register(new HealingItem("health_potion", new Item.ItemProperty()
         .withDisplayName("Health Potion")
-        .withDescription("Heal unit by 10."),
+        .withDescription("Heal unit by 10.")
+        .withUseCoolDown(3),
         10));
     public static readonly Item ORC_WARRIOR_SPAWNER = Register(new SpawnerItem("orc_warrior_spawner", new Item.ItemProperty()
         .withDisplayName("Orc Warrior")
