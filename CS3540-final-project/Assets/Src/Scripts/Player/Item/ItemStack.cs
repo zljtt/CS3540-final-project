@@ -33,7 +33,7 @@ public class ItemStack
 
     public float GetMaxCooldown()
     {
-        return this.GetItem().GetProperties().GetMaxCoolDown();
+        return this.GetItem().GetProperties().GetMaxCooldown();
     }
 
     public float GetCurrentCooldown()
@@ -55,7 +55,7 @@ public class ItemStack
         {
             if (this.GetItem().OnUse(user, targetHit, this, inventory))
             {
-                currentCooldown = this.GetItem().GetProperties().GetMaxCoolDown();
+                currentCooldown = this.GetItem().GetProperties().GetMaxCooldown();
                 return true;
             }
             else

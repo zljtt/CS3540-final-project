@@ -51,12 +51,14 @@ public class Item
         private string displayName;
 
         private string description;
+        private int maxStack;
         private float maxCooldown;
 
         public ItemProperty()
         {
             displayName = "NAME";
             description = "DESCRIPTION";
+            maxStack = 99;
             maxCooldown = 0;
         }
         public ItemProperty WithDisplayName(string value)
@@ -68,6 +70,12 @@ public class Item
         public ItemProperty WithDescription(string value)
         {
             description = value;
+            return this;
+        }
+
+        public ItemProperty WithMaxStack(int value)
+        {
+            maxStack = value;
             return this;
         }
 
@@ -86,7 +94,13 @@ public class Item
         {
             return description;
         }
-        public float GetMaxCoolDown()
+
+        public int GetMaxStack()
+        {
+            return maxStack;
+        }
+
+        public float GetMaxCooldown()
         {
             return maxCooldown;
         }

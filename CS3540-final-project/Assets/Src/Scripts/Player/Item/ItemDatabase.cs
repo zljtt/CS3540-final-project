@@ -23,6 +23,7 @@ public class ItemDatabase
     public static readonly Item MASS_HEAL_ABILITY = Register(new AOEHealingAbility("mass_heal", new Item.ItemProperty()
     .WithDisplayName("Mass Heal")
     .WithDescription("Heals allied units in 5 radius by 10.")
+    .WithMaxStack(1)
     .WithMaxCoolDown(10),
     10, 5));
 

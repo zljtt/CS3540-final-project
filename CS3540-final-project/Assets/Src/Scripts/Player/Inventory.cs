@@ -44,35 +44,73 @@ public class Inventory
 
     public bool AddItem(Item item, int count)
     {
-        ItemStack exist;
-        if ((exist = GetItemStack(item)) != null)
+        int amountLeft = count; // Items left that need to be added
+        List<ItemStack> loStack = GetItemStacks(item);
+        // For each stack in the list...
+        foreach (ItemStack stack in loStack)
         {
-            exist.SetAmount(exist.GetAmount() + count);
+            // Check to see if the stack's amount is less than max stack
+            if (stack.GetAmount() < item.GetProperties().GetMaxStack())
+            {
+                // if so, determine the amount of items that can be added to this stack
+                // which is the lesser of the amount left to add, or the max amount of item this stack can take
+                int amountToAdd = Mathf.Min(amountLeft, item.GetProperties().GetMaxStack() - stack.GetAmount());
+                stack.SetAmount(stack.GetAmount() + amountToAdd);
+                amountLeft -= amountToAdd;
+                if (amountLeft == 0)
+                {
+                    return true;
+                }
+            }
         }
-        else
+        // After going through the list of stack, if there's still items left, create a while loop to add new stacks
+        while (amountLeft > 0)
         {
-            itemList.Add(new ItemStack(item, count));
+            int amountToAdd = Mathf.Min(amountLeft, item.GetProperties().GetMaxStack());
+            itemList.Add(new ItemStack(item, amountToAdd));
+            amountLeft -= amountToAdd;
         }
         return true;
     }
 
     public bool RemoveItem(Item item, int count)
     {
-        ItemStack exist;
-        if ((exist = GetItemStack(item)) != null)
+        int amountLeft = count; // Items left that need to be removed
+        List<ItemStack> loStack = GetItemStacks(item);
+        // First, determine if there's enough item to remove
+        int totalItem = 0;
+        foreach (ItemStack stack in loStack)
         {
-            if (count > exist.GetAmount())
+            totalItem += stack.GetAmount();
+        }
+        if (totalItem < amountLeft)
+        {
+            return false;
+        }
+        // For each stack in the list, starting from the back...
+        for (int back = loStack.Count - 1; back > 0; back--)
+        {
+            ItemStack stack = loStack[back];
+            // Check to see if the stack's amount is less than max stack
+            if (stack.GetAmount() > 0)
             {
-                // exist.SetAmount(0);
-                return false;
-            }
-            else
-            {
-                exist.SetAmount(exist.GetAmount() - count);
-                return true;
+                // determine the amount of items that can be removed from this stack
+                // which is the lesser of the amount left to remove, or the max amount of item in this stack
+                int amountToRemove = Mathf.Min(amountLeft, stack.GetAmount());
+                stack.SetAmount(stack.GetAmount() - amountToRemove);
+                amountLeft -= amountToRemove;
+                // remove this stack if all item in this stack is removed
+                if (stack.GetAmount() == 0)
+                {
+                    itemList.Remove(stack);
+                }
+                if (amountLeft == 0)
+                {
+                    return true;
+                }
             }
         }
-        return false;
+        return true;
     }
 
     public bool RemoveItem(ItemStack stack, int count)
@@ -107,15 +145,16 @@ public class Inventory
         return false;
     }
 
-    private ItemStack GetItemStack(Item item)
+    private List<ItemStack> GetItemStacks(Item item)
     {
+        List<ItemStack> loStack = new List<ItemStack>();
         foreach (ItemStack i in itemList)
         {
             if (i.GetItem().Equals(item))
             {
-                return i;
+                loStack.Add(i);
             }
         }
-        return null;
+        return loStack;
     }
 }
