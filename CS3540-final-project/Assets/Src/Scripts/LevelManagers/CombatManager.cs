@@ -89,6 +89,9 @@ public abstract class CombatManager : MonoBehaviour
                 break;
             case STATUS.LOOT:
                 timeSlider.enabled = false;
+                FindObjectOfType<LevelManager>().GetPlayerData().playerLevel += 1;
+                PlayerInventory.inventory.AddItem(ItemDatabase.HEALTH_POTION, 3);
+                PlayerInventory.inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
                 // implement later
                 break;
             default:

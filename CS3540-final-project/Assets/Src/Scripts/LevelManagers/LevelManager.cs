@@ -52,6 +52,10 @@ public class LevelManager : MonoBehaviour
             playerData = new PlayerData();
             playerData.health = 10;
             playerData.playerLevel = 0;
+            PlayerInventory.inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
+            PlayerInventory.inventory.AddItem(ItemDatabase.DRAKE_SPAWNER, 1);
+            PlayerInventory.inventory.AddItem(ItemDatabase.MASS_HEAL_ABILITY, 1);
+            PlayerInventory.inventory.AddItem(ItemDatabase.HEALTH_POTION, 10);
         }
     }
     public void WriteData()
