@@ -31940,6 +31940,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3645559934036143776, guid: 1119864bfad84bc47824db4df81f850f, type: 3}
   m_PrefabInstance: {fileID: 1772490493}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1772673850 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9194699152873206976, guid: c5f4e6b756ff7b84f8dd4338525ab900, type: 3}
+  m_PrefabInstance: {fileID: 3402787507221965444}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1777487809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5507469645214686240, guid: 57e4083738abf9f4bb7bd0d01d9d5a48, type: 3}
@@ -35151,7 +35162,7 @@ MonoBehaviour:
   combatTime: 60
   statusText: {fileID: 173423758}
   healthText: {fileID: 136920016}
-  levelText: {fileID: 0}
+  levelText: {fileID: 1772673850}
   spawnPoints:
   - {fileID: 80016170}
   timeSlider: {fileID: 1371816734}
