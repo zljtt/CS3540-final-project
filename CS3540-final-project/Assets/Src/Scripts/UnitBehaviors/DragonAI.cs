@@ -162,7 +162,7 @@ public class DragonAI : UnitBehavior
     }
 
     public override GameObject FindPossibleAttackTargetInRange() {
-        List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Enemy" });
+        List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Enemy", "EnemyMage"});
         GameObject closest = FindClosest(transform, possibleTargets);
         return closest;
     }

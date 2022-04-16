@@ -16,6 +16,8 @@ TagManager:
   - FireProjectile
   - PoisonProjectile
   - MagicProjectile
+  - EnemyPoisonProjectile
+  - EnemyMage
   layers:
   - Default
   - TransparentFX

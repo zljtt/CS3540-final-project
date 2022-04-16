@@ -1210,6 +1210,7 @@ GameObject:
   - component: {fileID: 6672130353075897082}
   - component: {fileID: 1752640657157091945}
   - component: {fileID: 1752640657157091944}
+  - component: {fileID: 5294593301826502344}
   m_Layer: 0
   m_Name: AllyMage
   m_TagString: Ally
@@ -1261,7 +1262,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752640657157091959}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1.4
@@ -1311,6 +1312,18 @@ MonoBehaviour:
   attackSFX: {fileID: 8300000, guid: 2d1f2f67af4fe4448a2c7bfc4ce5287d, type: 3}
   firePrefab: {fileID: 1213529451062198, guid: 1405f7a46ad73504d8cbe4b7ddd1d552, type: 3}
   shootPoint: {fileID: 754412767837250246}
+--- !u!114 &5294593301826502344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752640657157091959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e742a2efe774ddea072398dca9884f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752640657157091961
 GameObject:
   m_ObjectHideFlags: 0
