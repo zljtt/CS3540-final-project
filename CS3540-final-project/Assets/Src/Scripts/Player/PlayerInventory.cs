@@ -13,9 +13,6 @@ public class PlayerInventory : MonoBehaviour
     {
         inventory = new Inventory();
         inventory.ReadData();
-        //inventory.AddItem(ItemDatabase.HEALTH_POTION, 10);
-        //inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
-        //inventory.AddItem(ItemDatabase.MASS_HEAL_ABILITY, 1);
     }
     void OnDestroy()
     {

@@ -88,8 +88,9 @@ public class Inventory
             return false;
         }
         // For each stack in the list, starting from the back...
-        for (int back = loStack.Count - 1; back > 0; back--)
+        for (int back = loStack.Count - 1; back >= 0; back--)
         {
+            Debug.Log("Removing from a stack");
             ItemStack stack = loStack[back];
             // Check to see if the stack's amount is less than max stack
             if (stack.GetAmount() > 0)

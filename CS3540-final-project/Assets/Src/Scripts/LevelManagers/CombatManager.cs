@@ -84,14 +84,14 @@ public abstract class CombatManager : MonoBehaviour
                 if (timeSlider.value == timeSlider.maxValue)
                 {
                     status = STATUS.LOOT;
+                    FindObjectOfType<LevelManager>().GetPlayerData().playerLevel += 1;
+                    PlayerInventory.inventory.AddItem(ItemDatabase.HEALTH_POTION, 3);
+                    PlayerInventory.inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
                     OnCombatEnd();
                 }
                 break;
             case STATUS.LOOT:
                 timeSlider.enabled = false;
-                FindObjectOfType<LevelManager>().GetPlayerData().playerLevel += 1;
-                PlayerInventory.inventory.AddItem(ItemDatabase.HEALTH_POTION, 3);
-                PlayerInventory.inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
                 // implement later
                 break;
             default:
