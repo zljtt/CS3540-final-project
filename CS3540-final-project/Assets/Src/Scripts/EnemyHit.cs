@@ -18,9 +18,14 @@ public class EnemyHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("FireProjectile")) {
-            print(this.gameObject.name + " hit by fire ball");
+            //print(this.gameObject.name + " hit by fire ball");
             var  methodClass = gameObject.GetComponent<UnitBehavior>();
             methodClass.TakeDamage(10, other.gameObject);
+            Destroy(other.gameObject);
+        }
+        else if(other.CompareTag("MagicProjectile")) {
+            var  methodClass = gameObject.GetComponent<UnitBehavior>();
+            methodClass.TakeDamage(5, other.gameObject);
             Destroy(other.gameObject);
         }
     }

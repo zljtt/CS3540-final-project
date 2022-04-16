@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 213143820}
   - component: {fileID: 213143819}
   - component: {fileID: 213143823}
+  - component: {fileID: 213143825}
   - component: {fileID: 213143824}
   m_Layer: 5
   m_Name: Canvas
@@ -403,6 +404,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   settingMenu: {fileID: 0}
   tutorialMenu: {fileID: 0}
+  playerPosition: {fileID: 0}
 --- !u!82 &213143824
 AudioSource:
   m_ObjectHideFlags: 0
@@ -499,6 +501,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &213143825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213143818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62df092171537af44952a76778bcbe56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData:
+    health: 0
+    currentLevel: 
+    playerLevel: 0
 --- !u!1 &251674583
 GameObject:
   m_ObjectHideFlags: 0

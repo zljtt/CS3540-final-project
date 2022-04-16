@@ -12,7 +12,7 @@ public class SpawnerItem : Item
 
     override public bool OnUse(Transform user, RaycastHit targetHit, ItemStack stack, Inventory inventory)
     {
-        if (GameObject.FindObjectOfType<LevelManager>().GetStatus() == LevelManager.STATUS.PREPARE)
+        if (GameObject.FindObjectOfType<CombatManager>().GetStatus() == CombatManager.STATUS.PREPARE)
         {
             GameObject spawnedUnit = GameObject.Instantiate(Resources.Load(unitPath), targetHit.point, user.parent.transform.rotation) as GameObject;
             GameObject.Instantiate(Resources.Load("Prefabs/Effects/SpawnEffect"), targetHit.point, spawnedUnit.transform.rotation);

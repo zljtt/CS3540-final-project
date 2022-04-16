@@ -14,8 +14,8 @@ public class MainMenuManager : MonoBehaviour
     public GameObject tutorialMenu;
     public static bool isGamePaused = false;
     public Transform playerPosition;
-
-    private void Awake() {
+    private void Awake()
+    {
         mouseSlider.maxValue = 500;
         mouseSlider.minValue = 10;
         mouseSlider.value = MouseLook.mouseSensitiviy;
@@ -23,44 +23,66 @@ public class MainMenuManager : MonoBehaviour
         mouseText.text = "" + MouseLook.mouseSensitiviy;
     }
 
-    private void Update() {
+    private void Update()
+    {
         currentMouseValue = mouseSlider.value;
         mouseText.text = "" + currentMouseValue;
-        if(Input.GetKeyDown(KeyCode.Escape)) {
-            if(isGamePaused) {
+        if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu != null)
+        {
+            if (isGamePaused)
+            {
                 ResumeGame();
             }
-            else {
+            else
+            {
                 PauseGame();
             }
         }
     }
 
-    public void updateSetting() {
+    public void updateSetting()
+    {
         MouseLook.mouseSensitiviy = currentMouseValue;
     }
 
-    public void cancelSetting() {
+    public void cancelSetting()
+    {
         mouseSlider.value = MouseLook.mouseSensitiviy;
         currentMouseValue = MouseLook.mouseSensitiviy;
     }
 
-    public void StartGame() {
+    public void StartGame()
+    {
         isGamePaused = false;
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerData playerData = FindObjectOfType<LevelManager>().GetPlayerData();
+        if (playerData.currentLevel == null || playerData.currentLevel == "")
+        {
+            SceneManager.LoadScene("Castle");
+        }
+        else
+        {
+            SceneManager.LoadScene(playerData.currentLevel);
+        }
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void LoadMainMenu() {
+    public void LoadMainMenu()
+    {
         print("load scene");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void ExitGame() {
+    public void ExitGame()
+    {
         Application.Quit();
     }
 
-    void PauseGame() {
+    void PauseGame()
+    {
         isGamePaused = true;
         Time.timeScale = 0.0f;
         pauseMenu.SetActive(true);
@@ -68,11 +90,15 @@ public class MainMenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void ResumeGame() {
+    public void ResumeGame()
+    {
         isGamePaused = false;
         Time.timeScale = 1.0f;
-        pauseMenu.SetActive(false);
-        tutorialMenu.SetActive(false);
-        settingMenu.SetActive(false);
+        if (pauseMenu != null)
+            pauseMenu.SetActive(false);
+        if (tutorialMenu != null)
+            tutorialMenu.SetActive(false);
+        if (settingMenu != null)
+            settingMenu.SetActive(false);
     }
 }
