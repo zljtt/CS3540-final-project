@@ -45,17 +45,35 @@ public class InventoryGUI : MonoBehaviour
             Image image = itemSlots[x].Find("ItemImage").GetComponent<Image>();
             Text amountText = itemSlots[x].Find("AmountText").GetComponent<Text>();
             Image borderHighlight = itemSlotContainer.Find("BorderHighlight" + (x + 1)).GetComponent<Image>();
+            // Checking to see if the item exists
             if (x >= PlayerInventory.inventory.GetItemList().Count || PlayerInventory.inventory.GetItemList()[x].GetAmount() == 0)
             {
+                // Disable UI element if doesn't exist
                 image.gameObject.SetActive(false);
                 amountText.gameObject.SetActive(false);
             }
             else
             {
-                image.sprite = PlayerInventory.inventory.GetItemList()[x].GetItem().GetSprite();
-                amountText.text = PlayerInventory.inventory.GetItemList()[x].GetAmount().ToString();
+                // Update UI element if exists
+                ItemStack itemStackX = PlayerInventory.inventory.GetItemList()[x];
+                image.sprite = itemStackX.GetItem().GetSprite();
+                amountText.text = itemStackX.GetAmount().ToString();
                 image.gameObject.SetActive(true);
                 amountText.gameObject.SetActive(true);
+                Slider cooldownSlider = itemSlots[x].Find("CooldownSlider").GetComponent<Slider>();
+                // Checking cooldown
+                if (itemStackX.GetCurrentCooldown() <= 0)
+                {
+                    // Disable slider if item is ready to use
+                    cooldownSlider.gameObject.SetActive(false);
+                }
+                else
+                {
+                    // Update slider if not
+                    cooldownSlider.gameObject.SetActive(true);
+                    cooldownSlider.maxValue = itemStackX.GetMaxCooldown();
+                    cooldownSlider.value = itemStackX.GetMaxCooldown() - itemStackX.GetCurrentCooldown();
+                }
             }
             switch (keyStates[x])
             {

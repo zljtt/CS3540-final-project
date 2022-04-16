@@ -1212,7 +1212,7 @@ GameObject:
   - component: {fileID: 1752640657157091944}
   - component: {fileID: 5294593301826502344}
   m_Layer: 0
-  m_Name: AllyMage
+  m_Name: OrcMage
   m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

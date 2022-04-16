@@ -8,12 +8,12 @@ public class ItemStack
 {
     public int item;
     public int amount;
-    private float useTime;
+    private float currentCooldown;
     public ItemStack(Item item, int amount)
     {
         this.item = item.GetID();
         this.amount = amount;
-        useTime = 0;
+        currentCooldown = 0;
     }
 
     public Item GetItem()
@@ -30,17 +30,38 @@ public class ItemStack
     {
         return this.amount;
     }
+
+    public float GetMaxCooldown()
+    {
+        return this.GetItem().GetProperties().GetMaxCoolDown();
+    }
+
+    public float GetCurrentCooldown()
+    {
+        return this.currentCooldown;
+    }
+
     public void UpdateCooldown(float deltaTime)
     {
-        this.useTime += deltaTime;
+        if (currentCooldown > 0)
+        {
+            this.currentCooldown -= deltaTime;
+        }
     }
 
     public bool Use(Transform user, RaycastHit targetHit, Inventory inventory)
     {
-        if (useTime > this.GetItem().GetProperties().getUseCoolDown())
+        if (currentCooldown <= 0)
         {
-            useTime = 0;
-            return this.GetItem().OnUse(user, targetHit, this, inventory);
+            if (this.GetItem().OnUse(user, targetHit, this, inventory))
+            {
+                currentCooldown = this.GetItem().GetProperties().GetMaxCoolDown();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         return false;
     }

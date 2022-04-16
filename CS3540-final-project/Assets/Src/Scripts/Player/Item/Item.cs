@@ -51,29 +51,29 @@ public class Item
         private string displayName;
 
         private string description;
-        private float useCoolDown;
+        private float maxCooldown;
 
         public ItemProperty()
         {
             displayName = "NAME";
             description = "DESCRIPTION";
-            useCoolDown = 0.1f;
+            maxCooldown = 0;
         }
-        public ItemProperty withDisplayName(string value)
+        public ItemProperty WithDisplayName(string value)
         {
             displayName = value;
             return this;
         }
 
-        public ItemProperty withDescription(string value)
+        public ItemProperty WithDescription(string value)
         {
             description = value;
             return this;
         }
 
-        public ItemProperty withUseCoolDown(float value)
+        public ItemProperty WithMaxCoolDown(float value)
         {
-            useCoolDown = value;
+            maxCooldown = value;
             return this;
         }
 
@@ -86,9 +86,9 @@ public class Item
         {
             return description;
         }
-        public float getUseCoolDown()
+        public float GetMaxCoolDown()
         {
-            return useCoolDown;
+            return maxCooldown;
         }
     }
 }
