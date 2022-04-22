@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class StoreGui : MonoBehaviour
 {
     private Transform[] slots;
+    private Transform purchase;
+    private Color normal;
+    private Color wrong;
+    private int selectedIndex = -1;
     // Start is called before the first frame update
     void Awake()
     {
@@ -14,6 +18,9 @@ public class StoreGui : MonoBehaviour
         {
             slots[i] = transform.Find("Slot" + (i + 1));
         }
+        purchase = transform.Find("ConfirmBuy");
+        normal = purchase.Find("Text").GetComponent<Text>().color;
+        ColorUtility.TryParseHtmlString("#DB2625", out wrong);
     }
 
     void Update()
@@ -46,8 +53,29 @@ public class StoreGui : MonoBehaviour
                 image.gameObject.SetActive(true);
                 image.sprite = itemStack.GetItem().GetSprite();
                 valueText.gameObject.SetActive(true);
-                valueText.text = StoreManager.store.GetEntryAt(i).value.ToString();
+                valueText.text = "$ " + StoreManager.store.GetEntryAt(i).value.ToString();
             }
         }
+    }
+
+    public void Select(GameObject slot)
+    {
+        int index = int.Parse(slot.name.Substring(slot.name.Length - 1)) - 1;
+        selectedIndex = index;
+    }
+
+    public void Purchase()
+    {
+        if (selectedIndex < 0 || selectedIndex >= Store.SIZE || StoreManager.store.GetEntryAt(selectedIndex) == Store.EMPTY_ENTRY || !StoreManager.store.Purchase(selectedIndex))
+        {
+            purchase.Find("Text").GetComponent<Text>().color = wrong;
+            selectedIndex = -1;
+            Invoke("resetColor", 0.2f);
+        }
+    }
+
+    void resetColor()
+    {
+        purchase.Find("Text").GetComponent<Text>().color = normal;
     }
 }

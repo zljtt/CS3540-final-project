@@ -14,7 +14,7 @@ public class PlayerData
     {
         health = 10;
         playerLevel = 0;
-        money = 0;
+        money = 100;
     }
     public void LoseHealth(int amount)
     {

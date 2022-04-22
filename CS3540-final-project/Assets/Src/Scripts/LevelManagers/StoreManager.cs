@@ -13,6 +13,7 @@ public class StoreManager : MonoBehaviour
     public static bool nextLoadRefill;
     void Awake()
     {
+        storeSavePath = Application.persistentDataPath + "/store.data";
         if (nextLoadRefill)
         {
             nextLoadRefill = false;
@@ -20,7 +21,6 @@ public class StoreManager : MonoBehaviour
         }
         else
         {
-            storeSavePath = Application.persistentDataPath + "/store.data";
             ReadStoreData();
         }
     }
