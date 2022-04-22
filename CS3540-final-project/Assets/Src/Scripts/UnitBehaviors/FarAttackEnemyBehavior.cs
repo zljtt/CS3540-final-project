@@ -39,7 +39,25 @@ public class FarAttackEnemyBehavior : EnemyBehavior
     {
         List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Ally", "Enemy"});
         possibleTargets.Remove(this.gameObject);
-        GameObject closest = FindClosest(transform, possibleTargets);
-        return closest;
+        GameObject lowestHealthTarget = FindLowestHealth(transform, possibleTargets);
+        return lowestHealthTarget;
+    }
+
+    public GameObject FindLowestHealth(Transform transform, List<GameObject> targets)
+    {
+        GameObject lowestHealthTarget = null;
+        float lowestHealth = Mathf.Infinity;
+        foreach (GameObject target in targets)
+        {
+            var methodClass = target.GetComponent<UnitBehavior>();
+            float currentHealth = methodClass.returnHealth();
+
+            if (currentHealth < lowestHealth)
+            {
+                lowestHealthTarget = target;
+                lowestHealth = currentHealth;
+            }
+        }
+        return lowestHealthTarget;
     }
 }

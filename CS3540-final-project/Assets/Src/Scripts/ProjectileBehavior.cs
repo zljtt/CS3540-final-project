@@ -47,6 +47,7 @@ public class ProjectileBehavior : MonoBehaviour
             }
             else if(other.CompareTag("Ally")) {
                 var  methodClass = gameObject.GetComponent<UnitBehavior>();
+                print("hitted");
                 methodClass.Heal(5);
                 Destroy(gameObject);
             }

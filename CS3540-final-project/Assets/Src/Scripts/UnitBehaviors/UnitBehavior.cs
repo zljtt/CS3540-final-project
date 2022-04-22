@@ -156,6 +156,7 @@ public abstract class UnitBehavior : MonoBehaviour
         currentState = state;
     }
 
-
-
+    public float returnHealth() {
+        return currentHealth;
+    }
 }
