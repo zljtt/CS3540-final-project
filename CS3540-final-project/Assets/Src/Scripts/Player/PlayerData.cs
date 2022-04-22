@@ -7,12 +7,14 @@ using System;
 public class PlayerData
 {
     public int health;
+    public int money;
     public string currentLevel;
     public int playerLevel;
     public PlayerData()
     {
         health = 10;
         playerLevel = 0;
+        money = 0;
     }
     public void LoseHealth(int amount)
     {
@@ -20,5 +22,20 @@ public class PlayerData
         {
             health -= amount;
         }
+    }
+
+    public bool ConsumeMoney(int amount)
+    {
+        if (amount > money)
+        {
+            return false;
+        }
+        money -= amount;
+        return true;
+    }
+
+    public void GainMoney(int amount)
+    {
+        money += amount;
     }
 }

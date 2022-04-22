@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2963,7 +2963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3769531724834311852, guid: cbd3c3b71dc9c6d4792824fb91b73bb4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.5
+      value: -29.26
       objectReference: {fileID: 0}
     - target: {fileID: 3769531724834311852, guid: cbd3c3b71dc9c6d4792824fb91b73bb4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -35516,6 +35516,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62df092171537af44952a76778bcbe56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugInventory:
+    items:
+    - item: 0
+      amount: 0
+    - item: 4
+      amount: 10
+    - item: 1
+      amount: 3
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 5
+      amount: 1
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
+    - item: 0
+      amount: 0
 --- !u!1001 &1953030269
 PrefabInstance:
   m_ObjectHideFlags: 0

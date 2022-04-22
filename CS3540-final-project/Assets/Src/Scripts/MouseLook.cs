@@ -18,7 +18,7 @@ public class MouseLook : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (MainMenuManager.isGamePaused || InventoryController.inventoryOpen)
+        if (MainMenuManager.isGamePaused || InventoryController.inventoryOpen || StoreController.storeOpen)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -40,7 +40,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (InventoryController.inventoryOpen) return;
+        if (InventoryController.inventoryOpen || StoreController.storeOpen) return;
 
         float moveX = Input.GetAxis("Mouse X") * mouseSensitiviy * Time.deltaTime;
         float moveY = Input.GetAxis("Mouse Y") * mouseSensitiviy * Time.deltaTime * 0.8f;

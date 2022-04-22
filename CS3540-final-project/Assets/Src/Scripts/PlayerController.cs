@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        if (InventoryController.inventoryOpen)
+        if (InventoryController.inventoryOpen || StoreController.storeOpen)
         {
             moveHorizontal = 0;
             moveVertical = 0;
