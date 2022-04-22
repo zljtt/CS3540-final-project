@@ -41,8 +41,8 @@ public abstract class CombatManager : MonoBehaviour
         currentTime += Time.deltaTime;
         pathIndicaterTime += Time.deltaTime;
         statusText.text = status.ToString();
-        healthText.text = ("HP LEFT : " + FindObjectOfType<LevelManager>().GetPlayerData().health.ToString());
-        levelText.text = ("LEVEL : " + FindObjectOfType<LevelManager>().GetPlayerData().playerLevel.ToString());
+        healthText.text = ("HP LEFT : " + LevelManager.playerData.health.ToString());
+        levelText.text = ("LEVEL : " + LevelManager.playerData.playerLevel.ToString());
 
         switch (status)
         {
@@ -84,9 +84,9 @@ public abstract class CombatManager : MonoBehaviour
                 if (timeSlider.value == timeSlider.maxValue)
                 {
                     status = STATUS.LOOT;
-                    FindObjectOfType<LevelManager>().GetPlayerData().playerLevel += 1;
-                    PlayerInventory.inventory.AddItem(ItemDatabase.HEALTH_POTION, 3);
-                    PlayerInventory.inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
+                    LevelManager.playerData.playerLevel += 1;
+                    LevelManager.inventory.AddItem(ItemDatabase.HEALTH_POTION, 3);
+                    LevelManager.inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
                     OnCombatEnd();
                 }
                 break;

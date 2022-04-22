@@ -17220,9 +17220,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2387622023250635661, guid: b4ac516ca47c4254bbaaf2447e0e0035, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 3676668394029915786}
     - target: {fileID: 2719427190544854268, guid: b4ac516ca47c4254bbaaf2447e0e0035, type: 3}
       propertyPath: m_Name
-      value: InventoryCanvas
+      value: Hotbar
       objectReference: {fileID: 0}
     - target: {fileID: 6690273871568816966, guid: b4ac516ca47c4254bbaaf2447e0e0035, type: 3}
       propertyPath: m_IsActive
@@ -35512,10 +35516,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62df092171537af44952a76778bcbe56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    health: 0
-    currentLevel: 
-    playerLevel: 0
 --- !u!1001 &1953030269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38807,6 +38807,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5eb1385303bfbd47bb41c8e4da7e580, type: 3}
+--- !u!4 &3676668394029915786 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1292448796, guid: c5eb1385303bfbd47bb41c8e4da7e580, type: 3}
+  m_PrefabInstance: {fileID: 3676668394029915785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4092794510079237899
 PrefabInstance:
   m_ObjectHideFlags: 0

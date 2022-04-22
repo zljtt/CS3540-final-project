@@ -10,7 +10,7 @@ public class AOEHealingAbility : HealingItem
         this.radius = radius;
     }
 
-    override public bool OnUse(Transform user, RaycastHit targetHit, ItemStack stack, Inventory inventory)
+    override public bool OnUse(Transform user, RaycastHit targetHit, int index)
     {
         Collider[] colliders = Physics.OverlapSphere(targetHit.point, radius);
         GameObject abilityVFX = GameObject.Instantiate(Resources.Load("Prefabs/Effects/SphereEffect"), targetHit.point, Quaternion.Euler(0, 0, 0)) as GameObject;

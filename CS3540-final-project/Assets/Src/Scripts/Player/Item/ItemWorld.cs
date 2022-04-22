@@ -51,7 +51,7 @@ public class ItemWorld : MonoBehaviour
         print("Collided");
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerInventory.inventory.AddItem(item, 1);
+            LevelManager.inventory.AddItem(item, 1);
             Destroy(gameObject);
         }
         else if (isFalling && other.gameObject.isStatic)

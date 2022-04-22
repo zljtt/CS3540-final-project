@@ -49,11 +49,11 @@ public class ItemStack
         }
     }
 
-    public bool Use(Transform user, RaycastHit targetHit, Inventory inventory)
+    public bool Use(Transform user, RaycastHit targetHit, int index)
     {
         if (currentCooldown <= 0)
         {
-            if (this.GetItem().OnUse(user, targetHit, this, inventory))
+            if (this.GetItem().OnUse(user, targetHit, index))
             {
                 currentCooldown = this.GetItem().GetProperties().GetMaxCooldown();
                 return true;
@@ -64,5 +64,25 @@ public class ItemStack
             }
         }
         return false;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return obj is ItemStack && GetItem() == ((ItemStack)obj).GetItem() && GetAmount() == ((ItemStack)obj).GetAmount();
+    }
+
+    public override int GetHashCode()
+    {
+        return item.GetHashCode() + amount.GetHashCode();
+    }
+
+    public static bool operator ==(ItemStack a, ItemStack b)
+    {
+        return a.GetItem() == b.GetItem() && a.GetAmount() == b.GetAmount();
+    }
+
+    public static bool operator !=(ItemStack a, ItemStack b)
+    {
+        return a.GetItem() != b.GetItem() || a.GetAmount() != b.GetAmount();
     }
 }

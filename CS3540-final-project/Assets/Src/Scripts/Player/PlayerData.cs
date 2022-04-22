@@ -9,7 +9,11 @@ public class PlayerData
     public int health;
     public string currentLevel;
     public int playerLevel;
-
+    public PlayerData()
+    {
+        health = 10;
+        playerLevel = 0;
+    }
     public void LoseHealth(int amount)
     {
         if (health > 0)

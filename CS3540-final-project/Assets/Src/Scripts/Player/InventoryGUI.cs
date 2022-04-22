@@ -3,31 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryGUI : MonoBehaviour
+public class InventoryGui : MonoBehaviour
 {
-    public int slotCount = 10;
-    private Transform itemSlotContainer;
-    private List<Transform> itemSlots = new List<Transform>();
-    // States of keys. 0 = not pressed, 1 = being pressed, 2 = released, succeed to use, 3 = released, fail to use
-    private List<int> keyStates = new List<int>();
+    private Transform[] itemSlots = new Transform[36];
+    private int selectedIndex = -1;
 
-    private Color originalColor;
-
+    private Color normal = new Color(0xE7, 0xE7, 0xE7, 0xAF);
+    private Color selected = new Color(0xEF, 0xEF, 0xEF, 0xEF);
     void Awake()
     {
-        itemSlotContainer = transform.Find("ItemSlotContainer");
-        if (itemSlotContainer)
+
+        for (int i = 1; i < 10; i++)
         {
-            //print("found slot containter");
+            itemSlots[i - 1] = transform.Find("Hotbar0" + i);
         }
-        for (int i = 1; i <= slotCount; i++)
+        for (int i = 10; i < 37; i++)
         {
-            itemSlots.Add(itemSlotContainer.Find("ItemSlot" + i));
-            //print("found slot" + i);
-            keyStates.Add(0);
-            //print("key state added, number of keys: " + keyStates.Count);
+            itemSlots[i - 1] = transform.Find("Slot" + i);
         }
-        originalColor = itemSlots[0].Find("Border").GetComponent<Image>().color;
+
+        normal = itemSlots[0].GetComponent<Button>().colors.normalColor;
+        selected = itemSlots[0].GetComponent<Button>().colors.highlightedColor;
+
     }
 
     // Update is called once per frame
@@ -35,95 +32,86 @@ public class InventoryGUI : MonoBehaviour
     {
         Render();
     }
+
     private void Render()
     {
-        int x = 0;
-        // int y = 0;
-        // float itemSlotSizeOffset = 55f;
-        for (x = 0; x < slotCount; x++)
+        for (int i = 0; i < itemSlots.Length; i++)
         {
-            Image image = itemSlots[x].Find("ItemImage").GetComponent<Image>();
-            Text amountText = itemSlots[x].Find("AmountText").GetComponent<Text>();
-            Image borderHighlight = itemSlotContainer.Find("BorderHighlight" + (x + 1)).GetComponent<Image>();
-            // Checking to see if the item exists
-            if (x >= PlayerInventory.inventory.GetItemList().Count || PlayerInventory.inventory.GetItemList()[x].GetAmount() == 0)
+            Image image = itemSlots[i].Find("ItemImage").GetComponent<Image>();
+            Text amountText = itemSlots[i].Find("AmountText").GetComponent<Text>();
+            if (LevelManager.inventory.GetItemAt(i) == Inventory.EMPTY)
             {
-                // Disable UI element if doesn't exist
                 image.gameObject.SetActive(false);
                 amountText.gameObject.SetActive(false);
             }
             else
             {
-                // Update UI element if exists
-                ItemStack itemStackX = PlayerInventory.inventory.GetItemList()[x];
-                image.sprite = itemStackX.GetItem().GetSprite();
-                amountText.text = itemStackX.GetAmount().ToString();
+                ItemStack itemStack = LevelManager.inventory.GetItemList()[i];
+                if (itemStack.GetAmount() > 1)
+                {
+                    amountText.text = itemStack.GetAmount().ToString();
+                    amountText.gameObject.SetActive(true);
+                }
+
                 image.gameObject.SetActive(true);
-                amountText.gameObject.SetActive(true);
-                Slider cooldownSlider = itemSlots[x].Find("CooldownSlider").GetComponent<Slider>();
-                // Checking cooldown
-                if (itemStackX.GetCurrentCooldown() <= 0)
+                image.sprite = itemStack.GetItem().GetSprite();
+                if (itemSlots[i].Find("CooldownSlider") != null)
                 {
-                    // Disable slider if item is ready to use
-                    cooldownSlider.gameObject.SetActive(false);
+                    Slider cooldownSlider = itemSlots[i].Find("CooldownSlider").GetComponent<Slider>();
+                    // Checking cooldown
+                    if (itemStack.GetCurrentCooldown() <= 0)
+                    {
+                        // Disable slider if item is ready to use
+                        cooldownSlider.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        // Update slider if not
+                        cooldownSlider.gameObject.SetActive(true);
+                        cooldownSlider.maxValue = itemStack.GetMaxCooldown();
+                        cooldownSlider.value = itemStack.GetMaxCooldown() - itemStack.GetCurrentCooldown();
+                    }
                 }
-                else
-                {
-                    // Update slider if not
-                    cooldownSlider.gameObject.SetActive(true);
-                    cooldownSlider.maxValue = itemStackX.GetMaxCooldown();
-                    cooldownSlider.value = itemStackX.GetMaxCooldown() - itemStackX.GetCurrentCooldown();
-                }
-            }
-            switch (keyStates[x])
-            {
-                case 1:
-                    borderHighlight.color = Color.blue;
-                    borderHighlight.gameObject.SetActive(true);
-                    break;
-                case 2:
-                    borderHighlight.color = Color.green;
-                    borderHighlight.gameObject.SetActive(true);
-                    break;
-                case 3:
-                    borderHighlight.color = Color.red;
-                    borderHighlight.gameObject.SetActive(true);
-                    break;
-                default:
-                    borderHighlight.gameObject.SetActive(false);
-                    break;
+
             }
         }
     }
 
-    public void KeyPressing(int keyIndex)
+    public void Select(GameObject slot)
     {
-        if (keyStates[keyIndex] == 0)
+        int index = int.Parse(slot.name.Substring(slot.name.Length - 2)) - 1;
+        if (index >= 0 && index < Inventory.SIZE)
         {
-            keyStates[keyIndex] = 1;
-        }
-    }
-
-    public void KeyReleased(int keyIndex, bool isUsed)
-    {
-        if (keyStates[keyIndex] == 1)
-        {
-            if (isUsed)
+            if (selectedIndex == -1)
             {
-                keyStates[keyIndex] = 2;
+
+                if (LevelManager.inventory.GetItemAt(index) != Inventory.EMPTY)
+                {
+                    selectedIndex = index;
+
+                    ColorBlock cb = itemSlots[selectedIndex].GetComponent<Button>().colors;
+                    cb.normalColor = selected;
+                    cb.selectedColor = selected;
+                    itemSlots[selectedIndex].GetComponent<Button>().colors = cb;
+                }
             }
             else
             {
-                keyStates[keyIndex] = 3;
-            }
-            // TODO: RESET KEY STATE AFTER A SHORT PAUSE maybe use coroutine?
-            StartCoroutine("ResetKeyState", keyIndex);
-        }
-    }
+                ColorBlock cb1 = itemSlots[selectedIndex].GetComponent<Button>().colors;
+                cb1.normalColor = normal;
+                cb1.selectedColor = normal;
+                itemSlots[selectedIndex].GetComponent<Button>().colors = cb1;
+                ColorBlock cb2 = itemSlots[index].GetComponent<Button>().colors;
+                cb2.normalColor = normal;
+                cb2.selectedColor = normal;
+                itemSlots[index].GetComponent<Button>().colors = cb2;
 
-    private IEnumerator ResetKeyState(int keyIndex)
-    {
-        yield return new WaitForSeconds(0.5f);
-        keyStates[keyIndex] = 0;
+                if (selectedIndex != index)
+                {
+                    LevelManager.inventory.Swap(index, selectedIndex);
+                }
+                selectedIndex = -1;
+            }
+        }
     }
 }

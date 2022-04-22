@@ -55,7 +55,7 @@ public class MainMenuManager : MonoBehaviour
     {
         isGamePaused = false;
         Time.timeScale = 1.0f;
-        PlayerData playerData = FindObjectOfType<LevelManager>().GetPlayerData();
+        PlayerData playerData = LevelManager.playerData;
         if (playerData.currentLevel == null || playerData.currentLevel == "")
         {
             SceneManager.LoadScene("Castle");
@@ -81,7 +81,7 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
         isGamePaused = true;
         Time.timeScale = 0.0f;

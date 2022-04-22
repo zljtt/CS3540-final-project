@@ -26,8 +26,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+        if (InventoryController.inventoryOpen)
+        {
+            moveHorizontal = 0;
+            moveVertical = 0;
+        }
         input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized;
 
         if (controller.isGrounded)

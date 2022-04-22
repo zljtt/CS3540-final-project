@@ -14,7 +14,7 @@ public class Item
         this.property = property;
     }
 
-    virtual public bool OnUse(Transform user, RaycastHit targetHit, ItemStack stack, Inventory inventory)
+    virtual public bool OnUse(Transform user, RaycastHit targetHit, int index)
     {
         return false;
     }
@@ -44,7 +44,10 @@ public class Item
         id = i;
     }
 
-
+    public override bool Equals(object obj)
+    {
+        return obj is Item && GetRegistryName() == ((Item)obj).GetRegistryName() && GetID() == ((Item)obj).GetID();
+    }
 
     public class ItemProperty
     {
@@ -104,5 +107,19 @@ public class Item
         {
             return maxCooldown;
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return registryName.GetHashCode() + id.GetHashCode();
+    }
+    public static bool operator ==(Item a, Item b)
+    {
+        return a.GetRegistryName() == b.GetRegistryName() && a.GetID() == b.GetID();
+    }
+
+    public static bool operator !=(Item a, Item b)
+    {
+        return a.GetRegistryName() != b.GetRegistryName() || a.GetID() != b.GetID();
     }
 }

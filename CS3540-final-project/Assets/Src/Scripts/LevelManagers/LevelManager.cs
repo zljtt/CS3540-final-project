@@ -10,18 +10,38 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class LevelManager : MonoBehaviour
 {
-    public PlayerData playerData;
-    private string filePath;
+    public static PlayerData playerData;
+    public static Inventory inventory;
+    public Inventory debugInventory;
+
+    private string playerDataSavePath;
+    private string inventorySavePath;
     void Awake()
     {
-        filePath = Application.persistentDataPath + "/player.data";
+        playerDataSavePath = Application.persistentDataPath + "/player.data";
+        inventorySavePath = Application.persistentDataPath + "/inventory.data";
         Debug.Log("Save file at: " + Application.persistentDataPath);
-        ReadData();
+        ReadPlayerData();
+        ReadInventoryData();
+    }
+
+    void Update()
+    {
+        debugInventory = inventory;
+        // update cooldown
+        foreach (ItemStack itemStack in inventory.GetItemList())
+        {
+            if (itemStack != Inventory.EMPTY)
+            {
+                itemStack.UpdateCooldown(Time.deltaTime);
+            }
+        }
     }
 
     void OnDestroy()
     {
-        WriteData();
+        WritePlayerData();
+        WriteInventoryData();
     }
 
     void Start()
@@ -32,34 +52,74 @@ public class LevelManager : MonoBehaviour
         }
 
     }
-
-    public PlayerData GetPlayerData()
+    public void ReadPlayerData()
     {
-        return playerData;
-    }
-
-    public void ReadData()
-    {
-        if (File.Exists(filePath))
+        playerData = new PlayerData();
+        if (File.Exists(playerDataSavePath))
         {
-            FileStream dataStream = new FileStream(filePath, FileMode.Open);
+            FileStream dataStream = new FileStream(playerDataSavePath, FileMode.Open);
             BinaryFormatter converter = new BinaryFormatter();
-            playerData = converter.Deserialize(dataStream) as PlayerData;
+            try
+            {
+                playerData = converter.Deserialize(dataStream) as PlayerData;
+                dataStream.Close();
+            }
+            catch (Exception)
+            {
+                dataStream.Close();
+                File.Delete(playerDataSavePath);
+            }
+        }
+    }
+    public void WritePlayerData()
+    {
+        FileStream dataStream = new FileStream(playerDataSavePath, FileMode.Create);
+        BinaryFormatter converter = new BinaryFormatter();
+        try
+        {
+            converter.Serialize(dataStream, playerData);
             dataStream.Close();
         }
-        else
+        catch (Exception)
         {
-            playerData = new PlayerData();
-            playerData.health = 10;
-            playerData.playerLevel = 0;
+            dataStream.Close();
+            File.Delete(playerDataSavePath);
         }
     }
-    public void WriteData()
-    {
 
-        FileStream dataStream = new FileStream(filePath, FileMode.Create);
+    public void ReadInventoryData()
+    {
+        inventory = new Inventory();
+        if (File.Exists(inventorySavePath))
+        {
+            FileStream dataStream = new FileStream(inventorySavePath, FileMode.Open);
+            BinaryFormatter converter = new BinaryFormatter();
+            try
+            {
+                inventory = converter.Deserialize(dataStream) as Inventory;
+                dataStream.Close();
+            }
+            catch (Exception)
+            {
+                dataStream.Close();
+                File.Delete(inventorySavePath);
+            }
+        }
+    }
+    public void WriteInventoryData()
+    {
+        FileStream dataStream = new FileStream(inventorySavePath, FileMode.Create);
         BinaryFormatter converter = new BinaryFormatter();
-        converter.Serialize(dataStream, playerData);
-        dataStream.Close();
+        try
+        {
+            converter.Serialize(dataStream, inventory);
+            dataStream.Close();
+        }
+        catch (Exception)
+        {
+            dataStream.Close();
+            File.Delete(inventorySavePath);
+        }
+
     }
 }

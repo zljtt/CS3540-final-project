@@ -10,7 +10,7 @@ public class HealingItem : Item
         this.healAmount = healAmount;
     }
 
-    override public bool OnUse(Transform user, RaycastHit targetHit, ItemStack stack, Inventory inventory)
+    override public bool OnUse(Transform user, RaycastHit targetHit, int index)
     {
         var target = targetHit.collider.GetComponent<AllyBehavior>();
         if (target != null)
@@ -19,7 +19,7 @@ public class HealingItem : Item
             GameObject effect = GameObject.Instantiate(Resources.Load("Prefabs/Effects/HealEffect"), target.transform.position, Quaternion.Euler(-90, 0, 90)) as GameObject;
             effect.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             effect.transform.parent = target.transform;
-            inventory.RemoveItem(stack, 1);
+            LevelManager.inventory.Consume(index, 1);
             return true;
         }
         return false;

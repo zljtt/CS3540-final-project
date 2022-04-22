@@ -16,14 +16,18 @@ public class MouseLook : MonoBehaviour
         playerBody = transform.parent.transform;
     }
 
-    private void FixedUpdate() {
-        if (!MainMenuManager.isGamePaused) {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else {
+    private void FixedUpdate()
+    {
+        if (MainMenuManager.isGamePaused || InventoryController.inventoryOpen)
+        {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -36,6 +40,8 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (InventoryController.inventoryOpen) return;
+
         float moveX = Input.GetAxis("Mouse X") * mouseSensitiviy * Time.deltaTime;
         float moveY = Input.GetAxis("Mouse Y") * mouseSensitiviy * Time.deltaTime * 0.8f;
         // Debug.Log(moveY);
