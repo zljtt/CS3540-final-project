@@ -274,7 +274,6 @@ GameObject:
   - component: {fileID: 5211158535205579387}
   - component: {fileID: 8081398373357432842}
   - component: {fileID: 8153007313344022902}
-  - component: {fileID: -2628220586256011588}
   m_Layer: 0
   m_Name: OrcWarrior
   m_TagString: Ally
@@ -376,18 +375,6 @@ MonoBehaviour:
   attackSpeed: 1
   moveSpeed: 2
   attackSFX: {fileID: 8300000, guid: 03e9f874800c3824e9894fa1efebc1b6, type: 3}
---- !u!114 &-2628220586256011588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5211158535205678228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e742a2efe774ddea072398dca9884f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5211158535205678230
 GameObject:
   m_ObjectHideFlags: 0

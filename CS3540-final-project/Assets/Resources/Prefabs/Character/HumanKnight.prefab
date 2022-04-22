@@ -569,7 +569,6 @@ GameObject:
   - component: {fileID: 7181614438399346608}
   - component: {fileID: 2110420354909216513}
   - component: {fileID: 3202894793815739284}
-  - component: {fileID: 6364809239211399271}
   m_Layer: 0
   m_Name: HumanKnight
   m_TagString: Enemy
@@ -669,18 +668,6 @@ MonoBehaviour:
   attackSpeed: 1
   moveSpeed: 2
   attackSFX: {fileID: 8300000, guid: 7b6392e21eb8ad7489dc38aaf7fa8db2, type: 3}
---- !u!114 &6364809239211399271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7181614438399443288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e742a2efe774ddea072398dca9884f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7181614438399443290
 GameObject:
   m_ObjectHideFlags: 0

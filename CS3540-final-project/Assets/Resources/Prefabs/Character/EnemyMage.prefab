@@ -1115,7 +1115,6 @@ GameObject:
   - component: {fileID: 5806961006627128935}
   - component: {fileID: 5121290250961288228}
   - component: {fileID: 5806961006619882980}
-  - component: {fileID: 5806961006619882982}
   - component: {fileID: 5806961006619882986}
   m_Layer: 0
   m_Name: EnemyMage
@@ -1196,18 +1195,6 @@ NavMeshAgent:
   m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5806961006619882982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5806961006619882977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e742a2efe774ddea072398dca9884f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5806961006619882986
 MonoBehaviour:
   m_ObjectHideFlags: 0
