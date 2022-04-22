@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 199509227785772348}
   - component: {fileID: 135521883611116180}
   - component: {fileID: 108212708603584814}
+  - component: {fileID: 4496108417134323769}
   m_Layer: 0
   m_Name: Magic
   m_TagString: MagicProjectile
@@ -4991,6 +4992,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &4496108417134323769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213529451062198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28de0136ed6e4358a6535f23c6ee12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTag: Enemy
+  currentTag: Ally
+  attackDamage: 5
+  projectileType: Magic
 --- !u!1 &1267732140592724
 GameObject:
   m_ObjectHideFlags: 0
@@ -9771,7 +9788,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2ac0fd9fa7d384047a598dbfb7c2f044, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14599,7 +14615,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 35f5e6dc715494f44b17248eee5426bd, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

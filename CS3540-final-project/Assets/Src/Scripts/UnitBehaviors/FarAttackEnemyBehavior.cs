@@ -37,7 +37,7 @@ public class FarAttackEnemyBehavior : EnemyBehavior
     
     public override GameObject FindPossibleAttackTargetInRange()
     {
-        List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Ally", "Dragon", "Enemy"});
+        List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Ally", "Enemy"});
         possibleTargets.Remove(this.gameObject);
         GameObject closest = FindClosest(transform, possibleTargets);
         return closest;

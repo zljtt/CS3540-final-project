@@ -83,6 +83,6 @@ public abstract class EnemyBehavior : UnitBehavior
     protected override void PerformDie()
     {
         anim.SetInteger("animState", DIE_ANIM);
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 1);
     }
 }

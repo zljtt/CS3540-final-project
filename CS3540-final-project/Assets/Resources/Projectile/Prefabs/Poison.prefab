@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 114981488265921506}
   - component: {fileID: 54908155343697094}
   - component: {fileID: 135651835456056574}
+  - component: {fileID: 1776774087172263408}
   m_Layer: 0
   m_Name: Poison
   m_TagString: PoisonProjectile
@@ -4833,7 +4834,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 45de8f4006edc6948b033431b5a29e56, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4928,6 +4928,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1776774087172263408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049895169098164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28de0136ed6e4358a6535f23c6ee12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTag: Enemy
+  currentTag: Ally
+  attackDamage: 5
+  projectileType: Poison
 --- !u!1 &1087620334247294
 GameObject:
   m_ObjectHideFlags: 0
@@ -9701,7 +9717,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 18ca33340b350194a96892d92e5f8948, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14539,7 +14554,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9aaa13d175bcf1c4b8acc4d930ee06ee, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

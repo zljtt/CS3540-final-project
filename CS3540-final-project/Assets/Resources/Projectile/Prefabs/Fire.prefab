@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 54488790111006576}
   - component: {fileID: 135219337407746228}
   - component: {fileID: 108919900232066054}
+  - component: {fileID: 4190186630767994135}
   m_Layer: 0
   m_Name: Fire
   m_TagString: FireProjectile
@@ -4990,6 +4991,22 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &4190186630767994135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254724754748870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28de0136ed6e4358a6535f23c6ee12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTag: Enemy
+  currentTag: Ally
+  attackDamage: 10
+  projectileType: Fire
 --- !u!1 &1800544799133088
 GameObject:
   m_ObjectHideFlags: 0
