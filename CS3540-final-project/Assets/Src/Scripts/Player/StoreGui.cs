@@ -7,6 +7,8 @@ public class StoreGui : MonoBehaviour
 {
     private Transform[] slots;
     private Transform purchase;
+    private Transform money;
+
     private Color normal;
     private Color wrong;
     private int selectedIndex = -1;
@@ -18,6 +20,7 @@ public class StoreGui : MonoBehaviour
         {
             slots[i] = transform.Find("Slot" + (i + 1));
         }
+        money = transform.Find("Money");
         purchase = transform.Find("ConfirmBuy");
         normal = purchase.Find("Text").GetComponent<Text>().color;
         ColorUtility.TryParseHtmlString("#DB2625", out wrong);
@@ -30,6 +33,15 @@ public class StoreGui : MonoBehaviour
 
     private void Render()
     {
+        money.GetComponent<Text>().text = "COIN: $" + LevelManager.playerData.money;
+        if (selectedIndex != -1 && StoreManager.store.GetEntryAt(selectedIndex) != Store.EMPTY_ENTRY)
+        {
+            purchase.Find("Text").GetComponent<Text>().text = "Purchase ($" + StoreManager.store.GetEntryAt(selectedIndex).value + ")";
+        }
+        else
+        {
+            purchase.Find("Text").GetComponent<Text>().text = "Purchase";
+        }
         for (int i = 0; i < slots.Length; i++)
         {
             Image image = slots[i].Find("ItemImage").GetComponent<Image>();
