@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+
+public enum UnitType
+{
+    FLY,
+    GROUND,
+    RANGED,
+    MELEE,
+}
 public abstract class UnitBehavior : MonoBehaviour
 {
     public static readonly int IDLE_ANIM = 0;
     public static readonly int WALK_ANIM = 1;
     public static readonly int RUN_ANIM = 2;
-    public static readonly int ATTACK1_ANIM = 3;
-    public static readonly int ATTACK2_ANIM = 4;
+    public static readonly int ATTACK_ANIM = 3;
+
+    public static readonly string ATTACK1_TRIGGER = "attack1";
+    public static readonly string ATTACK2_TRIGGER = "attack2";
+
+    public static readonly int OTHER_ANIM = 5;
+    public List<UnitType> types;
     public static readonly int DIE_ANIM = -1;
     public enum State { IDLE, ALERT, CHASE, ATTACK, DIE };
     public AudioClip healSFX;
@@ -23,12 +36,12 @@ public abstract class UnitBehavior : MonoBehaviour
 
     protected Slider[] healthSliders;
     protected NavMeshAgent agent;
-    protected GameObject currentAttackTarget;
+    public GameObject currentAttackTarget;
     protected Animator anim;
     protected float currentHealth;
     protected float lastDamagedDeltaTime = 0f; // use for invincibility frame
     protected float lastAttackDeltaTime = 0f; // use for attack speed
-    protected State currentState;
+    public State currentState;
     protected Transform playerPosition;
 
     protected virtual void Start()
@@ -54,11 +67,13 @@ public abstract class UnitBehavior : MonoBehaviour
         }
         UpdateState();
     }
+
     protected virtual void UpdateState()
     {
         switch (currentState)
         {
             case State.IDLE:
+                PerformIdle();
                 break;
             case State.ALERT:
                 PerformAlert();
@@ -75,6 +90,10 @@ public abstract class UnitBehavior : MonoBehaviour
             default:
                 break;
         }
+    }
+    protected virtual void PerformIdle()
+    {
+        anim.SetInteger("animState", IDLE_ANIM);
     }
 
     // when an unit does not have a target, it enters alert state and wait for target
@@ -94,15 +113,16 @@ public abstract class UnitBehavior : MonoBehaviour
     // find a possible target within the alert range.
     public abstract GameObject FindPossibleAttackTargetInRange();
 
-    protected List<GameObject> FindTargetsInRange(List<string> tags)
+    protected List<GameObject> FindTargetsInRange(string[] tags, params UnitType[] ignore)
     {
         List<GameObject> allTarget = new List<GameObject> { };
-        for (int i = 0; i < tags.Count; i++)
+        for (int i = 0; i < tags.Length; i++)
         {
             List<GameObject> targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(tags[i]));
             foreach (GameObject target in targets)
             {
-                if (Vector3.Distance(transform.position, target.transform.position) < alertRange)
+                if (Vector3.Distance(transform.position, target.transform.position) < alertRange
+                    && !target.GetComponent<UnitBehavior>().ContainType(ignore))
                 {
                     allTarget.Add(target);
                 }
@@ -110,7 +130,20 @@ public abstract class UnitBehavior : MonoBehaviour
         }
         return allTarget;
     }
-
+    public bool ContainType(UnitType[] targetTypes)
+    {
+        foreach (UnitType type in targetTypes)
+        {
+            foreach (UnitType contain in types)
+            {
+                if (type == contain)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     public static GameObject FindClosest(Transform transform, List<GameObject> targets)
     {
         GameObject closest = null;
@@ -155,8 +188,8 @@ public abstract class UnitBehavior : MonoBehaviour
     {
         currentState = state;
     }
-
-    public float returnHealth() {
+    public float GetHealth()
+    {
         return currentHealth;
     }
 }

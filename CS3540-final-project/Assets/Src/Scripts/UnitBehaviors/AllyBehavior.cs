@@ -16,11 +16,15 @@ public abstract class AllyBehavior : UnitBehavior
 
     protected override void Update()
     {
-        agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
-        agent.isStopped = currentState == State.ALERT || currentState == State.DIE || currentState == State.IDLE;
-        // if steering target is incorrect during combat
-        Vector3 steer = agent.steeringTarget - transform.position;
-        agent.isStopped = currentState == State.ATTACK && Vector2.Angle(new Vector2(steer.x, steer.z), new Vector2(transform.forward.x, transform.forward.z)) < 10f;
+        if (agent != null && agent.enabled)
+        {
+            agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
+            agent.isStopped = currentState == State.ALERT || currentState == State.DIE || currentState == State.IDLE;
+            // if steering target is incorrect during combat
+            Vector3 steer = agent.steeringTarget - transform.position;
+            agent.isStopped = currentState == State.ATTACK && Vector2.Angle(new Vector2(steer.x, steer.z), new Vector2(transform.forward.x, transform.forward.z)) < 10f;
+
+        }
         base.Update();
     }
 
@@ -48,7 +52,7 @@ public abstract class AllyBehavior : UnitBehavior
         {
             currentState = State.ATTACK;
         }
-        else // chase
+        else if (agent != null && agent.enabled)// chase
         {
             agent.SetDestination(currentAttackTarget.transform.position);
         }
@@ -57,13 +61,17 @@ public abstract class AllyBehavior : UnitBehavior
     // when an unit is within attack range, it attack until the target dies
     protected override void PerformAttack()
     {
+        anim.SetInteger("animState", ATTACK_ANIM);
         if (currentAttackTarget == null || !CanReach(currentAttackTarget))
         {
             currentState = State.ALERT;
         }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {
-            agent.SetDestination(currentAttackTarget.transform.position); // keep rotation
+            if (agent != null && agent.enabled)
+            {
+                agent.SetDestination(currentAttackTarget.transform.position); // keep rotation
+            }
             Attack(currentAttackTarget);
             lastAttackDeltaTime = 0;
         }

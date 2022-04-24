@@ -23,6 +23,7 @@ public class FarmAdvancedLevelManager : CombatManager
             }
         }
     }
+
     protected override void OnCombatEnd()
     {
         Debug.Log("Combat stage ends!");

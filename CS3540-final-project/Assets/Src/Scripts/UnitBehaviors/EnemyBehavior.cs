@@ -68,6 +68,7 @@ public abstract class EnemyBehavior : UnitBehavior
     // when an unit is within attack range, it attack until the target dies
     protected override void PerformAttack()
     {
+        anim.SetInteger("animState", ATTACK_ANIM);
         if (currentAttackTarget == null || !CanReach(currentAttackTarget))
         {
             currentState = State.ALERT;

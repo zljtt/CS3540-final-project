@@ -11,12 +11,12 @@ public class MeleeEnemyBehavior : EnemyBehavior
     {
         if (currentAttackAnim == 0)
         {
-            anim.SetInteger("animState", ATTACK1_ANIM);
+            anim.SetInteger("animState", ATTACK_ANIM);
             currentAttackAnim = 1;
         }
         else
         {
-            anim.SetInteger("animState", ATTACK2_ANIM);
+            anim.SetInteger("animState", ATTACK_ANIM);
             currentAttackAnim = 0;
         }
         AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
@@ -25,7 +25,7 @@ public class MeleeEnemyBehavior : EnemyBehavior
 
     public override GameObject FindPossibleAttackTargetInRange()
     {
-        List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Ally" });
+        List<GameObject> possibleTargets = FindTargetsInRange(new string[] { "Ally" }, UnitType.FLY);
         GameObject closest = FindClosest(transform, possibleTargets);
         return closest;
     }

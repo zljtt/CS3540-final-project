@@ -47,11 +47,8 @@ public class InventoryGui : MonoBehaviour
             else
             {
                 ItemStack itemStack = LevelManager.inventory.GetItemList()[i];
-                if (itemStack.GetAmount() > 1)
-                {
-                    amountText.text = itemStack.GetAmount().ToString();
-                    amountText.gameObject.SetActive(true);
-                }
+                amountText.text = itemStack.GetAmount().ToString();
+                amountText.gameObject.SetActive(itemStack.GetAmount() > 1);
 
                 image.gameObject.SetActive(true);
                 image.sprite = itemStack.GetItem().GetSprite();

@@ -9,12 +9,12 @@ public class MeleeAllyBehavior : AllyBehavior
     public override void Attack(GameObject target)
     {
         AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-        anim.SetInteger("animState", ATTACK2_ANIM);
+        anim.SetInteger("animState", ATTACK_ANIM);
         target.GetComponent<MeleeEnemyBehavior>().TakeDamage(attackDamage, gameObject);
     }
     public override GameObject FindPossibleAttackTargetInRange()
     {
-        List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Enemy"});
+        List<GameObject> possibleTargets = FindTargetsInRange(new string[] { "Enemy" }, UnitType.FLY);
         GameObject closest = FindClosest(transform, possibleTargets);
         return closest;
     }

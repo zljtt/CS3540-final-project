@@ -58,11 +58,8 @@ public class HotbarGui : MonoBehaviour
                 ItemStack itemStackX = LevelManager.inventory.GetItemList()[x];
                 image.sprite = itemStackX.GetItem().GetSprite();
                 image.gameObject.SetActive(true);
-                if (itemStackX.GetAmount() > 1)
-                {
-                    amountText.text = itemStackX.GetAmount().ToString();
-                    amountText.gameObject.SetActive(true);
-                }
+                amountText.text = itemStackX.GetAmount().ToString();
+                amountText.gameObject.SetActive(itemStackX.GetAmount() > 1);
                 Slider cooldownSlider = itemSlots[x].Find("CooldownSlider").GetComponent<Slider>();
                 // Checking cooldown
                 if (itemStackX.GetCurrentCooldown() <= 0)

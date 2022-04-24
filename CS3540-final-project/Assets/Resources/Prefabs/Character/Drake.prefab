@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 1291122356121820045}
   - component: {fileID: 5124076873745712619}
   - component: {fileID: 7370552533239716545}
+  - component: {fileID: -6207791400980186232}
   m_Layer: 0
   m_Name: Drake
   m_TagString: Ally
@@ -760,6 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372fa0e4adcb446afa5066ff46e1a610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  types: 
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
   maxHealth: 150
   attackRange: 15
@@ -767,6 +769,8 @@ MonoBehaviour:
   attackDamage: 10
   attackSpeed: 3
   moveSpeed: 2
+  currentAttackTarget: {fileID: 0}
+  currentState: 0
   shootPoint: {fileID: 6058057560924993256}
   destinyHeight: 3
   attackSFX: {fileID: 8300000, guid: 70d7dac0428dd8347a5346b9c7037fc3, type: 3}
@@ -789,6 +793,28 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &-6207791400980186232
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291122356193539270}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1291122356193539280
 GameObject:
   m_ObjectHideFlags: 0

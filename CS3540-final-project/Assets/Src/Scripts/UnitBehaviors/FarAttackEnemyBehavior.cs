@@ -9,35 +9,17 @@ public class FarAttackEnemyBehavior : EnemyBehavior
     public GameObject firePrefab;
     public Transform shootPoint;
 
-
-    protected override void PerformAttack() {
-        anim.SetInteger("animState", ATTACK2_ANIM);
-        if (currentAttackTarget == null || !CanReach(currentAttackTarget))
-        {
-            currentState = State.ALERT;
-        }
-        else if (lastAttackDeltaTime > attackSpeed) // attack
-        {
-            agent.SetDestination(currentAttackTarget.transform.position); // keep rotation
-            Attack(currentAttackTarget);
-            lastAttackDeltaTime = 0;
-        }
-        else {
-            anim.SetInteger("attackState", 0);
-        }
-    }
-
     public override void Attack(GameObject target)
     {
-        anim.SetInteger("attackState", 1);
+        anim.SetTrigger(ATTACK1_TRIGGER);
         AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
         shootPoint.LookAt(currentAttackTarget.transform);
         Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
     }
-    
+
     public override GameObject FindPossibleAttackTargetInRange()
     {
-        List<GameObject> possibleTargets = FindTargetsInRange(new List<string> { "Ally", "Enemy"});
+        List<GameObject> possibleTargets = FindTargetsInRange(new string[] { "Ally", "Enemy" });
         possibleTargets.Remove(this.gameObject);
         GameObject lowestHealthTarget = FindLowestHealth(transform, possibleTargets);
         return lowestHealthTarget;
@@ -50,7 +32,7 @@ public class FarAttackEnemyBehavior : EnemyBehavior
         foreach (GameObject target in targets)
         {
             var methodClass = target.GetComponent<UnitBehavior>();
-            float currentHealth = methodClass.returnHealth();
+            float currentHealth = methodClass.GetHealth();
 
             if (currentHealth < lowestHealth)
             {

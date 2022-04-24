@@ -1301,6 +1301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6846d7a2d2224dcba3ac994f6a70fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  types: 0100000002000000
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
   maxHealth: 120
   attackRange: 10
@@ -1308,6 +1309,8 @@ MonoBehaviour:
   attackDamage: 5
   attackSpeed: 2
   moveSpeed: 2
+  currentAttackTarget: {fileID: 0}
+  currentState: 0
   attackSFX: {fileID: 8300000, guid: 2d1f2f67af4fe4448a2c7bfc4ce5287d, type: 3}
   firePrefab: {fileID: 1213529451062198, guid: 1405f7a46ad73504d8cbe4b7ddd1d552, type: 3}
   shootPoint: {fileID: 754412767837250246}
