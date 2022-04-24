@@ -12,10 +12,16 @@ public class FarAttackEnemyBehavior : EnemyBehavior
     public override void Attack(GameObject target)
     {
         anim.SetTrigger(ATTACK1_TRIGGER);
+        Invoke("Shoot", 0.5f);
+    }
+
+    public void Shoot()
+    {
         AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
         shootPoint.LookAt(currentAttackTarget.transform);
         Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
     }
+
 
     public override GameObject FindPossibleAttackTargetInRange()
     {

@@ -19,11 +19,9 @@ public abstract class AllyBehavior : UnitBehavior
         if (agent != null && agent.enabled)
         {
             agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
-            agent.isStopped = currentState == State.ALERT || currentState == State.DIE || currentState == State.IDLE;
+            agent.isStopped = currentState == State.ALERT || currentState == State.DIE || currentState == State.IDLE || currentState == State.ATTACK;
             // if steering target is incorrect during combat
             Vector3 steer = agent.steeringTarget - transform.position;
-            agent.isStopped = currentState == State.ATTACK && Vector2.Angle(new Vector2(steer.x, steer.z), new Vector2(transform.forward.x, transform.forward.z)) < 10f;
-
         }
         base.Update();
     }
@@ -68,10 +66,6 @@ public abstract class AllyBehavior : UnitBehavior
         }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {
-            if (agent != null && agent.enabled)
-            {
-                agent.SetDestination(currentAttackTarget.transform.position); // keep rotation
-            }
             Attack(currentAttackTarget);
             lastAttackDeltaTime = 0;
         }

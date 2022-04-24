@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372fa0e4adcb446afa5066ff46e1a610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  types: 
+  types: 0000000002000000
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
   maxHealth: 150
   attackRange: 15

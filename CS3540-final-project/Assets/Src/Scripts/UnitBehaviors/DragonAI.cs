@@ -75,11 +75,16 @@ public class DragonAI : AllyBehavior
     public override void Attack(GameObject target)
     {
         anim.SetTrigger(ATTACK1_TRIGGER);
-        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-        RotateToDestination(gameObject, currentAttackTarget.transform.position);
-        Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
+        Invoke("Shoot", 0.4f);
     }
 
+    public void Shoot()
+    {
+        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
+        Vector3 direction = currentAttackTarget.transform.position - gameObject.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        Instantiate(firePrefab, shootPoint.position, rotation);
+    }
     // when an unit die
     protected override void PerformDie()
     {
@@ -102,11 +107,5 @@ public class DragonAI : AllyBehavior
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
     }
 
-    void RotateToDestination(GameObject obj, Vector3 destination)
-    {
-        Vector3 direction = destination - obj.transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, rotation, 1);
-    }
 
 }

@@ -18,9 +18,7 @@ public abstract class EnemyBehavior : UnitBehavior
         agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
         Vector3 steer = agent.steeringTarget - transform.position;
 
-        agent.isStopped = currentState == State.IDLE || currentState == State.DIE
-            || currentState == State.ATTACK  // if steering target is incorrect during combat
-                && Vector2.Angle(new Vector2(steer.x, steer.z), new Vector2(transform.forward.x, transform.forward.z)) < 10f;
+        agent.isStopped = currentState == State.IDLE || currentState == State.DIE || currentState == State.ATTACK;
 
         base.Update();
     }
@@ -75,7 +73,6 @@ public abstract class EnemyBehavior : UnitBehavior
         }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {
-            agent.SetDestination(currentAttackTarget.transform.position); // keep rotation
             Attack(currentAttackTarget);
             lastAttackDeltaTime = 0;
         }

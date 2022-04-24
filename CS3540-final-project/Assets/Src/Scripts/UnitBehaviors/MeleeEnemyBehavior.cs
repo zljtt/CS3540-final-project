@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class MeleeEnemyBehavior : EnemyBehavior
 {
+    public float critChance = 0.2f;
     public AudioClip attackSFX;
-    int currentAttackAnim = 0;
     public override void Attack(GameObject target)
     {
-        if (currentAttackAnim == 0)
+        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
+        if (Random.Range(0.0f, 1.0f) >= critChance)
         {
-            anim.SetInteger("animState", ATTACK_ANIM);
-            currentAttackAnim = 1;
+            target.GetComponent<UnitBehavior>().TakeDamage(attackDamage, gameObject);
+            anim.SetTrigger(ATTACK1_TRIGGER);
         }
         else
         {
-            anim.SetInteger("animState", ATTACK_ANIM);
-            currentAttackAnim = 0;
+            target.GetComponent<UnitBehavior>().TakeDamage(attackDamage * 2, gameObject);
+            anim.SetTrigger(ATTACK2_TRIGGER);
         }
-        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-        target.GetComponent<UnitBehavior>().TakeDamage(attackDamage, gameObject);
+
     }
 
     public override GameObject FindPossibleAttackTargetInRange()

@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 5806961006619882980}
   - component: {fileID: 5806961006619882986}
   m_Layer: 0
-  m_Name: EnemyMage
+  m_Name: HumanMage
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
