@@ -22,7 +22,7 @@ public abstract class EnemyBehavior : UnitBehavior
         if (agent != null && agent.enabled)
         {
             agent.stoppingDistance = 0.2f;
-            agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
+            agent.speed = currentState == State.CHASE ? GetMoveSpeed() : GetMoveSpeed() * 1.5f;
             agent.isStopped = currentState == State.IDLE || currentState == State.DIE || currentState == State.ATTACK;
         }
         base.Update();
@@ -80,7 +80,7 @@ public abstract class EnemyBehavior : UnitBehavior
         {
             currentState = State.CHASE;
         }
-        else if (lastAttackDeltaTime > attackSpeed) // attack
+        else if (lastAttackDeltaTime > GetAttackSpeed()) // attack
         {
             Attack(currentAttackTarget);
             lastAttackDeltaTime = 0;

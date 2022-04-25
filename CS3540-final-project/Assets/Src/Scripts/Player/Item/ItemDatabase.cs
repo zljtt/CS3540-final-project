@@ -6,9 +6,9 @@ public class ItemDatabase
     public static readonly Item EMPTY = Register(new Item("empty", new Item.ItemProperty()));
     public static readonly Item HEALTH_POTION = Register(new HealingItem("health_potion", new Item.ItemProperty()
         .WithDisplayName("Health Potion")
-        .WithDescription("Heal unit by 10.")
+        .WithDescription("Heal target ally unit by 20% max health over 4 seconds.")
         .WithMaxCoolDown(3),
-        10));
+        20));
     public static readonly Item ORC_WARRIOR_SPAWNER = Register(new SpawnerItem("orc_warrior_spawner", new Item.ItemProperty()
         .WithDisplayName("Orc Warrior")
         .WithDescription("Spawns a Orc Warrior to help you fight."),
@@ -23,7 +23,7 @@ public class ItemDatabase
         "Prefabs/Character/Drake"));
     public static readonly Item MASS_HEAL_ABILITY = Register(new AOEHealingAbility("mass_heal", new Item.ItemProperty()
         .WithDisplayName("Mass Heal")
-        .WithDescription("Heals allied units in 5 radius by 10.")
+        .WithDescription("Heal all ally units in 5 radius by 10% max health over 2 seconds.")
         .WithMaxStack(1)
         .WithMaxCoolDown(10),
         10, 5));

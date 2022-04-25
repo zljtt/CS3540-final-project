@@ -15,10 +15,7 @@ public class HealingItem : Item
         var target = targetHit.collider.GetComponent<AllyBehavior>();
         if (target != null)
         {
-            target.Heal(healAmount);
-            GameObject effect = GameObject.Instantiate(Resources.Load("Prefabs/Effects/HealEffect"), target.transform.position, Quaternion.Euler(-90, 0, 90)) as GameObject;
-            effect.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            effect.transform.parent = target.transform;
+            target.ApplyEffect(EffectType.HEALING, healAmount / 5);
             LevelManager.inventory.Consume(index, 1);
             return true;
         }

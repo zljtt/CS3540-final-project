@@ -26,7 +26,7 @@ public class FarAttackEnemyBehavior : EnemyBehavior
             shootPoint.position += offset;
             GameObject projectile = Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
             var behavior = projectile.GetComponent<ProjectileBehavior>();
-            behavior.attackDamage = attackDamage;
+            behavior.attackDamage = GetAttackDamage();
             behavior.shooter = gameObject;
         }
     }
@@ -38,8 +38,8 @@ public class FarAttackEnemyBehavior : EnemyBehavior
         foreach (GameObject target in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             var unit = target.GetComponent<UnitBehavior>();
-            if (Vector3.Distance(transform.position, target.transform.position) < alertRange &&
-                unit.GetHealth() < unit.maxHealth && !unit.ContainType(UnitType.HEAL))
+            if (Vector3.Distance(transform.position, target.transform.position) < GetAlertRange() &&
+                unit.GetHealth() < unit.GetMaxHealth() && !unit.ContainType(UnitType.HEAL))
             {
                 possibleTargets.Add(target);
             }
@@ -50,7 +50,7 @@ public class FarAttackEnemyBehavior : EnemyBehavior
         }
         foreach (GameObject target in GameObject.FindGameObjectsWithTag("Ally"))
         {
-            if (Vector3.Distance(transform.position, target.transform.position) < alertRange)
+            if (Vector3.Distance(transform.position, target.transform.position) < GetAlertRange())
             {
                 possibleTargets.Add(target);
             }

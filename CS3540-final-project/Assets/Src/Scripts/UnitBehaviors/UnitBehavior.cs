@@ -36,6 +36,14 @@ public abstract class UnitBehavior : MonoBehaviour
     public int attackDamage = 2;
     public float attackSpeed = 1f;
     public float moveSpeed = 2;
+
+    protected int modifiedMaxHealth = -1;
+    protected float modifiedAttackRange = -1;
+    protected float modifiedAlertRange = -1;
+    protected float modifiedAttackDamage = -1;
+    protected float modifiedAttackSpeed = -1;
+    protected float modifiedMoveSpeed = -1;
+
     protected Slider[] healthSliders;
     protected NavMeshAgent agent;
     public GameObject currentAttackTarget;
@@ -43,9 +51,10 @@ public abstract class UnitBehavior : MonoBehaviour
     protected float currentHealth;
     protected float lastDamagedDeltaTime = 0f; // use for invincibility frame
     protected float lastAttackDeltaTime = 0f; // use for attack speed
+    protected float effectDeltaTime = 0f; // use for attack speed
     public State currentState;
     protected Transform playerPosition;
-
+    private Dictionary<EffectType, int> effects = new Dictionary<EffectType, int>();
     protected virtual void Start()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
@@ -63,13 +72,60 @@ public abstract class UnitBehavior : MonoBehaviour
     {
         lastDamagedDeltaTime += Time.deltaTime;
         lastAttackDeltaTime += Time.deltaTime;
+        effectDeltaTime += Time.deltaTime;
+        if (effectDeltaTime >= 1)
+        {
+            EffectType[] effectTypes = new EffectType[effects.Count];
+            effects.Keys.CopyTo(effectTypes, 0);
+            foreach (EffectType effect in effectTypes)
+            {
+                effects[effect] -= 1;
+                if (effects[effect] <= 0)
+                {
+                    effects.Remove(effect);
+                }
+            }
+            // restore stats
+            modifiedMaxHealth = maxHealth;
+            modifiedAlertRange = alertRange;
+            modifiedAttackDamage = attackDamage;
+            modifiedAttackRange = attackRange;
+            modifiedAttackSpeed = attackSpeed;
+            modifiedMoveSpeed = moveSpeed;
+            UpdateEffectPerSecond();
+            effectDeltaTime -= 1;
+        }
         foreach (var healthSlider in healthSliders)
         {
             healthSlider.value = currentHealth;
         }
         UpdateState();
     }
+    protected virtual void UpdateEffectPerSecond()
+    {
+        if (effects.ContainsKey(EffectType.HEALING))
+        {
+            Heal(modifiedMaxHealth * 0.05f);
+        }
+        if (effects.ContainsKey(EffectType.RAGE))
+        {
+            TakeDamage(5, null);
+            modifiedAttackDamage = modifiedAttackDamage * 1.25f;
+            modifiedAttackSpeed = modifiedAttackSpeed * 0.75f;
 
+        }
+        if (effects.ContainsKey(EffectType.ENCOURAGE))
+        {
+            modifiedAttackDamage = modifiedAttackDamage * 1.2f;
+            modifiedMoveSpeed = modifiedMoveSpeed * 1.2f;
+            modifiedMaxHealth = (int)(modifiedMaxHealth * 1.2f);
+        }
+        if (effects.ContainsKey(EffectType.WINDGRACE))
+        {
+            modifiedMoveSpeed = modifiedMoveSpeed * 2f;
+            modifiedAlertRange = modifiedAlertRange * 1.5f;
+        }
+    }
     protected virtual void UpdateState()
     {
         switch (currentState)
@@ -123,7 +179,7 @@ public abstract class UnitBehavior : MonoBehaviour
             List<GameObject> targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(tags[i]));
             foreach (GameObject target in targets)
             {
-                if (Vector3.Distance(transform.position, target.transform.position) < alertRange
+                if (Vector3.Distance(transform.position, target.transform.position) < GetAlertRange()
                     && !target.GetComponent<UnitBehavior>().ContainType(ignore))
                 {
                     allTarget.Add(target);
@@ -164,7 +220,7 @@ public abstract class UnitBehavior : MonoBehaviour
 
     public bool CanReach(GameObject target)
     {
-        return Vector3.Distance(transform.position, target.transform.position) <= attackRange;
+        return Vector3.Distance(transform.position, target.transform.position) <= GetAttackRange();
     }
 
     public void TakeDamage(float damageAmount, GameObject source)
@@ -182,8 +238,11 @@ public abstract class UnitBehavior : MonoBehaviour
 
     public void Heal(float healAmount)
     {
+        GameObject effect = GameObject.Instantiate(Resources.Load("Prefabs/Effects/HealEffect"), transform.position, Quaternion.Euler(-90, 0, 90)) as GameObject;
+        effect.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        effect.transform.parent = transform;
         AudioSource.PlayClipAtPoint(healSFX, playerPosition.position);
-        currentHealth = Mathf.Clamp(currentHealth + healAmount, 0, maxHealth);
+        currentHealth = Mathf.Clamp(currentHealth + healAmount, 0, modifiedMaxHealth);
     }
 
     public void ChangeState(State state)
@@ -195,9 +254,64 @@ public abstract class UnitBehavior : MonoBehaviour
         return currentHealth;
     }
 
+    public int GetMaxHealth()
+    {
+        if (modifiedMaxHealth < 0)
+        {
+            return maxHealth;
+        }
+        return modifiedMaxHealth;
+    }
+
+    public int GetAttackDamage()
+    {
+        if (modifiedMaxHealth < 0)
+        {
+            return maxHealth;
+        }
+        return (int)modifiedAttackDamage;
+    }
+
+    public float GetAlertRange()
+    {
+        if (modifiedAlertRange < 0)
+        {
+            return alertRange;
+        }
+        return modifiedAlertRange;
+    }
+    public float GetAttackSpeed()
+    {
+        if (modifiedAttackSpeed < 0)
+        {
+            return attackSpeed;
+        }
+        return modifiedAttackSpeed;
+    }
+
+    public float GetAttackRange()
+    {
+        if (modifiedAttackRange < 0)
+        {
+            return attackRange;
+        }
+        return modifiedAttackRange;
+    }
+    public float GetMoveSpeed()
+    {
+        if (modifiedMoveSpeed < 0)
+        {
+            return moveSpeed;
+        }
+        return modifiedMoveSpeed;
+    }
     public virtual bool TargetInSight()
     {
         return Vector3.Angle(transform.forward, (currentAttackTarget.transform.position - transform.position)) < 20f;
     }
 
+    public void ApplyEffect(EffectType effect, int length)
+    {
+        effects[effect] = length;
+    }
 }

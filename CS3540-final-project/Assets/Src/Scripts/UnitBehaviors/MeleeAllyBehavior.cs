@@ -12,12 +12,12 @@ public class MeleeAllyBehavior : AllyBehavior
         AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
         if (Random.Range(0.0f, 1.0f) >= critChance)
         {
-            target.GetComponent<UnitBehavior>().TakeDamage(attackDamage, gameObject);
+            target.GetComponent<UnitBehavior>().TakeDamage(GetAttackDamage(), gameObject);
             anim.SetTrigger(ATTACK1_TRIGGER);
         }
         else
         {
-            target.GetComponent<UnitBehavior>().TakeDamage(attackDamage * 2, gameObject);
+            target.GetComponent<UnitBehavior>().TakeDamage(GetAttackDamage() * 2, gameObject);
             anim.SetTrigger(ATTACK2_TRIGGER);
         }
     }

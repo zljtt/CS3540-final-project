@@ -25,7 +25,7 @@ public class FarAttackAllyBehavior : AllyBehavior
             shootPoint.position += offset;
             GameObject projectile = Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
             var behavior = projectile.GetComponent<ProjectileBehavior>();
-            behavior.attackDamage = attackDamage;
+            behavior.attackDamage = GetAttackDamage();
             behavior.shooter = gameObject;
         }
     }

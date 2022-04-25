@@ -69,7 +69,7 @@ public class DragonAI : AllyBehavior
         {
             Vector3 targetPosition = currentAttackTarget.transform.position;
             targetPosition.y = currentHeight;
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, GetMoveSpeed() * Time.deltaTime);
         }
     }
     public override void Attack(GameObject target)
@@ -87,7 +87,7 @@ public class DragonAI : AllyBehavior
             Quaternion rotation = Quaternion.LookRotation(direction);
             GameObject projectile = Instantiate(firePrefab, shootPoint.position, rotation);
             var behavior = projectile.GetComponent<ProjectileBehavior>();
-            behavior.attackDamage = attackDamage;
+            behavior.attackDamage = GetAttackDamage();
             behavior.shooter = gameObject;
         }
 
