@@ -117,7 +117,6 @@ public abstract class UnitBehavior : MonoBehaviour
         if (effects.ContainsKey(EffectType.ENCOURAGE))
         {
             modifiedAttackDamage = modifiedAttackDamage * 1.2f;
-            modifiedMoveSpeed = modifiedMoveSpeed * 1.2f;
             modifiedMaxHealth = (int)(modifiedMaxHealth * 1.2f);
         }
         if (effects.ContainsKey(EffectType.WINDGRACE))
@@ -171,7 +170,7 @@ public abstract class UnitBehavior : MonoBehaviour
     // find a possible target within the alert range.
     public abstract GameObject FindPossibleAttackTargetInRange();
 
-    protected List<GameObject> FindTargetsInRange(string[] tags, params UnitType[] ignore)
+    public List<GameObject> FindTargetsInRange(string[] tags, params UnitType[] ignore)
     {
         List<GameObject> allTarget = new List<GameObject> { };
         for (int i = 0; i < tags.Length; i++)

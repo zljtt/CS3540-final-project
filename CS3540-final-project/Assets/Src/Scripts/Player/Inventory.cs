@@ -19,10 +19,12 @@ public class Inventory
         }
         items[0] = new ItemStack(ItemDatabase.ORC_WARRIOR_SPAWNER, 10);
         items[1] = new ItemStack(ItemDatabase.DRAKE_SPAWNER, 10);
-        items[2] = new ItemStack(ItemDatabase.HEALTH_POTION, 3);
-        items[3] = new ItemStack(ItemDatabase.MASS_HEAL_ABILITY, 1);
-        items[4] = new ItemStack(ItemDatabase.ORC_MAGE_SPAWNER, 5);
-        items[5] = new ItemStack(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
+        items[2] = new ItemStack(ItemDatabase.ORC_MAGE_SPAWNER, 5);
+        items[3] = new ItemStack(ItemDatabase.HEALTH_POTION, 3);
+        items[4] = new ItemStack(ItemDatabase.MASS_HEAL_ABILITY, 1);
+        items[5] = new ItemStack(ItemDatabase.ENCOURAGE_SPELL, 1);
+        items[6] = new ItemStack(ItemDatabase.RAGE_SPELL, 1);
+        items[7] = new ItemStack(ItemDatabase.TAUNT_SPELL, 1);
     }
 
     public ItemStack AddItem(Item item, int count)
