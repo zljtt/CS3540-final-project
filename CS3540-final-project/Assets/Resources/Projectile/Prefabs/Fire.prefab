@@ -5003,10 +5003,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28de0136ed6e4358a6535f23c6ee12a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTag: Enemy
-  currentTag: Ally
+  shooter: {fileID: 0}
   attackDamage: 10
-  projectileType: Fire
+  projectileType: 1
 --- !u!1 &1800544799133088
 GameObject:
   m_ObjectHideFlags: 0

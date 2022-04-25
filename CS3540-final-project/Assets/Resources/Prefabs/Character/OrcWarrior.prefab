@@ -369,15 +369,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   types: 0100000003000000
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
-  maxHealth: 100
+  level: 0
+  maxHealth: 70
   attackRange: 2.5
-  alertRange: 10
+  alertRange: 20
   attackDamage: 4
   attackSpeed: 1
   moveSpeed: 2
   currentAttackTarget: {fileID: 0}
   currentState: 0
   attackSFX: {fileID: 8300000, guid: 03e9f874800c3824e9894fa1efebc1b6, type: 3}
+  critChance: 0.2
 --- !u!1 &5211158535205678230
 GameObject:
   m_ObjectHideFlags: 0

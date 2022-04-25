@@ -16,9 +16,18 @@ public class FarAttackAllyBehavior : AllyBehavior
 
     public void Shoot()
     {
-        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-        shootPoint.LookAt(currentAttackTarget.transform);
-        Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
+        if (currentAttackTarget != null)
+        {
+            AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
+            Vector3 offset = new Vector3(0, 0.5f, 0);
+            shootPoint.position -= offset;
+            shootPoint.LookAt(currentAttackTarget.transform);
+            shootPoint.position += offset;
+            GameObject projectile = Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
+            var behavior = projectile.GetComponent<ProjectileBehavior>();
+            behavior.attackDamage = attackDamage;
+            behavior.shooter = gameObject;
+        }
     }
 
     public override GameObject FindPossibleAttackTargetInRange()

@@ -18,10 +18,9 @@ public abstract class AllyBehavior : UnitBehavior
     {
         if (agent != null && agent.enabled)
         {
+            agent.stoppingDistance = 0.2f;
             agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
             agent.isStopped = currentState == State.ALERT || currentState == State.DIE || currentState == State.IDLE || currentState == State.ATTACK;
-            // if steering target is incorrect during combat
-            Vector3 steer = agent.steeringTarget - transform.position;
         }
         base.Update();
     }
@@ -46,7 +45,7 @@ public abstract class AllyBehavior : UnitBehavior
         {
             currentState = State.ALERT;
         }
-        else if (CanReach(currentAttackTarget))
+        else if (CanReach(currentAttackTarget) && TargetInSight())
         {
             currentState = State.ATTACK;
         }
@@ -63,6 +62,10 @@ public abstract class AllyBehavior : UnitBehavior
         if (currentAttackTarget == null || !CanReach(currentAttackTarget))
         {
             currentState = State.ALERT;
+        }
+        else if (!TargetInSight())
+        {
+            currentState = State.CHASE;
         }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {

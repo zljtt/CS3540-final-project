@@ -763,7 +763,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   types: 0000000002000000
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
-  maxHealth: 150
+  level: 0
+  maxHealth: 30
   attackRange: 15
   alertRange: 25
   attackDamage: 10

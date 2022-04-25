@@ -17,35 +17,44 @@ public class FarAttackEnemyBehavior : EnemyBehavior
 
     public void Shoot()
     {
-        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-        shootPoint.LookAt(currentAttackTarget.transform);
-        Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
+        if (currentAttackTarget != null)
+        {
+            AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
+            Vector3 offset = new Vector3(0, 0.5f, 0);
+            shootPoint.position -= offset;
+            shootPoint.LookAt(currentAttackTarget.transform);
+            shootPoint.position += offset;
+            GameObject projectile = Instantiate(firePrefab, shootPoint.position, shootPoint.rotation);
+            var behavior = projectile.GetComponent<ProjectileBehavior>();
+            behavior.attackDamage = attackDamage;
+            behavior.shooter = gameObject;
+        }
     }
 
 
     public override GameObject FindPossibleAttackTargetInRange()
     {
-        List<GameObject> possibleTargets = FindTargetsInRange(new string[] { "Ally", "Enemy" });
-        possibleTargets.Remove(this.gameObject);
-        GameObject lowestHealthTarget = FindLowestHealth(transform, possibleTargets);
-        return lowestHealthTarget;
-    }
-
-    public GameObject FindLowestHealth(Transform transform, List<GameObject> targets)
-    {
-        GameObject lowestHealthTarget = null;
-        float lowestHealth = Mathf.Infinity;
-        foreach (GameObject target in targets)
+        List<GameObject> possibleTargets = new List<GameObject>();
+        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            var methodClass = target.GetComponent<UnitBehavior>();
-            float currentHealth = methodClass.GetHealth();
-
-            if (currentHealth < lowestHealth)
+            var unit = target.GetComponent<UnitBehavior>();
+            if (Vector3.Distance(transform.position, target.transform.position) < alertRange &&
+                unit.GetHealth() < unit.maxHealth && !unit.ContainType(UnitType.HEAL))
             {
-                lowestHealthTarget = target;
-                lowestHealth = currentHealth;
+                possibleTargets.Add(target);
             }
         }
-        return lowestHealthTarget;
+        if (possibleTargets.Count > 0)
+        {
+            return FindClosest(transform, possibleTargets);
+        }
+        foreach (GameObject target in GameObject.FindGameObjectsWithTag("Ally"))
+        {
+            if (Vector3.Distance(transform.position, target.transform.position) < alertRange)
+            {
+                possibleTargets.Add(target);
+            }
+        }
+        return FindClosest(transform, possibleTargets);
     }
 }

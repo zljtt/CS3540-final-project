@@ -1207,16 +1207,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3307026e2c9614b50b884b52d34a3044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  types: 0100000002000000
+  types: 010000000200000004000000
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
-  maxHealth: 120
-  attackRange: 10
+  level: 0
+  maxHealth: 40
+  attackRange: 15
   alertRange: 20
   attackDamage: 5
   attackSpeed: 2
-  moveSpeed: 2
+  moveSpeed: 1
   currentAttackTarget: {fileID: 0}
   currentState: 0
+  lootTable:
+  - loot: coin5
+    amountMin: 1
+    amountMax: 1
+    chance: 0.8
+  - loot: coin10
+    amountMin: 1
+    amountMax: 1
+    chance: 0.2
+  - loot: coin5
+    amountMin: 1
+    amountMax: 1
+    chance: 0.2
+  - loot: health_potion
+    amountMin: 1
+    amountMax: 1
+    chance: 0.5
+  - loot: mass_heal
+    amountMin: 1
+    amountMax: 1
+    chance: 0.05
   attackSFX: {fileID: 8300000, guid: e145a0e25cb1cd94387f55b78bb56d9f, type: 3}
   firePrefab: {fileID: 3693983640637098647, guid: 85fc69168651a4c63871aa5423dbb533, type: 3}
   shootPoint: {fileID: 2435369671531312378}

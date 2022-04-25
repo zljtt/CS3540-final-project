@@ -34,5 +34,17 @@ public class ItemDatabase
         ITEMS.Add(item);
         return item;
     }
+
+    public static Item GetFromRegistryName(string name)
+    {
+        foreach (Item item in ITEMS)
+        {
+            if (item.GetRegistryName() == name)
+            {
+                return item;
+            }
+        }
+        return EMPTY;
+    }
 }
 

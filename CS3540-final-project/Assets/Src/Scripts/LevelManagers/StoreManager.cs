@@ -17,6 +17,7 @@ public class StoreManager : MonoBehaviour
         if (nextLoadRefill)
         {
             nextLoadRefill = false;
+            store = new Store();
             store.Refill();
         }
         else

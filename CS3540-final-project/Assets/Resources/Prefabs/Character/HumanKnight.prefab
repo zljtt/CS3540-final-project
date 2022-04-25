@@ -662,14 +662,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   types: 0300000001000000
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
+  level: 0
   maxHealth: 100
   attackRange: 2.5
-  alertRange: 10
+  alertRange: 20
   attackDamage: 2
   attackSpeed: 1
   moveSpeed: 2
   currentAttackTarget: {fileID: 0}
   currentState: 0
+  lootTable:
+  - loot: coin5
+    amountMin: 1
+    amountMax: 1
+    chance: 0.8
+  - loot: coin10
+    amountMin: 1
+    amountMax: 1
+    chance: 0.2
+  - loot: coin5
+    amountMin: 1
+    amountMax: 1
+    chance: 0.2
+  - loot: health_potion
+    amountMin: 1
+    amountMax: 1
+    chance: 0.5
+  critChance: 0.2
   attackSFX: {fileID: 8300000, guid: 7b6392e21eb8ad7489dc38aaf7fa8db2, type: 3}
 --- !u!1 &7181614438399443290
 GameObject:

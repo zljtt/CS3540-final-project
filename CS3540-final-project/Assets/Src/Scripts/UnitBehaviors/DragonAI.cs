@@ -47,7 +47,7 @@ public class DragonAI : AllyBehavior
         }
         if (currentHeight < destinyHeight)
         {
-            Vector3 newPos = new Vector3(currentPosition.x, currentPosition.y + 0.05f, currentPosition.z);
+            Vector3 newPos = new Vector3(currentPosition.x, currentPosition.y + 0.025f, currentPosition.z);
             this.gameObject.transform.position = newPos;
         }
     }
@@ -80,10 +80,17 @@ public class DragonAI : AllyBehavior
 
     public void Shoot()
     {
-        AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-        Vector3 direction = currentAttackTarget.transform.position - gameObject.transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        Instantiate(firePrefab, shootPoint.position, rotation);
+        if (currentAttackTarget != null)
+        {
+            AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
+            Vector3 direction = currentAttackTarget.transform.position - gameObject.transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            GameObject projectile = Instantiate(firePrefab, shootPoint.position, rotation);
+            var behavior = projectile.GetComponent<ProjectileBehavior>();
+            behavior.attackDamage = attackDamage;
+            behavior.shooter = gameObject;
+        }
+
     }
     // when an unit die
     protected override void PerformDie()
@@ -106,6 +113,9 @@ public class DragonAI : AllyBehavior
         Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
     }
-
+    public override bool TargetInSight()
+    {
+        return true;
+    }
 
 }

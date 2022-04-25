@@ -85,8 +85,7 @@ public abstract class CombatManager : MonoBehaviour
                 {
                     status = STATUS.LOOT;
                     LevelManager.playerData.playerLevel += 1;
-                    LevelManager.inventory.AddItem(ItemDatabase.HEALTH_POTION, 3);
-                    LevelManager.inventory.AddItem(ItemDatabase.ORC_WARRIOR_SPAWNER, 5);
+                    LevelManager.playerData.currentLevel = "Castle";
                     OnCombatEnd();
                 }
                 break;
@@ -128,6 +127,7 @@ public abstract class CombatManager : MonoBehaviour
             {
                 GameObject spawnedUnit = GameObject.Instantiate(Resources.Load(unit), position, rotation) as GameObject;
                 UnitBehavior behavior = spawnedUnit.GetComponent<UnitBehavior>();
+                behavior.level = LevelManager.playerData.playerLevel;
                 if (behavior != null)
                 {
                     behavior.ChangeState(UnitBehavior.State.ALERT);

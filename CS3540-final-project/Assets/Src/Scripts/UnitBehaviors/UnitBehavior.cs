@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using System;
 
 public enum UnitType
 {
@@ -10,6 +11,7 @@ public enum UnitType
     GROUND,
     RANGED,
     MELEE,
+    HEAL,
 }
 public abstract class UnitBehavior : MonoBehaviour
 {
@@ -26,6 +28,7 @@ public abstract class UnitBehavior : MonoBehaviour
     public static readonly int DIE_ANIM = -1;
     public enum State { IDLE, ALERT, CHASE, ATTACK, DIE };
     public AudioClip healSFX;
+    public int level;
 
     public int maxHealth = 100;
     public float attackRange = 2f;
@@ -33,7 +36,6 @@ public abstract class UnitBehavior : MonoBehaviour
     public int attackDamage = 2;
     public float attackSpeed = 1f;
     public float moveSpeed = 2;
-
     protected Slider[] healthSliders;
     protected NavMeshAgent agent;
     public GameObject currentAttackTarget;
@@ -130,7 +132,7 @@ public abstract class UnitBehavior : MonoBehaviour
         }
         return allTarget;
     }
-    public bool ContainType(UnitType[] targetTypes)
+    public bool ContainType(params UnitType[] targetTypes)
     {
         foreach (UnitType type in targetTypes)
         {
@@ -192,4 +194,10 @@ public abstract class UnitBehavior : MonoBehaviour
     {
         return currentHealth;
     }
+
+    public virtual bool TargetInSight()
+    {
+        return Vector3.Angle(transform.forward, (currentAttackTarget.transform.position - transform.position)) < 20f;
+    }
+
 }

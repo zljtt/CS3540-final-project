@@ -1303,12 +1303,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   types: 0100000002000000
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
-  maxHealth: 120
-  attackRange: 10
+  level: 0
+  maxHealth: 50
+  attackRange: 15
   alertRange: 20
   attackDamage: 5
   attackSpeed: 2
-  moveSpeed: 2
+  moveSpeed: 1
   currentAttackTarget: {fileID: 0}
   currentState: 0
   attackSFX: {fileID: 8300000, guid: 2d1f2f67af4fe4448a2c7bfc4ce5287d, type: 3}

@@ -5,21 +5,26 @@ using UnityEngine;
 public abstract class EnemyBehavior : UnitBehavior
 {
     private GameObject wayPoint;
+    public List<LootEntry> lootTable;
+    private bool isQuitting = false;
     protected override void Start()
     {
-        base.Start();
         // init a list of waypoints at first, and remove the ones it reaches later
         List<GameObject> wayPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
         wayPoint = FindClosest(transform, wayPoints);
+        maxHealth = (int)Mathf.Floor(maxHealth * (1 + level * 0.1f));
+        attackDamage = (int)Mathf.Floor(attackDamage * (1 + level * 0.1f));
+        base.Start();
     }
 
     protected override void Update()
     {
-        agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
-        Vector3 steer = agent.steeringTarget - transform.position;
-
-        agent.isStopped = currentState == State.IDLE || currentState == State.DIE || currentState == State.ATTACK;
-
+        if (agent != null && agent.enabled)
+        {
+            agent.stoppingDistance = 0.2f;
+            agent.speed = currentState == State.CHASE ? moveSpeed : moveSpeed * 1.5f;
+            agent.isStopped = currentState == State.IDLE || currentState == State.DIE || currentState == State.ATTACK;
+        }
         base.Update();
     }
 
@@ -53,11 +58,11 @@ public abstract class EnemyBehavior : UnitBehavior
         {
             currentState = State.ALERT;
         }
-        else if (CanReach(currentAttackTarget))
+        else if (CanReach(currentAttackTarget) && TargetInSight())
         {
             currentState = State.ATTACK;
         }
-        else // chase
+        else if (agent != null && agent.enabled)
         {
             agent.SetDestination(currentAttackTarget.transform.position);
         }
@@ -71,6 +76,10 @@ public abstract class EnemyBehavior : UnitBehavior
         {
             currentState = State.ALERT;
         }
+        else if (!TargetInSight())
+        {
+            currentState = State.CHASE;
+        }
         else if (lastAttackDeltaTime > attackSpeed) // attack
         {
             Attack(currentAttackTarget);
@@ -82,5 +91,21 @@ public abstract class EnemyBehavior : UnitBehavior
     {
         anim.SetInteger("animState", DIE_ANIM);
         Destroy(gameObject, 1);
+    }
+    void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
+
+    void OnDestroy()
+    {
+        if (!isQuitting)
+        {
+            foreach (LootEntry loot in lootTable)
+            {
+                Vector3 randomOffset = new Vector3(Random.Range(-0.4f, 0.4f), 0, Random.Range(-0.4f, 0.4f));
+                loot.GenerateLoot(transform.position + randomOffset, 1 + level / 5, level * 0.1f);
+            }
+        }
     }
 }
