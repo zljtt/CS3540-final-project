@@ -20,7 +20,7 @@ public class TooltipManager : MonoBehaviour
         if (hover != ItemDatabase.EMPTY)
         {
             tooltip.SetActive(true);
-            tooltip.transform.position = Input.mousePosition + new Vector3(250, -140, 0);
+            tooltip.transform.position = Input.mousePosition + new Vector3(300, -200, 0);
             tooltipTitle.text = hover.GetProperties().GetName();
             tooltipContent.text = hover.GetProperties().GetDescription();
         }

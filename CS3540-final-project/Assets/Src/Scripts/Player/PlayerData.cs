@@ -22,6 +22,10 @@ public class PlayerData
         {
             health -= amount;
         }
+        if (health <= 0)
+        {
+            LevelManager.RestartGame();
+        }
     }
 
     public bool ConsumeMoney(int amount)

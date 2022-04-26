@@ -16,9 +16,15 @@ public class SpawnerItem : Item
         {
             GameObject spawnedUnit = GameObject.Instantiate(Resources.Load(unitPath), targetHit.point, user.parent.transform.rotation) as GameObject;
             GameObject.Instantiate(Resources.Load("Prefabs/Effects/SpawnEffect"), targetHit.point, spawnedUnit.transform.rotation);
+            ApplyRitual(spawnedUnit.GetComponent<UnitBehavior>());
             LevelManager.inventory.Consume(index, 1);
             return true;
         }
         return false;
+    }
+
+    private void ApplyRitual(UnitBehavior unit)
+    {
+        unit.maxHealth = (int)(unit.maxHealth * (1 + LevelManager.inventory.CountItemInHotbar(ItemDatabase.HEALTH_RITUAL) * 0.2f));
     }
 }

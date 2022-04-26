@@ -50,8 +50,16 @@ public class LevelManager : MonoBehaviour
         {
             playerData.currentLevel = SceneManager.GetActiveScene().name;
         }
-
     }
+
+    public static void RestartGame()
+    {
+        playerData = new PlayerData();
+        inventory = new Inventory();
+        StoreManager.nextLoadRefill = true;
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void ReadPlayerData()
     {
         playerData = new PlayerData();

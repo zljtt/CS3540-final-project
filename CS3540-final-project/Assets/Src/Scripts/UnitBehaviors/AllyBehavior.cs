@@ -25,6 +25,19 @@ public abstract class AllyBehavior : UnitBehavior
         base.Update();
     }
 
+    protected override void UpdateEffectPerSecond()
+    {
+        base.UpdateEffectPerSecond();
+        GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
+        foreach (GameObject ally in allies)
+        {
+            if (Vector3.Distance(ally.transform.position, transform.position) < 5)
+            {
+                modifiedAttackDamage *= (1 + LevelManager.inventory.CountItemInHotbar(ItemDatabase.WOLF_RITUAL) * 0.25f);
+            }
+        }
+    }
+
     protected override void PerformAlert()
     {
         anim.SetInteger("animState", IDLE_ANIM);

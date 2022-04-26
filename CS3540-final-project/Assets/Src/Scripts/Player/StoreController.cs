@@ -11,8 +11,10 @@ public class StoreController : MonoBehaviour
     {
         if (storeOpen)
         {
-            if (Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Escape))
             {
+                FindObjectOfType<TooltipManager>().tooltip.SetActive(false);
+                TooltipManager.hover = ItemDatabase.EMPTY;
                 gui.SetActive(false);
                 storeOpen = false;
                 Cursor.visible = false;
@@ -21,7 +23,7 @@ public class StoreController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.P))
             {
                 gui.SetActive(true);
                 storeOpen = true;

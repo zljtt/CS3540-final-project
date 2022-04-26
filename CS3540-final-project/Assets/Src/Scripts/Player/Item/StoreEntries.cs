@@ -18,6 +18,11 @@ public class StoreEntries
     public static readonly StoreEntry TAUNT_SPELL = Register(new StoreEntry(new ItemStack(ItemDatabase.TAUNT_SPELL, 1), 50));
     public static readonly StoreEntry ENCOURAGE_SPELL = Register(new StoreEntry(new ItemStack(ItemDatabase.ENCOURAGE_SPELL, 1), 45));
     public static readonly StoreEntry RAGE_SPELL = Register(new StoreEntry(new ItemStack(ItemDatabase.RAGE_SPELL, 1), 30));
+    public static readonly StoreEntry WINDGRACE_SPELL = Register(new StoreEntry(new ItemStack(ItemDatabase.WINDGRACE_SPELL, 1), 15));
+
+    public static readonly StoreEntry HEALTH_RITUAL = Register(new StoreEntry(new ItemStack(ItemDatabase.HEALTH_RITUAL, 1), 50));
+    public static readonly StoreEntry WOLF_RITUAL = Register(new StoreEntry(new ItemStack(ItemDatabase.WOLF_RITUAL, 1), 45));
+
 
     public static StoreEntry Register(StoreEntry entry)
     {

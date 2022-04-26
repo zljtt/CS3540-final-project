@@ -110,8 +110,8 @@ public abstract class UnitBehavior : MonoBehaviour
         if (effects.ContainsKey(EffectType.RAGE))
         {
             TakeDamage(5, null);
-            modifiedAttackDamage = modifiedAttackDamage * 1.25f;
-            modifiedAttackSpeed = modifiedAttackSpeed * 0.75f;
+            modifiedAttackDamage = modifiedAttackDamage * 1.5f;
+            modifiedAttackSpeed = modifiedAttackSpeed * 0.5f;
 
         }
         if (effects.ContainsKey(EffectType.ENCOURAGE))
@@ -125,6 +125,7 @@ public abstract class UnitBehavior : MonoBehaviour
             modifiedAlertRange = modifiedAlertRange * 1.5f;
         }
     }
+
     protected virtual void UpdateState()
     {
         switch (currentState)
