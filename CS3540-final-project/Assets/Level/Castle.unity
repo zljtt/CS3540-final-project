@@ -49022,7 +49022,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 4068592801691858863}
   settingMenu: {fileID: 2748885252337546970}
   tutorialMenu: {fileID: 6364115290804112198}
-  tutorialActive: 0
+  tutorialActive: 1
   playerPosition: {fileID: 0}
 --- !u!114 &5010887989451749324
 MonoBehaviour:
