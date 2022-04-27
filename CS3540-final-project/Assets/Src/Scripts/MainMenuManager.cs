@@ -13,6 +13,8 @@ public class MainMenuManager : MonoBehaviour
     public GameObject settingMenu;
     public GameObject tutorialMenu;
     public static bool isGamePaused = false;
+    public bool tutorialActive;
+
     public Transform playerPosition;
     private void Awake()
     {
@@ -21,6 +23,16 @@ public class MainMenuManager : MonoBehaviour
         mouseSlider.value = MouseLook.mouseSensitiviy;
         currentMouseValue = MouseLook.mouseSensitiviy;
         mouseText.text = "" + MouseLook.mouseSensitiviy;
+    }
+
+    private void Start() {
+        if (tutorialActive) {
+            isGamePaused = true;
+            tutorialMenu.SetActive(true);
+            Time.timeScale = 0.0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     private void Update()

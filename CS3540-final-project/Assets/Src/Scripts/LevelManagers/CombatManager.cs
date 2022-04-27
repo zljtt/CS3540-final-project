@@ -16,7 +16,7 @@ public abstract class CombatManager : MonoBehaviour
     public Text statusText;
     public Text healthText;
     public Text levelText;
-
+    public Slider healthSlider;
     public List<Transform> spawnPoints;
     public Slider timeSlider;
     protected float currentTime;
@@ -31,6 +31,8 @@ public abstract class CombatManager : MonoBehaviour
         status = STATUS.PREPARE;
         currentTime = 0;
         pathIndicaterTime = 0;
+        healthSlider.value = LevelManager.playerData.health;
+        healthSlider.maxValue = LevelManager.playerData.health;
         spawnList = GetSpawns();
         spawnedEnemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
         //maxEnemyCount = spawnList.Count + spawnedEnemyList.Count;
@@ -42,7 +44,8 @@ public abstract class CombatManager : MonoBehaviour
         pathIndicaterTime += Time.deltaTime;
         statusText.text = status.ToString();
         healthText.text = ("HP LEFT : " + LevelManager.playerData.health.ToString());
-        levelText.text = ("LEVEL : " + LevelManager.playerData.playerLevel.ToString());
+        levelText.text = ("Level " + LevelManager.playerData.playerLevel.ToString());
+        healthSlider.value = LevelManager.playerData.health;
 
         switch (status)
         {

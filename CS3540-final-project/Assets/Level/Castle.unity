@@ -46831,6 +46831,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 4903265691176954990}
   settingMenu: {fileID: 6510917672792239387}
   tutorialMenu: {fileID: 2606612840273498247}
+  tutorialActive: 1
   playerPosition: {fileID: 0}
 --- !u!82 &4176857353048648713
 AudioSource:
