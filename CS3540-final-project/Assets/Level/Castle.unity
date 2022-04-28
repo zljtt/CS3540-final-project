@@ -35616,6 +35616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: warp
       objectReference: {fileID: 0}
+    - target: {fileID: 4798033916663672015, guid: cbd3c3b71dc9c6d4792824fb91b73bb4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbd3c3b71dc9c6d4792824fb91b73bb4, type: 3}
 --- !u!1001 &1791083341

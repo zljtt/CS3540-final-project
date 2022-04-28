@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fcc6661f0c073148925d07e4521615b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportScene: Farm
+  teleportScene: []
 --- !u!1 &4798033916663672015
 GameObject:
   m_ObjectHideFlags: 0
