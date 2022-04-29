@@ -90,6 +90,6 @@ public abstract class AllyBehavior : UnitBehavior
     protected override void PerformDie()
     {
         anim.SetInteger("animState", DIE_ANIM);
-        Destroy(gameObject, 1);
+        Destroy(gameObject, 2);
     }
 }

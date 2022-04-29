@@ -20,7 +20,7 @@ public class FarAttackEnemyBehavior : EnemyBehavior
         if (currentAttackTarget != null)
         {
             AudioSource.PlayClipAtPoint(attackSFX, playerPosition.position);
-            Vector3 offset = new Vector3(0, 0.5f, 0);
+            Vector3 offset = new Vector3(0f, 0.5f, 0.2f);
             shootPoint.position -= offset;
             shootPoint.LookAt(currentAttackTarget.transform);
             shootPoint.position += offset;
