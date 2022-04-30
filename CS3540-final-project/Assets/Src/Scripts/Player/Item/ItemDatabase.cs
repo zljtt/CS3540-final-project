@@ -55,11 +55,11 @@ public class ItemDatabase
         .WithDescription("Consumable : Spawns a Drake, a ranged flying unit with low health but high attack. Can only use during preparation."),
         "Prefabs/Character/Drake"));
     public static readonly Item ORC_ARCHER_SPAWNER = Register(new SpawnerItem("orc_archer_spawner", new Item.ItemProperty()
-        .WithDisplayName("Orc Warrior")
+        .WithDisplayName("Orc Archer")
         .WithDescription("Consumable : Spawns an Orc Archer, a ranged unit with large attack range and fast attack. Can only use during preparation."),
         "Prefabs/Character/OrcArcher"));
     public static readonly Item ORC_FIGHTER_SPAWNER = Register(new SpawnerItem("orc_fighter_spawner", new Item.ItemProperty()
-        .WithDisplayName("Orc Warrior")
+        .WithDisplayName("Orc Fighter")
         .WithDescription("Consumable : Spawns an Orc Fighter, a melee tank unit with high health and larger alert range. Can only use during preparation."),
         "Prefabs/Character/OrcFighter"));
     // rituals

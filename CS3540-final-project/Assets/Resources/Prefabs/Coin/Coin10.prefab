@@ -106,8 +106,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8188368638388189919}
   - component: {fileID: 1681880251355013778}
-  - component: {fileID: 4824274291947924997}
   - component: {fileID: 5818618387543864980}
+  - component: {fileID: -8279602737083914472}
   m_Layer: 0
   m_Name: Coin10
   m_TagString: Untagged
@@ -144,22 +144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 10
   coinSFX: {fileID: 8300000, guid: 0c401b80d1b89b34186eb5bd8b7586ff, type: 3}
---- !u!54 &4824274291947924997
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3613264866959720321}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &5818618387543864980
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -173,3 +157,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.33550298, y: 0.9876688, z: 0.7327728}
   m_Center: {x: -0.004337907, y: 0.03175345, z: 0.028423727}
+--- !u!54 &-8279602737083914472
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613264866959720321}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0

@@ -12,6 +12,7 @@ public abstract class EnemyBehavior : UnitBehavior
 
     protected override void Start()
     {
+        isQuitting = false;
         lastPos = transform.position;
         // init a list of waypoints at first, and remove the ones it reaches later
         List<GameObject> wayPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
@@ -107,6 +108,7 @@ public abstract class EnemyBehavior : UnitBehavior
         anim.SetInteger("animState", DIE_ANIM);
         Destroy(gameObject, 2);
     }
+
     void OnApplicationQuit()
     {
         isQuitting = true;

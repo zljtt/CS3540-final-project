@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3539374512833640070}
   - component: {fileID: 3539374512833640071}
   - component: {fileID: 3539374512833640068}
-  - component: {fileID: 4093893282365254695}
+  - component: {fileID: 1021046449960379225}
   m_Layer: 0
   m_Name: ItemWorld
   m_TagString: Untagged
@@ -110,7 +110,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4093893282365254695
+--- !u!54 &1021046449960379225
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,5 +124,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 94
   m_CollisionDetection: 0

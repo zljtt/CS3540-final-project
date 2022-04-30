@@ -5,10 +5,6 @@ using UnityEngine;
 // Represent the item in the world
 public class ItemWorld : MonoBehaviour
 {
-    private float lowY;
-    private bool isFalling;
-    private float fallVelocity;
-
 
     private ItemStack item;
 
@@ -30,7 +26,6 @@ public class ItemWorld : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isFalling = true;
     }
 
     // Update is called once per frame
@@ -41,13 +36,6 @@ public class ItemWorld : MonoBehaviour
         {
             transform.LookAt(player.transform);
         }
-        if (!isFalling)
-        {
-            float offset = Mathf.PingPong(Time.time / 10, 0.2f);
-            Vector3 newPos = transform.position;
-            newPos.y = lowY + offset;
-            transform.position = newPos;
-        }
 
     }
 
@@ -57,12 +45,6 @@ public class ItemWorld : MonoBehaviour
         {
             LevelManager.inventory.AddItem(item.GetItem(), item.GetAmount());
             Destroy(gameObject);
-        }
-        else if (isFalling && other.gameObject.isStatic)
-        {
-            isFalling = false;
-            lowY = transform.position.y;
-            Destroy(gameObject.GetComponent<Rigidbody>());
         }
     }
 }

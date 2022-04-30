@@ -28,6 +28,9 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         debugInventory = inventory;
+        if (inventory.GetItemList() == null) {
+            return;
+        }
         // update cooldown
         foreach (ItemStack itemStack in inventory.GetItemList())
         {
@@ -65,6 +68,8 @@ public class LevelManager : MonoBehaviour
         playerData = new PlayerData();
         inventory = new Inventory();
         StoreManager.nextLoadRefill = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("MainMenu");
     }
 
