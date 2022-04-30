@@ -1305,7 +1305,7 @@ MonoBehaviour:
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
   level: 0
   maxHealth: 50
-  attackRange: 15
+  attackRange: 12
   alertRange: 20
   attackDamage: 5
   attackSpeed: 2

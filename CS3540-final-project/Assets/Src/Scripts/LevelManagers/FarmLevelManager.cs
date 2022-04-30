@@ -35,9 +35,10 @@ public class FarmLevelManager : CombatManager
             new SpawnInfo(5, "Prefabs/Character/HumanKnight", spawnPoints[0].position, spawnPoints[0].rotation),
             new SpawnInfo(10, "Prefabs/Character/HumanMage", spawnPoints[2].position, spawnPoints[1].rotation),
             new SpawnInfo(15, "Prefabs/Character/HumanKnight", spawnPoints[0].position, spawnPoints[0].rotation),
-            new SpawnInfo(20, "Prefabs/Character/HumanMage", spawnPoints[1].position, spawnPoints[2].rotation),
-            new SpawnInfo(25, "Prefabs/Character/HumanKnight", spawnPoints[0].position, spawnPoints[0].rotation),
-            new SpawnInfo(30, "Prefabs/Character/HumanMage", spawnPoints[1].position, spawnPoints[1].rotation),
+            new SpawnInfo(20, "Prefabs/Character/HumanArcher", spawnPoints[1].position, spawnPoints[2].rotation),
+            new SpawnInfo(25, "Prefabs/Character/HumanWarrior", spawnPoints[0].position, spawnPoints[0].rotation),
+            new SpawnInfo(30, "Prefabs/Character/HumanArcher", spawnPoints[1].position, spawnPoints[1].rotation),
+            new SpawnInfo(35, "Prefabs/Character/HumanWarrior", spawnPoints[2].position, spawnPoints[2].rotation),
         };
     }
 

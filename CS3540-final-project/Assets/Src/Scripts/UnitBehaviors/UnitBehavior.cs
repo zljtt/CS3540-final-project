@@ -179,7 +179,7 @@ public abstract class UnitBehavior : MonoBehaviour
             List<GameObject> targets = new List<GameObject>(GameObject.FindGameObjectsWithTag(tags[i]));
             foreach (GameObject target in targets)
             {
-                if (Vector3.Distance(transform.position, target.transform.position) < GetAlertRange()
+                if (target.GetComponent<UnitBehavior>() != null && Vector3.Distance(transform.position, target.transform.position) < GetAlertRange()
                     && !target.GetComponent<UnitBehavior>().ContainType(ignore))
                 {
                     allTarget.Add(target);

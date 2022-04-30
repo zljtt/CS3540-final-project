@@ -54,6 +54,14 @@ public class LevelManager : MonoBehaviour
 
     public static void RestartGame()
     {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy.GetComponent<EnemyBehavior>() != null)
+            {
+                enemy.GetComponent<EnemyBehavior>().isQuitting = true;
+            }
+        }
         playerData = new PlayerData();
         inventory = new Inventory();
         StoreManager.nextLoadRefill = true;

@@ -44,17 +44,24 @@ public class ItemDatabase
     // spawners
     public static readonly Item ORC_WARRIOR_SPAWNER = Register(new SpawnerItem("orc_warrior_spawner", new Item.ItemProperty()
         .WithDisplayName("Orc Warrior")
-        .WithDescription("Consumable : Spawns a Orc Warrior, a melee unit with fast attack speed. Can only use during preparation."),
+        .WithDescription("Consumable : Spawns an Orc Warrior, a melee unit with fast attack speed. Can only use during preparation."),
         "Prefabs/Character/OrcWarrior"));
     public static readonly Item ORC_MAGE_SPAWNER = Register(new SpawnerItem("orc_mage_spawner", new Item.ItemProperty()
         .WithDisplayName("Orc Mage")
-        .WithDescription("Consumable : Spawns Orc Mage, a ranged unit that can attack behind melee units. Can only use during preparation."),
+        .WithDescription("Consumable : Spawns an Orc Mage, a ranged unit that can attack behind melee units. Can only use during preparation."),
         "Prefabs/Character/OrcMage"));
     public static readonly Item DRAKE_SPAWNER = Register(new SpawnerItem("drake_spawner", new Item.ItemProperty()
         .WithDisplayName("Orc Warrior")
         .WithDescription("Consumable : Spawns a Drake, a ranged flying unit with low health but high attack. Can only use during preparation."),
         "Prefabs/Character/Drake"));
-
+    public static readonly Item ORC_ARCHER_SPAWNER = Register(new SpawnerItem("orc_archer_spawner", new Item.ItemProperty()
+        .WithDisplayName("Orc Warrior")
+        .WithDescription("Consumable : Spawns an Orc Archer, a ranged unit with large attack range and fast attack. Can only use during preparation."),
+        "Prefabs/Character/OrcArcher"));
+    public static readonly Item ORC_FIGHTER_SPAWNER = Register(new SpawnerItem("orc_fighter_spawner", new Item.ItemProperty()
+        .WithDisplayName("Orc Warrior")
+        .WithDescription("Consumable : Spawns an Orc Fighter, a melee tank unit with high health and larger alert range. Can only use during preparation."),
+        "Prefabs/Character/OrcFighter"));
     // rituals
     public static readonly Item WOLF_RITUAL = Register(new Item("wolf_ritual", new Item.ItemProperty()
         .WithDisplayName("Wolf Ritual")

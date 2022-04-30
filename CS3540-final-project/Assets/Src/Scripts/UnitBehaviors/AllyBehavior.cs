@@ -6,10 +6,12 @@ public abstract class AllyBehavior : UnitBehavior
 {
     protected Transform startingPoint;
 
-
+    private float stackTime = 0;
+    private Vector3 lastPos;
     protected override void Start()
     {
         base.Start();
+        lastPos = transform.position;
         // record the starting point
         //startingPoint = transform;
     }
@@ -54,6 +56,17 @@ public abstract class AllyBehavior : UnitBehavior
     protected override void PerformChase()
     {
         anim.SetInteger("animState", WALK_ANIM);
+        if (Vector3.Distance(lastPos, transform.position) < 0.1f)
+        {
+            stackTime += Time.deltaTime;
+            if (stackTime > 3f)
+            {
+                stackTime = 0;
+                currentState = State.ALERT;
+                return;
+            }
+        }
+        lastPos = transform.position;
         if (currentAttackTarget == null)
         {
             currentState = State.ALERT;

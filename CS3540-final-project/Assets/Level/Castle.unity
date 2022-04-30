@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -37997,6 +37997,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4492597}
     m_Modifications:
+    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1463931823144853111, guid: 759eed4d9a04c4a4cb4825aa6ae38ad9, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -38044,18 +38056,6 @@ PrefabInstance:
     - target: {fileID: 8956204112403638478, guid: 759eed4d9a04c4a4cb4825aa6ae38ad9, type: 3}
       propertyPath: m_Name
       value: Grass_geo_03 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -29.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7559692321935498030, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a23f6078073998459b15e4ef6769e28, type: 3}
@@ -45966,9 +45966,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fcc6661f0c073148925d07e4521615b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportScene:
+  normalScene:
   - Farm
   - FarmAdvanced
+  hardScene:
+  - RiverBank
+  - Cliff
 --- !u!65 &3736483956239501527
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -252,11 +252,11 @@ MonoBehaviour:
   types: 0100000002000000
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
   level: 0
-  maxHealth: 50
-  attackRange: 15
+  maxHealth: 40
+  attackRange: 16
   alertRange: 20
-  attackDamage: 5
-  attackSpeed: 2
+  attackDamage: 4
+  attackSpeed: 1.5
   moveSpeed: 1
   currentAttackTarget: {fileID: 0}
   currentState: 0

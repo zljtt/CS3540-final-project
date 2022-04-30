@@ -108,10 +108,10 @@ MonoBehaviour:
   healSFX: {fileID: 8300000, guid: 615ce18e54839254faae0ecc7e09121c, type: 3}
   level: 0
   maxHealth: 60
-  attackRange: 15
+  attackRange: 18
   alertRange: 20
-  attackDamage: 5
-  attackSpeed: 2
+  attackDamage: 2
+  attackSpeed: 1
   moveSpeed: 1
   currentAttackTarget: {fileID: 0}
   currentState: 0
@@ -132,10 +132,11 @@ MonoBehaviour:
     amountMin: 1
     amountMax: 1
     chance: 0.5
-  - loot: mass_heal
+  - loot: windgrace_spell
     amountMin: 1
     amountMax: 1
     chance: 0.05
+  isQuitting: 0
   attackSFX: {fileID: 8300000, guid: e145a0e25cb1cd94387f55b78bb56d9f, type: 3}
   firePrefab: {fileID: 1828155836940170, guid: 997ea9b2c65ba944ab0dcb6dc341b2fb, type: 3}
   shootPoint: {fileID: 1302005810211243817}

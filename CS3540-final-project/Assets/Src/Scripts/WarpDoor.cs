@@ -5,33 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class WarpDoor : MonoBehaviour
 {
-    public List<string> teleportScene;
-    void Start()
-    {
-
-    }
+    public List<string> normalScene;
+    public List<string> hardScene;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            int index = Random.Range(0, teleportScene.Count);
+            if (LevelManager.playerData.playerLevel >= 2)
+            {
+                normalScene.AddRange(hardScene);
+            }
+            int index = Random.Range(0, normalScene.Count);
             if (FindObjectOfType<CombatManager>() == null)
             {
-                if (teleportScene[0] == "Castle")
+                if (normalScene[0] == "Castle")
                 {
                     StoreManager.nextLoadRefill = true;
                 }
-                SceneManager.LoadScene(teleportScene[index]);
-
+                SceneManager.LoadScene(normalScene[index]);
             }
             else if (FindObjectOfType<CombatManager>().GetStatus() == CombatManager.STATUS.LOOT)
             {
-                if (teleportScene[0] == "Castle")
+                if (normalScene[0] == "Castle")
                 {
                     StoreManager.nextLoadRefill = true;
                 }
-                SceneManager.LoadScene(teleportScene[index]);
+                SceneManager.LoadScene(normalScene[index]);
             }
         }
 

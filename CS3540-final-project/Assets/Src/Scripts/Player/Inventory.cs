@@ -17,10 +17,12 @@ public class Inventory
         {
             items[i] = EMPTY;
         }
-        items[0] = new ItemStack(ItemDatabase.ORC_WARRIOR_SPAWNER, 2);
+        items[0] = new ItemStack(ItemDatabase.ORC_WARRIOR_SPAWNER, 4);
         items[1] = new ItemStack(ItemDatabase.DRAKE_SPAWNER, 1);
         items[2] = new ItemStack(ItemDatabase.ORC_MAGE_SPAWNER, 1);
-        items[3] = new ItemStack(ItemDatabase.HEALTH_POTION, 3);
+        items[3] = new ItemStack(ItemDatabase.ORC_ARCHER_SPAWNER, 1);
+        items[4] = new ItemStack(ItemDatabase.ORC_FIGHTER_SPAWNER, 1);
+        items[5] = new ItemStack(ItemDatabase.HEALTH_POTION, 3);
     }
 
     public ItemStack AddItem(Item item, int count)

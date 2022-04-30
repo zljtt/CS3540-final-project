@@ -965,6 +965,11 @@ MonoBehaviour:
     amountMin: 1
     amountMax: 1
     chance: 0.5
+  - loot: encourage_spell
+    amountMin: 1
+    amountMax: 1
+    chance: 0.05
+  isQuitting: 0
   critChance: 0.2
   attackSFX: {fileID: 8300000, guid: 7b6392e21eb8ad7489dc38aaf7fa8db2, type: 3}
 --- !u!1 &8641458033018191177

@@ -6,9 +6,13 @@ public abstract class EnemyBehavior : UnitBehavior
 {
     private GameObject wayPoint;
     public List<LootEntry> lootTable;
-    private bool isQuitting = false;
+    public bool isQuitting = false;
+    private float stackTime = 0;
+    private Vector3 lastPos;
+
     protected override void Start()
     {
+        lastPos = transform.position;
         // init a list of waypoints at first, and remove the ones it reaches later
         List<GameObject> wayPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
         wayPoint = FindClosest(transform, wayPoints);
@@ -54,6 +58,17 @@ public abstract class EnemyBehavior : UnitBehavior
     protected override void PerformChase()
     {
         anim.SetInteger("animState", RUN_ANIM);
+        if (Vector3.Distance(lastPos, transform.position) < 0.1f)
+        {
+            stackTime += Time.deltaTime;
+            if (stackTime > 3f)
+            {
+                stackTime = 0;
+                currentState = State.ALERT;
+                return;
+            }
+        }
+        lastPos = transform.position;
         if (currentAttackTarget == null)
         {
             currentState = State.ALERT;

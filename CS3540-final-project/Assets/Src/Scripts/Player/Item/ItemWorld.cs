@@ -36,7 +36,11 @@ public class ItemWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            transform.LookAt(player.transform);
+        }
         if (!isFalling)
         {
             float offset = Mathf.PingPong(Time.time / 10, 0.2f);
